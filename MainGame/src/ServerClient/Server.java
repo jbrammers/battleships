@@ -1,34 +1,19 @@
 package ServerClient;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
-
 public class Server {
-    private static int portNumber = 3000;
 
     public static void main(String args[]) {
+        // Creates a server on port 3000
+        ServerThread server = new ServerThread(3000);
+        new Thread(server).start();
+
+        // Imitates the server being open for 200 seconds and then shuts it
         try {
-            // Set up connection on port number
-            ServerSocket server = new ServerSocket(portNumber);
-
-            Socket client = server.accept();
-            System.out.println("Connection Made");
-
-            DataOutputStream dos = new DataOutputStream(client.getOutputStream());
-
-            dos.writeBytes("Hi");
-            System.out.println("Message sent");
-
-            dos.close();
-            client.close();
-            server.close();
-
-        } catch (IOException e) {
-            // If connection cannot be set up on port number, exception is caught, port number incremented and retried
-            portNumber++;
-            main(args);
+            Thread.sleep(10000*20);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        server.stopServer();
     }
 }
