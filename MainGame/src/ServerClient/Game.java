@@ -5,13 +5,14 @@ import java.util.ArrayList;
 
 public class Game implements Runnable {
     private double gameID;
-    private ArrayList<Player> playerList = new ArrayList();
+    private ArrayList<Player> playerList;
     private boolean gameFilled = false;
     private boolean gameProgressing = false;
     private boolean gameFinished = false;
 
     public Game (Player player) {
-        this.gameID = Math.random();
+        this.gameID = Math.random()*100;
+        playerList = new ArrayList<>();
         this.playerList.add(player);
     }
 
@@ -65,7 +66,7 @@ public class Game implements Runnable {
      * @throws IOException
      */
     public void gameStart() throws IOException {
-        System.out.println("Game started!");
+        System.out.printf("Game ID %.0f started!\n", gameID);
         for (Player player: playerList) {
             System.out.println(player.toString());
             player.getOut().println(("Welcome to a BattleShips match between " + playerList.get(0).getUsername() +
@@ -79,7 +80,7 @@ public class Game implements Runnable {
      * @throws IOException
      */
     public void endGame() throws IOException {
-        System.out.println(String.format("Game ID %.2f ending", gameID));
+        System.out.println(String.format("Game ID %.0f ending!", gameID));
         for (Player p:
                 playerList) {
             p.getOut().println("CLIENT_CLOSE");
@@ -101,5 +102,9 @@ public class Game implements Runnable {
 
     public boolean isGameFinished() {
         return gameFinished;
+    }
+
+    public double getID() {
+        return gameID;
     }
 }

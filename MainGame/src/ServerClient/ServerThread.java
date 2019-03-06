@@ -37,7 +37,7 @@ public class ServerThread implements Runnable {
 
         // Begins server progress
         startServer();
-        System.out.println("Server started");
+
 
         // Loops the server until it is stopped
         while (running) {
@@ -55,7 +55,6 @@ public class ServerThread implements Runnable {
             // TODO games might require threads to yield so one game doesn't have to run to completetion before the next
             for (int i = 0; i < gameInstances.size(); i++) {
                 Game g = gameInstances.get(i);
-                threadpool.execute(g);
                 // Closes a game if its finished
                 if (g.isGameFinished()) {
                     gameInstances.remove(g);
@@ -80,11 +79,22 @@ public class ServerThread implements Runnable {
                 nextGame.addPlayer(newPlayer);
                 gameInstances.add(nextGame);
                 waitingGames.remove(nextGame);
+
+                createThread(nextGame);
             } else {
                 waitingGames.remove(0);
                 addPlayer(newPlayer);
             }
         }
+    }
+
+    /**
+     * Puts a newly initiated game on a thread from the threadpool and runs it
+     * @param newGame new game to be executed
+     */
+    private void createThread(Game newGame) {
+        Thread temp = new Thread(newGame);
+        threadpool.execute(temp);
     }
 
     /**
@@ -94,6 +104,7 @@ public class ServerThread implements Runnable {
         try {
             this.serverSocket = new ServerSocket(this.port);
             running = true;
+            System.out.printf("Server started on port %d \n", port);
         } catch (IOException e) {
             System.out.println("Problem starting server on port: " + this.port);
         }
