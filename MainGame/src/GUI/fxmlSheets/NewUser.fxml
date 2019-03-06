@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.NewUserController">
+    <children>
+        <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../resources/rsz_new_user_screen.jpg" />
+            </image>
+        </ImageView>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3d4956" height="282.0" layoutX="491.0" layoutY="227.0" stroke="BLACK" strokeType="INSIDE" style="-fx-opacity: 0.4;" width="298.0" />
+        <Button fx:id="createAccountButton" layoutX="570.0" layoutY="455.0" mnemonicParsing="false" onAction="#handleCreateAccountButtonAction" prefHeight="31.0" prefWidth="141.0" style="-fx-background-color: #F5F5F5;" text="Create Account">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font></Button>
+        <PasswordField fx:id="rePasswordField" layoutX="547.0" layoutY="405.0" />
+        <PasswordField fx:id="passwordField" layoutX="547.0" layoutY="343.0" />
+        <TextField fx:id="usernameField" layoutX="547.0" layoutY="279.0" />
+        <Label layoutX="547.0" layoutY="258.0" text="Choose a username:" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font></Label>
+        <Label layoutX="548.0" layoutY="322.0" text="Choose a password:" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font></Label>
+        <Label layoutX="547.0" layoutY="384.0" text="Re-enter your password:" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font></Label>
+        <Label layoutX="563.0" layoutY="227.0" prefHeight="31.0" prefWidth="154.0" text="Account Creation" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="199.0" fitWidth="553.0" layoutX="364.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../resources/Battleships.png" />
+            </image>
+        </ImageView>
+        <Button fx:id="backButton" layoutX="51.0" layoutY="647.0" mnemonicParsing="false" onAction="#handleBackButtonAction" style="-fx-background-color: #F5F5F5;" text="Back">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>
