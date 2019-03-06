@@ -30,7 +30,7 @@ public class LoginController {
             LoginErrorMessage.errorMessage("Please enter a valid username");
         }
 
-        if (passwordField.getText().isEmpty()) {
+        else if (passwordField.getText().isEmpty()) {
             LoginErrorMessage.errorMessage("Please enter a valid password");
         }
 
