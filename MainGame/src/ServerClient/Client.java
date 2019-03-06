@@ -3,6 +3,7 @@ package ServerClient;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
 
 public class Client {
@@ -15,9 +16,14 @@ public class Client {
             Socket client = new Socket("localhost", portNumber);
             client.setKeepAlive(true);
 
-                // Prints connection established message
-                BufferedReader input = new BufferedReader(
-                        new InputStreamReader(client.getInputStream()));
+            // Prints connection established message
+            BufferedReader input = new BufferedReader(
+                    new InputStreamReader(client.getInputStream()));
+
+            // Output client
+            PrintWriter output = new PrintWriter(
+                    client.getOutputStream(), true);
+            // TODO add an action listener for the messenger here
 
             // Listens for inputs whilst open
             while (!client.isClosed()) {
