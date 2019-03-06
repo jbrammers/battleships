@@ -1,5 +1,7 @@
 package ServerClient;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,6 +25,13 @@ public class Client {
             // Output client
             PrintWriter output = new PrintWriter(
                     client.getOutputStream(), true);
+
+            ActionListener sendMessage = new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    output.println();
+                }
+            };
             // TODO add an action listener for the messenger here
 
             // Listens for inputs whilst open
@@ -39,9 +48,6 @@ public class Client {
                     System.out.println(nextLine);
                 }
             }
-
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
