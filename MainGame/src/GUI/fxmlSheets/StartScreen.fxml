@@ -27,5 +27,6 @@
                 <Image url="@../../resources/Battleships.png" />
             </image>
         </ImageView>
+      <Button fx:id="messengerButton" layoutX="576.0" layoutY="481.0" mnemonicParsing="false" onAction="#handleMessengerButtonAction" prefHeight="53.0" prefWidth="129.0" text="*Temp* messenger " />
     </children>
 </AnchorPane>

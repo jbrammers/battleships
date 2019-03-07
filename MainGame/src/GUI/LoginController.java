@@ -45,7 +45,7 @@ public class LoginController {
             //    PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
            // }
            // else LoginErrorMessage.errorMessage("Login information incorrect");
-
+            PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
         }
 
     }

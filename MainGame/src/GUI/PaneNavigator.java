@@ -15,6 +15,7 @@ public class PaneNavigator {
     public static final String LOGIN = "/GUI/fxmlSheets/Login.fxml";
     public static final String NEWUSER = "/GUI/fxmlSheets/NewUser.fxml";
     public static final String STARTSCREEN = "/GUI/fxmlSheets/StartScreen.fxml";
+    public static final String MESSENGER = "/GUI/fxmlSheets/messengerWindow.fxml";
 
     private static MainController mainController;
 

@@ -22,4 +22,8 @@ public class StartScreenController {
     public void handleStartButtonAction() {
 
     }
+
+    public void handleMessengerButtonAction() {
+        PaneNavigator.loadPane(PaneNavigator.MESSENGER);
+    }
 }
