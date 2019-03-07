@@ -58,6 +58,7 @@ public class NewUserController {
         }
 
         else {
+            //TODO check if username is unique, if so add new user into database, else display error
             StandardUser newUser = new StandardUser(usernameField.getText(), passwordField.getText());
             PaneNavigator.loadPane(PaneNavigator.LOGIN);
         }

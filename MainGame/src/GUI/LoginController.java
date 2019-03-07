@@ -35,7 +35,17 @@ public class LoginController {
         }
 
         else {
-            PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
+            String userInput = usernameField.getText();
+            String passInput = passwordField.getText();
+
+
+            //TODO Send login info to server to be checked against database
+
+            //if (correct) {
+            //    PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
+           // }
+           // else LoginErrorMessage.errorMessage("Login information incorrect");
+
         }
 
     }
