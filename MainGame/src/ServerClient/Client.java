@@ -1,7 +1,5 @@
 package ServerClient;
 
-import GUI.MessengerController;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -31,24 +29,10 @@ public class Client {
             ActionListener sendMessage = new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    output.println(MessengerController.getMostRecentMessage());
+                    output.println();
                 }
             };
             // TODO add an action listener for the messenger here
-            ActionListener recieveMessage = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    try {
-                        String receivedMessage = input.readLine();
-                        MessengerController.printReceivedMessage(receivedMessage);
-                    }
-                    catch(IOException o) {
-                        o.printStackTrace();
-                    }
-                }
-            };
-
-
 
             // Listens for inputs whilst open
             while (!client.isClosed()) {
