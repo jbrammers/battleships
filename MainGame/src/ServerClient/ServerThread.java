@@ -38,7 +38,6 @@ public class ServerThread implements Runnable {
         // Begins server progress
         startServer();
 
-
         // Loops the server until it is stopped
         while (running) {
 
