@@ -1,3 +1,5 @@
+package Game;
+
 public class Ship {
     private String name;
     private int number;
@@ -5,12 +7,12 @@ public class Ship {
 
     public Ship(String name, int number, int length){
     this.name = name;
-  	this.nnumber = number;
+  	this.number = number;
   	this.length = length;
     }
 
-    public int getName(){
-        return names;
+    public String getName(){
+        return name;
     }
     
     public int getNumber(){
@@ -18,6 +20,6 @@ public class Ship {
     }
     
     public int getLength(){
-        return lenght;
+        return length;
     }
 }

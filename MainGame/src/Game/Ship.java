@@ -1,7 +1,8 @@
+package Game;
+
 import java.util.ArrayList;
 
-public class Ship 
-{
+public class Ship {
 	
 	
 	private Gameboard helper = new Gameboard();
