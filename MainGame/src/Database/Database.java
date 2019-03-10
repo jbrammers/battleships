@@ -19,10 +19,12 @@ public class Database {
     public static void run() {
 
         String url = "jdbc:postgresql://mod-msc-sw1.cs.bham.ac.uk/group40";
-        String username = "";
-        String password = "";
+        String username = ""; // TODO Add username once we know
+        String password = "52bsgkbp1x";
 
         try {
+            Class.forName("org.postgresql.Driver");
+
             Connection connection = DriverManager.getConnection(url, username, password);
 
             String playerStatement = "INSERT INTO player (username, password, wins, losses) VALUES (?,?,?,?);";
@@ -54,9 +56,10 @@ public class Database {
 
 
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("Something went wrong");
             System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
     }
