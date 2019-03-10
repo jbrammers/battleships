@@ -31,7 +31,7 @@ public class Game implements Runnable {
      */
     public boolean waitingCheck() {
         if (playerList.isEmpty()) return false;
-        return playerList.get(0).getSocket().isConnected();
+        return playerList.get(0).isSocketConnected();
     }
 
     /**
@@ -46,6 +46,12 @@ public class Game implements Runnable {
             while (!this.isGameFinished()) {
                 // TODO replace this sleeping thread with the game engine
                 try {
+                    for (Player p :
+                            playerList) {
+                        if (!p.isSocketConnected()) {
+                            endGame();
+                        }
+                    }
                     Thread.sleep(5000);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -63,9 +69,8 @@ public class Game implements Runnable {
 
     /**
      * Starts the game by sending a message to each player that they are now in a game
-     * @throws IOException
      */
-    public void gameStart() throws IOException {
+    public void gameStart() {
         System.out.printf("Game ID %.0f started!\n", gameID);
         for (Player player: playerList) {
             System.out.println(player.toString());
