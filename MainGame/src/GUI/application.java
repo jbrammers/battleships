@@ -1,12 +1,12 @@
 package GUI;
 
-import java.io.IOException;
-
 import javafx.application.Application;
-import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 /**
  * @author Oliver Grubb
@@ -56,6 +56,7 @@ public class application extends Application {
 
     public static void main(String[] args) {
         launch(args);
+
     }
 }
 

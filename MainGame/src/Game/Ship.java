@@ -1,7 +1,8 @@
+package Game;
+
 import java.util.ArrayList;
 
-public class Ship 
-{
+public class Ship {
 	
 	
 	private Gameboard helper = new Gameboard();
@@ -38,7 +39,7 @@ public class Ship
 	five.setname("Vector");
 	
 	System.out.println("Your goal is to sink five battleships:");
-	System.out.println(one + ", " + two + ", " + three + ", " + four + ", " + five + ".");
+	System.out.println(one + ", " + two + ", " + three + ", " + four + ", " + five + "");
 	System.out.println("You will need to do this in fewest attempts. Remember: if the other player sinks your ships before you, you lose!");
 	
 	}

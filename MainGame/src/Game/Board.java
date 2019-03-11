@@ -1,12 +1,18 @@
+package Game;
 
-public class Board extends ??? {
+import javafx.geometry.Orientation;
+
+import java.util.Random;
+import java.util.Vector;
+
+public class Board {
 	private int width; 
 	private int height;
 	private int rows;
 	private int columns;
 	private int size;
 
-  public Grid(int w, int h, int r, int c) {
+  public Board (int w, int h, int r, int c) {
   	this.width = width;
   	this.height = width;
   	this.rows = rows;

@@ -1,8 +1,6 @@
 package ServerClient;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -132,9 +130,13 @@ public class ServerThread implements Runnable {
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
             out.println("Connection established, authentication in progress.");
 
-            // Once this happens the client will send input authetication to be checked against the database
-            InputStream is = clientSocket.getInputStream();
-            return new Player("player" + (Math.random()*100), clientSocket);
+            // Once this happens the client will send input authentication to be checked against the database
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(clientSocket.getInputStream()));
+            String username = in.readLine();
+            String password = in.readLine();
+            out.println("AUTHENTICATED");
+            return new Player(username, clientSocket);
             // TODO Need to add database interaction to check username and password and then create a player instance
 
         } catch (IOException e) {
