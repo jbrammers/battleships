@@ -70,7 +70,44 @@ public class ShipPlacementController {
 
     @FXML
     private Button A1;
+    @FXML
+    private Button A2;
+    @FXML
+    private Button A3;
+    @FXML
+    private Button A4;
+    @FXML
+    private Button A5;
+    @FXML
+    private Button A6;
+    @FXML
+    private Button A7;
+    @FXML
+    private Button A8;
+    @FXML
+    private Button A9;
+    @FXML
+    private Button A10;
 
+
+    private boolean alreadyPressedA1 = false;
+    private boolean alreadyPressedA2 = false;
+    private boolean alreadyPressedA3 = false;
+    private boolean alreadyPressedA4 = false;
+    private boolean alreadyPressedA5 = false;
+    private boolean alreadyPressedA6 = false;
+    private boolean alreadyPressedA7 = false;
+    private boolean alreadyPressedA8 = false;
+    private boolean alreadyPressedA9 = false;
+    private boolean alreadyPressedA10 = false;
+
+    boolean alreadyPressedZeus1 = false;
+    boolean alreadyPressedZeus2 = false;
+
+    private int zeusRemaining = 4;
+    private int sledgehammerRemaining = 2;
+    private int stellarRemaining = 2;
+    private int ajaxRemaining = 1;
     private boolean zeusSelected = false;
     private boolean sledgehammerSelected = false;
     private boolean stellarSelected = false;
@@ -80,31 +117,33 @@ public class ShipPlacementController {
     private int stellarCounter = 0;
     private int ajaxCounter = 0;
     public static Gameboard board = new Gameboard();
-    private Ship zeusShip1 = new Ship("Zeus", 2);
-    private Ship zeusShip2 = new Ship("Zeus", 2);
-    private Ship zeusShip3 = new Ship("Zeus", 2);
-    private Ship zeusShip4 = new Ship("Zeus", 2);
-    private Ship sledgehammerShip1 = new Ship("Sledgehammer", 3);
-    private Ship sledgehammerShip2 = new Ship("Sledgehammer", 3);
-    private Ship sledgehammerShip3 = new Ship("Sledgehammer", 3);
-    private Ship stellarShip1 = new Ship("Stellar", 4);
-    private Ship stellarShip2 = new Ship("Stellar", 4);
-    private Ship ajaxShip2 = new Ship("Ajax", 5);
+    private Ship[] zeusShips = {new Ship("Zeus", 2), new Ship("Zeus", 2), new Ship("Zeus", 2), new Ship("Zeus", 2)};
+
+    private Ship[] sledgehammerShips = {new Ship("Sledgehammer", 3), new Ship("Sledgehammer", 3), new Ship("Sledgehammer", 3)};
+
+    private Ship[] stellarShips = {new Ship("Stellar", 4), new Ship("Stellar", 4)};
+
+    private Ship[] ajaxShips = {new Ship("Ajax", 5)};
 
     public void handleButtonActionZeus1(ActionEvent actionEvent) {
-        sledgehammerSelected = false;
-        stellarSelected = false;
-        ajaxSelected = false;
-        zeusSelected = true;
-        zeus1.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+        if (alreadyPressedZeus1 == false) {
+            sledgehammerSelected = false;
+            stellarSelected = false;
+            ajaxSelected = false;
+            zeusSelected = true;
+            alreadyPressedZeus1 = true;
+            zeus1.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+        }
     }
 
     public void handleButtonActionZeus2(ActionEvent actionEvent) {
-        sledgehammerSelected = false;
-        stellarSelected = false;
-        ajaxSelected = false;
-        zeusSelected = true;
-        zeus2.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+        if (alreadyPressedZeus2 == false) {
+            sledgehammerSelected = false;
+            stellarSelected = false;
+            ajaxSelected = false;
+            zeusSelected = true;
+            zeus2.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+        }
     }
 
     public void handleButtonActionSledgehammer1(ActionEvent actionEvent) {
@@ -215,64 +254,1005 @@ public class ShipPlacementController {
 
     }
 
+    private boolean validLocation(Ship ship, String location, int counter) {
+        if (ship.getLocation().isEmpty()) {
+            ship.getLocation().add(location);
+            return true;
+        }
+        else {
+            char[] previousLocationCharArray = ship.getLocation().get(counter-1).toCharArray();
+            char[] requestedLocationCharArray = location.toCharArray();
+            if (requestedLocationCharArray.equals(requestedLocationCharArray)) {
+                return false;
+            }
+            if (requestedLocationCharArray[0] == previousLocationCharArray[0]) {
+                if ((int)requestedLocationCharArray[1] == (int)previousLocationCharArray[1] + 1 || (int)requestedLocationCharArray[1] == (int)previousLocationCharArray[1] - 1 ) {
+                    ship.getLocation().add(location);
+                    return true;
+                }
+                else return false;
+            }
+            if (requestedLocationCharArray[1] == previousLocationCharArray[1]) {
+                if (requestedLocationCharArray[0] == previousLocationCharArray[0] + 1 || requestedLocationCharArray[0] == previousLocationCharArray[0] - 1 ) {
+                    ship.getLocation().add(location);
+                    return true;
+                }
+                else return false;
+            }
+        }
+        return false;
+    }
 
 
     public void handleButtonActionA1(ActionEvent actionEvent) {
-        if (zeusSelected == true) {
-            A1.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
-            zeusCounter++;
-            if (zeusCounter == 2) {
-                zeus1.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-                zeus2.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-                zeusCounter = 0;
-                
-                zeusShip1.getLocation().add("A1");
+        if (alreadyPressedA1 == false) {
+
+            if (zeusSelected == true && zeusRemaining != 0) {
+
+                for (Ship ship : zeusShips) {
+                    if (!ship.locationsFull()) {
+
+                        if (validLocation(ship, "A1", zeusCounter)) {
+                            A1.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+                            zeusCounter++;
+                            break;
+                        }
+                    }
+                }
+                if (zeusCounter == 2) {
+                    zeus1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    zeus2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    alreadyPressedZeus1 = false;
+                    alreadyPressedZeus2 = false;
+                    zeusCounter = 0;
+                    board.addShip(zeusShips[4 - zeusRemaining]);
+                    zeusRemaining--;
+                    zeusCounterLabel.setText(zeusRemaining + " x Zeus");
+                }
+            } else if (sledgehammerSelected == true && sledgehammerRemaining != 0) {
+
+                for (Ship ship : sledgehammerShips) {
+                    if (!ship.locationsFull()) {
+
+                        if (validLocation(ship, "A1", sledgehammerCounter)) {
+                                A1.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+                                sledgehammerCounter++;
+                            break;
+                        }
+                    }
+                }
+                if (sledgehammerCounter == 3) {
+                    sledgehammer1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    sledgehammer2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    sledgehammer3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    sledgehammerCounter = 0;
+                    board.addShip(sledgehammerShips[3 - sledgehammerRemaining]);
+                    sledgehammerRemaining--;
+                    sledgehammerCounterLabel.setText(sledgehammerRemaining + " x Sledgehammer");
+                }
+            } else if (stellarSelected == true && stellarRemaining != 0) {
+
+                for (Ship ship : stellarShips) {
+                    if (!ship.locationsFull()) {
+                        if (validLocation(ship, "A1", stellarCounter)) {
+                            A1.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+                            stellarCounter++;
+                            break;
+                        }
+                    }
+                }
+                if (stellarCounter == 4) {
+                    stellar1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    stellar2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    stellar3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    stellar4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    stellarCounter = 0;
+                    board.addShip(stellarShips[2 - stellarRemaining]);
+                    stellarRemaining--;
+                    stellarCounterLabel.setText(stellarRemaining + " x Stellar");
+                }
+            } else if (ajaxSelected == true && ajaxRemaining != 0) {
+
+                for (Ship ship : ajaxShips) {
+                    if (!ship.locationsFull()) {
+                        if (validLocation(ship, "A1", ajaxCounter)) {
+                            A1.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+                            ajaxCounter++;
+                            break;
+                        }
+                    }
+                }
+                if (ajaxCounter == 5) {
+                    ajax1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    ajax2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    ajax3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    ajax4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    ajax5.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    ajaxCounter = 0;
+                    board.addShip(ajaxShips[1 - ajaxRemaining]);
+                    ajaxRemaining--;
+                    ajaxCounterLabel.setText(ajaxRemaining + " x Ajax");
+                }
             }
+            zeusSelected = false;
+            sledgehammerSelected = false;
+            stellarSelected = false;
+            ajaxSelected = false;
+            alreadyPressedA1 = true;
         }
-        else if (sledgehammerSelected == true) {
-            A1.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-            sledgehammerCounter++;
-        }
-        else if (stellarSelected == true) {
-            A1.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
-            stellarCounter++;
-        }
-        else if (ajaxSelected == true) {
-            A1.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
-            ajaxCounter++;
+    }
+
+    public void handleButtonActionA2(ActionEvent actionEvent) {if (alreadyPressedA2 == false) {
+
+        if (zeusSelected == true && zeusRemaining != 0) {
+
+            for (Ship ship : zeusShips) {
+                if (!ship.locationsFull()) {
+
+                    if (validLocation(ship, "A2", zeusCounter)) {
+                        A2.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+                        zeusCounter++;
+                        break;
+                    }
+                }
+            }
+            if (zeusCounter == 2) {
+                zeus1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                zeus2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                alreadyPressedZeus1 = false;
+                alreadyPressedZeus2 = false;
+                zeusCounter = 0;
+                board.addShip(zeusShips[4 - zeusRemaining]);
+                zeusRemaining--;
+                zeusCounterLabel.setText(zeusRemaining + " x Zeus");
+            }
+        } else if (sledgehammerSelected == true && sledgehammerRemaining != 0) {
+
+            for (Ship ship : sledgehammerShips) {
+                if (!ship.locationsFull()) {
+
+                    if (validLocation(ship, "A2", sledgehammerCounter)) {
+                        A2.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+                        sledgehammerCounter++;
+                        break;
+                    }
+                }
+            }
+            if (sledgehammerCounter == 3) {
+                sledgehammer1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammer2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammer3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammerCounter = 0;
+                board.addShip(sledgehammerShips[3 - sledgehammerRemaining]);
+                sledgehammerRemaining--;
+                sledgehammerCounterLabel.setText(sledgehammerRemaining + " x Sledgehammer");
+            }
+        } else if (stellarSelected == true && stellarRemaining != 0) {
+
+            for (Ship ship : stellarShips) {
+                if (!ship.locationsFull()) {
+                    if (validLocation(ship, "A2", stellarCounter)) {
+                        A2.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+                        stellarCounter++;
+                        break;
+                    }
+                }
+            }
+            if (stellarCounter == 4) {
+                stellar1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellarCounter = 0;
+                board.addShip(stellarShips[2 - stellarRemaining]);
+                stellarRemaining--;
+                stellarCounterLabel.setText(stellarRemaining + " x Stellar");
+            }
+        } else if (ajaxSelected == true && ajaxRemaining != 0) {
+
+            for (Ship ship : ajaxShips) {
+                if (!ship.locationsFull()) {
+                    if (validLocation(ship, "A2", ajaxCounter)) {
+                        A2.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+                        ajaxCounter++;
+                        break;
+                    }
+                }
+            }
+            if (ajaxCounter == 5) {
+                ajax1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax5.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajaxCounter = 0;
+                board.addShip(ajaxShips[1 - ajaxRemaining]);
+                ajaxRemaining--;
+                ajaxCounterLabel.setText(ajaxRemaining + " x Ajax");
+            }
         }
         zeusSelected = false;
         sledgehammerSelected = false;
         stellarSelected = false;
         ajaxSelected = false;
-
+        alreadyPressedA2 = true;
+    }
     }
 
-    public void handleButtonActionA2(ActionEvent actionEvent) {
+    public void handleButtonActionA3(ActionEvent actionEvent) {if (alreadyPressedA3 == false) {
+
+        if (zeusSelected == true && zeusRemaining != 0) {
+
+            for (Ship ship : zeusShips) {
+                if (!ship.locationsFull()) {
+
+                    if (validLocation(ship, "A3", zeusCounter)) {
+                        A3.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+                        zeusCounter++;
+                        break;
+                    }
+                }
+            }
+            if (zeusCounter == 2) {
+                zeus1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                zeus2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                alreadyPressedZeus1 = false;
+                alreadyPressedZeus2 = false;
+                zeusCounter = 0;
+                board.addShip(zeusShips[4 - zeusRemaining]);
+                zeusRemaining--;
+                zeusCounterLabel.setText(zeusRemaining + " x Zeus");
+            }
+        } else if (sledgehammerSelected == true && sledgehammerRemaining != 0) {
+
+            for (Ship ship : sledgehammerShips) {
+                if (!ship.locationsFull()) {
+
+                    if (validLocation(ship, "A3", sledgehammerCounter)) {
+                        A3.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+                        sledgehammerCounter++;
+                        break;
+                    }
+                }
+            }
+            if (sledgehammerCounter == 3) {
+                sledgehammer1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammer2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammer3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammerCounter = 0;
+                board.addShip(sledgehammerShips[3 - sledgehammerRemaining]);
+                sledgehammerRemaining--;
+                sledgehammerCounterLabel.setText(sledgehammerRemaining + " x Sledgehammer");
+            }
+        } else if (stellarSelected == true && stellarRemaining != 0) {
+
+            for (Ship ship : stellarShips) {
+                if (!ship.locationsFull()) {
+                    if (validLocation(ship, "A3", stellarCounter)) {
+                        A3.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+                        stellarCounter++;
+                        break;
+                    }
+                }
+            }
+            if (stellarCounter == 4) {
+                stellar1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellarCounter = 0;
+                board.addShip(stellarShips[2 - stellarRemaining]);
+                stellarRemaining--;
+                stellarCounterLabel.setText(stellarRemaining + " x Stellar");
+            }
+        } else if (ajaxSelected == true && ajaxRemaining != 0) {
+
+            for (Ship ship : ajaxShips) {
+                if (!ship.locationsFull()) {
+                    if (validLocation(ship, "A3", ajaxCounter)) {
+                        A3.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+                        ajaxCounter++;
+                        break;
+                    }
+                }
+            }
+            if (ajaxCounter == 5) {
+                ajax1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax5.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajaxCounter = 0;
+                board.addShip(ajaxShips[1 - ajaxRemaining]);
+                ajaxRemaining--;
+                ajaxCounterLabel.setText(ajaxRemaining + " x Ajax");
+            }
+        }
+        zeusSelected = false;
+        sledgehammerSelected = false;
+        stellarSelected = false;
+        ajaxSelected = false;
+        alreadyPressedA3 = true;
+    }
     }
 
-    public void handleButtonActionA3(ActionEvent actionEvent) {
+    public void handleButtonActionA4(ActionEvent actionEvent) {if (alreadyPressedA4 == false) {
+
+        if (zeusSelected == true && zeusRemaining != 0) {
+
+            for (Ship ship : zeusShips) {
+                if (!ship.locationsFull()) {
+
+                    if (validLocation(ship, "A4", zeusCounter)) {
+                        A4.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+                        zeusCounter++;
+                        break;
+                    }
+                }
+            }
+            if (zeusCounter == 2) {
+                zeus1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                zeus2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                alreadyPressedZeus1 = false;
+                alreadyPressedZeus2 = false;
+                zeusCounter = 0;
+                board.addShip(zeusShips[4 - zeusRemaining]);
+                zeusRemaining--;
+                zeusCounterLabel.setText(zeusRemaining + " x Zeus");
+            }
+        } else if (sledgehammerSelected == true && sledgehammerRemaining != 0) {
+
+            for (Ship ship : sledgehammerShips) {
+                if (!ship.locationsFull()) {
+
+                    if (validLocation(ship, "A4", sledgehammerCounter)) {
+                        A4.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+                        sledgehammerCounter++;
+                        break;
+                    }
+                }
+            }
+            if (sledgehammerCounter == 3) {
+                sledgehammer1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammer2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammer3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammerCounter = 0;
+                board.addShip(sledgehammerShips[3 - sledgehammerRemaining]);
+                sledgehammerRemaining--;
+                sledgehammerCounterLabel.setText(sledgehammerRemaining + " x Sledgehammer");
+            }
+        } else if (stellarSelected == true && stellarRemaining != 0) {
+
+            for (Ship ship : stellarShips) {
+                if (!ship.locationsFull()) {
+                    if (validLocation(ship, "A4", stellarCounter)) {
+                        A4.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+                        stellarCounter++;
+                        break;
+                    }
+                }
+            }
+            if (stellarCounter == 4) {
+                stellar1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellarCounter = 0;
+                board.addShip(stellarShips[2 - stellarRemaining]);
+                stellarRemaining--;
+                stellarCounterLabel.setText(stellarRemaining + " x Stellar");
+            }
+        } else if (ajaxSelected == true && ajaxRemaining != 0) {
+
+            for (Ship ship : ajaxShips) {
+                if (!ship.locationsFull()) {
+                    if (validLocation(ship, "A4", ajaxCounter)) {
+                        A4.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+                        ajaxCounter++;
+                        break;
+                    }
+                }
+            }
+            if (ajaxCounter == 5) {
+                ajax1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax5.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajaxCounter = 0;
+                board.addShip(ajaxShips[1 - ajaxRemaining]);
+                ajaxRemaining--;
+                ajaxCounterLabel.setText(ajaxRemaining + " x Ajax");
+            }
+        }
+        zeusSelected = false;
+        sledgehammerSelected = false;
+        stellarSelected = false;
+        ajaxSelected = false;
+        alreadyPressedA4 = true;
+    }
     }
 
-    public void handleButtonActionA4(ActionEvent actionEvent) {
+    public void handleButtonActionA5(ActionEvent actionEvent) {if (alreadyPressedA5 == false) {
+
+        if (zeusSelected == true && zeusRemaining != 0) {
+
+            for (Ship ship : zeusShips) {
+                if (!ship.locationsFull()) {
+
+                    if (validLocation(ship, "A5", zeusCounter)) {
+                        A5.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+                        zeusCounter++;
+                        break;
+                    }
+                }
+            }
+            if (zeusCounter == 2) {
+                zeus1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                zeus2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                alreadyPressedZeus1 = false;
+                alreadyPressedZeus2 = false;
+                zeusCounter = 0;
+                board.addShip(zeusShips[4 - zeusRemaining]);
+                zeusRemaining--;
+                zeusCounterLabel.setText(zeusRemaining + " x Zeus");
+            }
+        } else if (sledgehammerSelected == true && sledgehammerRemaining != 0) {
+
+            for (Ship ship : sledgehammerShips) {
+                if (!ship.locationsFull()) {
+
+                    if (validLocation(ship, "A5", sledgehammerCounter)) {
+                        A5.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+                        sledgehammerCounter++;
+                        break;
+                    }
+                }
+            }
+            if (sledgehammerCounter == 3) {
+                sledgehammer1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammer2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammer3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammerCounter = 0;
+                board.addShip(sledgehammerShips[3 - sledgehammerRemaining]);
+                sledgehammerRemaining--;
+                sledgehammerCounterLabel.setText(sledgehammerRemaining + " x Sledgehammer");
+            }
+        } else if (stellarSelected == true && stellarRemaining != 0) {
+
+            for (Ship ship : stellarShips) {
+                if (!ship.locationsFull()) {
+                    if (validLocation(ship, "A5", stellarCounter)) {
+                        A5.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+                        stellarCounter++;
+                        break;
+                    }
+                }
+            }
+            if (stellarCounter == 4) {
+                stellar1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellarCounter = 0;
+                board.addShip(stellarShips[2 - stellarRemaining]);
+                stellarRemaining--;
+                stellarCounterLabel.setText(stellarRemaining + " x Stellar");
+            }
+        } else if (ajaxSelected == true && ajaxRemaining != 0) {
+
+            for (Ship ship : ajaxShips) {
+                if (!ship.locationsFull()) {
+                    if (validLocation(ship, "A5", ajaxCounter)) {
+                        A5.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+                        ajaxCounter++;
+                        break;
+                    }
+                }
+            }
+            if (ajaxCounter == 5) {
+                ajax1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax5.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajaxCounter = 0;
+                board.addShip(ajaxShips[1 - ajaxRemaining]);
+                ajaxRemaining--;
+                ajaxCounterLabel.setText(ajaxRemaining + " x Ajax");
+            }
+        }
+        zeusSelected = false;
+        sledgehammerSelected = false;
+        stellarSelected = false;
+        ajaxSelected = false;
+        alreadyPressedA5 = true;
+    }
     }
 
-    public void handleButtonActionA5(ActionEvent actionEvent) {
+    public void handleButtonActionA6(ActionEvent actionEvent) {if (alreadyPressedA6 == false) {
+
+        if (zeusSelected == true && zeusRemaining != 0) {
+
+            for (Ship ship : zeusShips) {
+                if (!ship.locationsFull()) {
+
+                    if (validLocation(ship, "A6", zeusCounter)) {
+                        A6.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+                        zeusCounter++;
+                        break;
+                    }
+                }
+            }
+            if (zeusCounter == 2) {
+                zeus1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                zeus2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                alreadyPressedZeus1 = false;
+                alreadyPressedZeus2 = false;
+                zeusCounter = 0;
+                board.addShip(zeusShips[4 - zeusRemaining]);
+                zeusRemaining--;
+                zeusCounterLabel.setText(zeusRemaining + " x Zeus");
+            }
+        } else if (sledgehammerSelected == true && sledgehammerRemaining != 0) {
+
+            for (Ship ship : sledgehammerShips) {
+                if (!ship.locationsFull()) {
+
+                    if (validLocation(ship, "A6", sledgehammerCounter)) {
+                        A6.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+                        sledgehammerCounter++;
+                        break;
+                    }
+                }
+            }
+            if (sledgehammerCounter == 3) {
+                sledgehammer1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammer2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammer3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammerCounter = 0;
+                board.addShip(sledgehammerShips[3 - sledgehammerRemaining]);
+                sledgehammerRemaining--;
+                sledgehammerCounterLabel.setText(sledgehammerRemaining + " x Sledgehammer");
+            }
+        } else if (stellarSelected == true && stellarRemaining != 0) {
+
+            for (Ship ship : stellarShips) {
+                if (!ship.locationsFull()) {
+                    if (validLocation(ship, "A6", stellarCounter)) {
+                        A6.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+                        stellarCounter++;
+                        break;
+                    }
+                }
+            }
+            if (stellarCounter == 4) {
+                stellar1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellarCounter = 0;
+                board.addShip(stellarShips[2 - stellarRemaining]);
+                stellarRemaining--;
+                stellarCounterLabel.setText(stellarRemaining + " x Stellar");
+            }
+        } else if (ajaxSelected == true && ajaxRemaining != 0) {
+
+            for (Ship ship : ajaxShips) {
+                if (!ship.locationsFull()) {
+                    if (validLocation(ship, "A6", ajaxCounter)) {
+                        A6.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+                        ajaxCounter++;
+                        break;
+                    }
+                }
+            }
+            if (ajaxCounter == 5) {
+                ajax1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax5.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajaxCounter = 0;
+                board.addShip(ajaxShips[1 - ajaxRemaining]);
+                ajaxRemaining--;
+                ajaxCounterLabel.setText(ajaxRemaining + " x Ajax");
+            }
+        }
+        zeusSelected = false;
+        sledgehammerSelected = false;
+        stellarSelected = false;
+        ajaxSelected = false;
+        alreadyPressedA6 = true;
+    }
     }
 
-    public void handleButtonActionA6(ActionEvent actionEvent) {
+    public void handleButtonActionA7(ActionEvent actionEvent) {if (alreadyPressedA7 == false) {
+
+        if (zeusSelected == true && zeusRemaining != 0) {
+
+            for (Ship ship : zeusShips) {
+                if (!ship.locationsFull()) {
+
+                    if (validLocation(ship, "A7", zeusCounter)) {
+                        A7.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+                        zeusCounter++;
+                        break;
+                    }
+                }
+            }
+            if (zeusCounter == 2) {
+                zeus1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                zeus2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                alreadyPressedZeus1 = false;
+                alreadyPressedZeus2 = false;
+                zeusCounter = 0;
+                board.addShip(zeusShips[4 - zeusRemaining]);
+                zeusRemaining--;
+                zeusCounterLabel.setText(zeusRemaining + " x Zeus");
+            }
+        } else if (sledgehammerSelected == true && sledgehammerRemaining != 0) {
+
+            for (Ship ship : sledgehammerShips) {
+                if (!ship.locationsFull()) {
+
+                    if (validLocation(ship, "A7", sledgehammerCounter)) {
+                        A7.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+                        sledgehammerCounter++;
+                        break;
+                    }
+                }
+            }
+            if (sledgehammerCounter == 3) {
+                sledgehammer1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammer2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammer3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammerCounter = 0;
+                board.addShip(sledgehammerShips[3 - sledgehammerRemaining]);
+                sledgehammerRemaining--;
+                sledgehammerCounterLabel.setText(sledgehammerRemaining + " x Sledgehammer");
+            }
+        } else if (stellarSelected == true && stellarRemaining != 0) {
+
+            for (Ship ship : stellarShips) {
+                if (!ship.locationsFull()) {
+                    if (validLocation(ship, "A7", stellarCounter)) {
+                        A7.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+                        stellarCounter++;
+                        break;
+                    }
+                }
+            }
+            if (stellarCounter == 4) {
+                stellar1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellarCounter = 0;
+                board.addShip(stellarShips[2 - stellarRemaining]);
+                stellarRemaining--;
+                stellarCounterLabel.setText(stellarRemaining + " x Stellar");
+            }
+        } else if (ajaxSelected == true && ajaxRemaining != 0) {
+
+            for (Ship ship : ajaxShips) {
+                if (!ship.locationsFull()) {
+                    if (validLocation(ship, "A7", ajaxCounter)) {
+                        A7.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+                        ajaxCounter++;
+                        break;
+                    }
+                }
+            }
+            if (ajaxCounter == 5) {
+                ajax1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax5.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajaxCounter = 0;
+                board.addShip(ajaxShips[1 - ajaxRemaining]);
+                ajaxRemaining--;
+                ajaxCounterLabel.setText(ajaxRemaining + " x Ajax");
+            }
+        }
+        zeusSelected = false;
+        sledgehammerSelected = false;
+        stellarSelected = false;
+        ajaxSelected = false;
+        alreadyPressedA7 = true;
+    }
     }
 
-    public void handleButtonActionA7(ActionEvent actionEvent) {
+    public void handleButtonActionA8(ActionEvent actionEvent) {if (alreadyPressedA8 == false) {
+
+        if (zeusSelected == true && zeusRemaining != 0) {
+
+            for (Ship ship : zeusShips) {
+                if (!ship.locationsFull()) {
+
+                    if (validLocation(ship, "A8", zeusCounter)) {
+                        A8.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+                        zeusCounter++;
+                        break;
+                    }
+                }
+            }
+            if (zeusCounter == 2) {
+                zeus1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                zeus2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                alreadyPressedZeus1 = false;
+                alreadyPressedZeus2 = false;
+                zeusCounter = 0;
+                board.addShip(zeusShips[4 - zeusRemaining]);
+                zeusRemaining--;
+                zeusCounterLabel.setText(zeusRemaining + " x Zeus");
+            }
+        } else if (sledgehammerSelected == true && sledgehammerRemaining != 0) {
+
+            for (Ship ship : sledgehammerShips) {
+                if (!ship.locationsFull()) {
+
+                    if (validLocation(ship, "A8", sledgehammerCounter)) {
+                        A8.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+                        sledgehammerCounter++;
+                        break;
+                    }
+                }
+            }
+            if (sledgehammerCounter == 3) {
+                sledgehammer1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammer2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammer3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammerCounter = 0;
+                board.addShip(sledgehammerShips[3 - sledgehammerRemaining]);
+                sledgehammerRemaining--;
+                sledgehammerCounterLabel.setText(sledgehammerRemaining + " x Sledgehammer");
+            }
+        } else if (stellarSelected == true && stellarRemaining != 0) {
+
+            for (Ship ship : stellarShips) {
+                if (!ship.locationsFull()) {
+                    if (validLocation(ship, "A8", stellarCounter)) {
+                        A8.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+                        stellarCounter++;
+                        break;
+                    }
+                }
+            }
+            if (stellarCounter == 4) {
+                stellar1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellarCounter = 0;
+                board.addShip(stellarShips[2 - stellarRemaining]);
+                stellarRemaining--;
+                stellarCounterLabel.setText(stellarRemaining + " x Stellar");
+            }
+        } else if (ajaxSelected == true && ajaxRemaining != 0) {
+
+            for (Ship ship : ajaxShips) {
+                if (!ship.locationsFull()) {
+                    if (validLocation(ship, "A8", ajaxCounter)) {
+                        A8.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+                        ajaxCounter++;
+                        break;
+                    }
+                }
+            }
+            if (ajaxCounter == 5) {
+                ajax1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax5.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajaxCounter = 0;
+                board.addShip(ajaxShips[1 - ajaxRemaining]);
+                ajaxRemaining--;
+                ajaxCounterLabel.setText(ajaxRemaining + " x Ajax");
+            }
+        }
+        zeusSelected = false;
+        sledgehammerSelected = false;
+        stellarSelected = false;
+        ajaxSelected = false;
+        alreadyPressedA8 = true;
+    }
     }
 
-    public void handleButtonActionA8(ActionEvent actionEvent) {
+    public void handleButtonActionA9(ActionEvent actionEvent) {if (alreadyPressedA9 == false) {
+
+        if (zeusSelected == true && zeusRemaining != 0) {
+
+            for (Ship ship : zeusShips) {
+                if (!ship.locationsFull()) {
+
+                    if (validLocation(ship, "A9", zeusCounter)) {
+                        A9.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+                        zeusCounter++;
+                        break;
+                    }
+                }
+            }
+            if (zeusCounter == 2) {
+                zeus1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                zeus2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                alreadyPressedZeus1 = false;
+                alreadyPressedZeus2 = false;
+                zeusCounter = 0;
+                board.addShip(zeusShips[4 - zeusRemaining]);
+                zeusRemaining--;
+                zeusCounterLabel.setText(zeusRemaining + " x Zeus");
+            }
+        } else if (sledgehammerSelected == true && sledgehammerRemaining != 0) {
+
+            for (Ship ship : sledgehammerShips) {
+                if (!ship.locationsFull()) {
+
+                    if (validLocation(ship, "A9", sledgehammerCounter)) {
+                        A9.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+                        sledgehammerCounter++;
+                        break;
+                    }
+                }
+            }
+            if (sledgehammerCounter == 3) {
+                sledgehammer1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammer2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammer3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammerCounter = 0;
+                board.addShip(sledgehammerShips[3 - sledgehammerRemaining]);
+                sledgehammerRemaining--;
+                sledgehammerCounterLabel.setText(sledgehammerRemaining + " x Sledgehammer");
+            }
+        } else if (stellarSelected == true && stellarRemaining != 0) {
+
+            for (Ship ship : stellarShips) {
+                if (!ship.locationsFull()) {
+                    if (validLocation(ship, "A9", stellarCounter)) {
+                        A9.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+                        stellarCounter++;
+                        break;
+                    }
+                }
+            }
+            if (stellarCounter == 4) {
+                stellar1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellarCounter = 0;
+                board.addShip(stellarShips[2 - stellarRemaining]);
+                stellarRemaining--;
+                stellarCounterLabel.setText(stellarRemaining + " x Stellar");
+            }
+        } else if (ajaxSelected == true && ajaxRemaining != 0) {
+
+            for (Ship ship : ajaxShips) {
+                if (!ship.locationsFull()) {
+                    if (validLocation(ship, "A9", ajaxCounter)) {
+                        A9.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+                        ajaxCounter++;
+                        break;
+                    }
+                }
+            }
+            if (ajaxCounter == 5) {
+                ajax1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax5.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajaxCounter = 0;
+                board.addShip(ajaxShips[1 - ajaxRemaining]);
+                ajaxRemaining--;
+                ajaxCounterLabel.setText(ajaxRemaining + " x Ajax");
+            }
+        }
+        zeusSelected = false;
+        sledgehammerSelected = false;
+        stellarSelected = false;
+        ajaxSelected = false;
+        alreadyPressedA9 = true;
+    }
     }
 
-    public void handleButtonActionA9(ActionEvent actionEvent) {
-    }
+    public void handleButtonActionA10(ActionEvent actionEvent) {if (alreadyPressedA10 == false) {
 
-    public void handleButtonActionA10(ActionEvent actionEvent) {
+        if (zeusSelected == true && zeusRemaining != 0) {
+
+            for (Ship ship : zeusShips) {
+                if (!ship.locationsFull()) {
+
+                    if (validLocation(ship, "A10", zeusCounter)) {
+                        A10.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+                        zeusCounter++;
+                        break;
+                    }
+                }
+            }
+            if (zeusCounter == 2) {
+                zeus1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                zeus2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                alreadyPressedZeus1 = false;
+                alreadyPressedZeus2 = false;
+                zeusCounter = 0;
+                board.addShip(zeusShips[4 - zeusRemaining]);
+                zeusRemaining--;
+                zeusCounterLabel.setText(zeusRemaining + " x Zeus");
+            }
+        } else if (sledgehammerSelected == true && sledgehammerRemaining != 0) {
+
+            for (Ship ship : sledgehammerShips) {
+                if (!ship.locationsFull()) {
+
+                    if (validLocation(ship, "A10", sledgehammerCounter)) {
+                        A10.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+                        sledgehammerCounter++;
+                        break;
+                    }
+                }
+            }
+            if (sledgehammerCounter == 3) {
+                sledgehammer1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammer2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammer3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                sledgehammerCounter = 0;
+                board.addShip(sledgehammerShips[3 - sledgehammerRemaining]);
+                sledgehammerRemaining--;
+                sledgehammerCounterLabel.setText(sledgehammerRemaining + " x Sledgehammer");
+            }
+        } else if (stellarSelected == true && stellarRemaining != 0) {
+
+            for (Ship ship : stellarShips) {
+                if (!ship.locationsFull()) {
+                    if (validLocation(ship, "A10", stellarCounter)) {
+                        A10.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+                        stellarCounter++;
+                        break;
+                    }
+                }
+            }
+            if (stellarCounter == 4) {
+                stellar1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellar4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                stellarCounter = 0;
+                board.addShip(stellarShips[2 - stellarRemaining]);
+                stellarRemaining--;
+                stellarCounterLabel.setText(stellarRemaining + " x Stellar");
+            }
+        } else if (ajaxSelected == true && ajaxRemaining != 0) {
+
+            for (Ship ship : ajaxShips) {
+                if (!ship.locationsFull()) {
+                    if (validLocation(ship, "A10", ajaxCounter)) {
+                        A10.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+                        ajaxCounter++;
+                        break;
+                    }
+                }
+            }
+            if (ajaxCounter == 5) {
+                ajax1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajax5.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                ajaxCounter = 0;
+                board.addShip(ajaxShips[1 - ajaxRemaining]);
+                ajaxRemaining--;
+                ajaxCounterLabel.setText(ajaxRemaining + " x Ajax");
+            }
+        }
+        zeusSelected = false;
+        sledgehammerSelected = false;
+        stellarSelected = false;
+        ajaxSelected = false;
+        alreadyPressedA10 = true;
+    }
     }
 
     public void handleButtonActionB1(ActionEvent actionEvent) {
