@@ -20,7 +20,7 @@ public class StartScreenController {
     }
 
     public void handleStartButtonAction() {
-
+        PaneNavigator.loadPane(PaneNavigator.SHIPPLACEMENT);
     }
 
     public void handleMessengerButtonAction() {

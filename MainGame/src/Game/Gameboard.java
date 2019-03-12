@@ -1,44 +1,42 @@
 package Game;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class Gameboard {
-	
-	private int gridLength;
-	private int gridSize;
-	// Grid needs to be inserted
-	// grid length, size constructors
-	
-	// method which creates the algorithm for placing the ships on the gameboard.
-	// For example, a ship of size 5 starting at position  should not be placed horizontally 
-	public ArrayList<String> placeShip (int shipSize)
-	{
-		
-		return null;
+
+	private ArrayList<Ship> board;
+
+	public Gameboard() {
+
 	}
-	
-	
-	public String getUserInput (String prompt)
-	{
-		String userInput = null;
-		System.out.println(prompt + " ");
-		
-		try
-		{
-			BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
-			userInput = is.readLine();
-			
-		if (userInput.length() == 0)
-			return null;
-		} 
-			catch (IOException A)
-		{
-				System.out.println("IOException: " + A);
+
+	public void setBoard(ArrayList<Ship> board) {
+		this.board = board;
+	}
+
+	public ArrayList<Ship> getBoard() {
+		return board;
+	}
+
+	public void addShip(Ship ship) {
+		board.add(ship);
+	}
+
+	public void removeShip(Ship ship) {
+		board.remove(ship);
+	}
+
+	public String attempt(String location) {
+		for (Ship ship : board) {
+			if (ship.attempt(location).equals("HIT")) {
+				return "HIT";
+			}
+			if (ship.attempt(location).equals("DESTROYED")) {
+				return ship.getType() + " CLASS SHIP DESTROYED";
+			}
+			else return "MISS";
 		}
-		
-		return userInput;
+		return "error";
 	}
 }

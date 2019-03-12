@@ -19,7 +19,7 @@ public class Database {
     public static void run() {
 
         String url = "jdbc:postgresql://mod-msc-sw1.cs.bham.ac.uk/group40";
-        String username = ""; // TODO Add username once we know
+        String username = "group40"; // TODO Add username once we know
         String password = "52bsgkbp1x";
 
         try {
