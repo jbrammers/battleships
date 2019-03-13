@@ -1,4 +1,4 @@
-package Client;
+package Server;
 
 import java.io.*;
 import java.net.Socket;
@@ -38,7 +38,7 @@ public class Player {
         while (tries <= 3) {
             out.println("ECHO");
             try {
-                if (input.readLine() == "ECHO") {
+                if (input.readLine().equals("ECHO")) {
                     return true;
                 }
             } catch (IOException e) {

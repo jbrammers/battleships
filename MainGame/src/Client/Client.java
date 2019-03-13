@@ -9,6 +9,8 @@ import java.net.Socket;
 public class Client {
     private static int portNumber = 3000;
     private static boolean loggedIn = false;
+    private static BufferedReader input;
+    private static PrintWriter output;
 
     public static void main(String args[]) throws InterruptedException {
         try {
@@ -17,17 +19,16 @@ public class Client {
             client.setKeepAlive(true);
 
             // Prints connection established message
-            BufferedReader input = new BufferedReader(
+            input = new BufferedReader(
                     new InputStreamReader(client.getInputStream()));
 
             // Output client
-            PrintWriter output = new PrintWriter(
+            output = new PrintWriter(
                     client.getOutputStream(), true);
 
-            logIn(output,input);
+            logIn();
 
             if (!loggedIn) return;
-            else System.out.println();
 
 //            ActionListener sendMessage = new ActionListener() {
 //                @Override
@@ -42,7 +43,7 @@ public class Client {
             // Listens for inputs whilst open
             while (!client.isClosed()) {
                 String nextLine = input.readLine();
-                if (nextLine == null) {Thread.sleep(4000);}
+                if (nextLine == null) Thread.sleep(4000);
                 else {
                     handler.handle(nextLine);
                 }
@@ -55,8 +56,11 @@ public class Client {
         }
     }
 
-    private static void logIn(PrintWriter output, BufferedReader input) throws Exception {
-        String username = "player" + String.format(" %.0f", Math.random()*100);
+    private static void logIn() throws Exception {
+        String username = "player" + String.format(" %.0f", Math.random()*100); // TODO request username and password here (and again lower down)
+//        String username = requestUsername();
+//        String password = requestPassword();
+
         int counter = 0;
 
         while (!loggedIn && counter <= 3) {
@@ -65,12 +69,14 @@ public class Client {
             String in = input.readLine();
 
             if (in.equals("AUTHENTICATED")) {
+                System.out.println("Authentication successful!");
                 loggedIn = true;
             } else if (in.equals("Connection established, authentication in progress.")) {
                 System.out.println(in);
+                Thread.sleep(4000);
             } else {
                 counter++;
-                // username = requestUsername;
+                // TODO request username + password again
             }
         }
 

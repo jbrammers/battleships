@@ -20,13 +20,16 @@ public class InputHandler {
         switch (in) {
             case "ECHO":
             out.println("ECHO");
+            break;
 
             case "CLIENT_CLOSE":
             System.out.println("Closing service");
             client.close();
+            break;
 
             default:
             System.out.println(in);
+            break;
         }
     }
 }
