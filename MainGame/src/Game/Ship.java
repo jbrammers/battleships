@@ -39,11 +39,11 @@ public class Ship {
 		return alive;
 	}
 
-	public void setLocations(ArrayList<String> locations) {
+	public void setLocation(ArrayList<String> locations) {
 		this.locations = locations;
 	}
 
-	public ArrayList<String> getLocations() {
+	public ArrayList<String> getLocation() {
 		return locations;
 	}
 
@@ -62,6 +62,8 @@ public class Ship {
 		}
 		else return false;
 	}
+
+	public String attempt(String location) { return ""; } // TODO Needs to be filled out
 }
 
 
