@@ -1,4 +1,4 @@
-package ServerClient;
+package Server;
 
 public class RunServer {
 

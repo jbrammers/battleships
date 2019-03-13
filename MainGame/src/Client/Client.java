@@ -1,7 +1,5 @@
-package ServerClient;
+package Client;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -31,28 +29,22 @@ public class Client {
             if (!loggedIn) return;
             else System.out.println();
 
-            ActionListener sendMessage = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    output.println();
-                }
-            };
+//            ActionListener sendMessage = new ActionListener() {
+//                @Override
+//                public void actionPerformed(ActionEvent e) {
+//                    output.println();
+//                }
+//            };
             // TODO add an action listener for the messenger here
+
+            InputHandler handler = new InputHandler(client, input, output);
 
             // Listens for inputs whilst open
             while (!client.isClosed()) {
                 String nextLine = input.readLine();
                 if (nextLine == null) {Thread.sleep(4000);}
-                else if (nextLine.startsWith("ECHO")) {
-                    output.println("ECHO");
-                }
-                else if (nextLine.startsWith("CLIENT_CLOSE")) {
-                    System.out.println("Closing service");
-                    loggedIn = false;
-                    client.close();
-                }
                 else {
-                    System.out.println(nextLine);
+                    handler.handle(nextLine);
                 }
             }
         } catch (IOException e) {
