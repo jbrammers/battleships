@@ -47,14 +47,6 @@ public class Ship {
 		return locations;
 	}
 
-	//public String attempt(String location) {
-	//	for (String locationAttempt : locations) {
-	//		if (locationAttempt.equals(location)) {
-	//			return "HIT";
-	//		}
-
-	//	}
-	//}
 
 	public boolean locationsFull() {
 		if (locations.size() == length) {
@@ -63,7 +55,22 @@ public class Ship {
 		else return false;
 	}
 
-	public String attempt(String location) { return ""; } // TODO Needs to be filled out
+	public String attempt(String locationAttempt) {
+		int counter = 0;
+		for (String location : locations) {
+			if (locationAttempt.equals(location)) {
+				location = "DESTROYED";
+				if (counter == length) {
+					return "DESTROYED";
+				}
+				else return "HIT";
+			}
+			else {
+				counter++;
+			}
+		}
+		return "MISS";
+	}
 }
 
 
