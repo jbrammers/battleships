@@ -1,6 +1,10 @@
 package Server;
 
-import java.io.*;
+import javax.net.ssl.SSLServerSocketFactory;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -100,7 +104,9 @@ public class ServerThread implements Runnable {
      */
     private void startServer() {
         try {
-            this.serverSocket = new ServerSocket(this.port);
+            // Creates a secure server socket for password transmission
+            SSLServerSocketFactory ssf = (SSLServerSocketFactory) SSLServerSocketFactory.getDefault();
+            this.serverSocket = ssf.createServerSocket(this.port);
             running = true;
             System.out.printf("Server started on port %d \n", port);
         } catch (IOException e) {
@@ -121,10 +127,9 @@ public class ServerThread implements Runnable {
     }
 
     private Player listening() {
-        Socket clientSocket;
         try {
             // Accepts connection from a new user and sends them a message to confirm
-            clientSocket = this.serverSocket.accept();
+            Socket clientSocket = this.serverSocket.accept();
             System.out.println("Connection received from " + clientSocket.getPort());
 
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);

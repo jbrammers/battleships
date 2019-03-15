@@ -27,19 +27,25 @@ public class Database {
 
             Connection connection = DriverManager.getConnection(url, username, password);
 
-            String playerStatement = "INSERT INTO player (username, password, wins, losses) VALUES (?,?,?,?);";
+            String playerStatement = "INSERT INTO player (username, password, salt, wins, losses) VALUES (?,?,?,?,?);";
             PreparedStatement preparedPlayerStatement = connection.prepareStatement(playerStatement);
 
+            String[] pass1 = PasswordHandler.newPassword("examplepassword");
+
             preparedPlayerStatement.setString(1, "exampleusername");
-            preparedPlayerStatement.setString(2, "examplepassword");
-            preparedPlayerStatement.setInt(3, 1);
-            preparedPlayerStatement.setInt(4, 0);
+            preparedPlayerStatement.setString(2, pass1[0]);
+            preparedPlayerStatement.setString(3, pass1[1]);
+            preparedPlayerStatement.setInt(4, 1);
+            preparedPlayerStatement.setInt(5, 0);
             preparedPlayerStatement.executeUpdate();
 
+            String[] pass2 = PasswordHandler.newPassword("examplepassword2");
+
             preparedPlayerStatement.setString(1, "exampleusername2");
-            preparedPlayerStatement.setString(2, "examplepassword2");
-            preparedPlayerStatement.setInt(3, 0);
-            preparedPlayerStatement.setInt(4, 1);
+            preparedPlayerStatement.setString(2, pass2[0]);
+            preparedPlayerStatement.setString(3, pass2[1]);
+            preparedPlayerStatement.setInt(4, 0);
+            preparedPlayerStatement.setInt(5, 1);
             preparedPlayerStatement.executeUpdate();
 
 
@@ -65,7 +71,7 @@ public class Database {
     }
 
     public static void main(String[] args) {
-        new Database().run();
+        Database.run();
     }
 }
 

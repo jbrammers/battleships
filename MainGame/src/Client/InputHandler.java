@@ -31,5 +31,6 @@ public class InputHandler {
             System.out.println(in);
             break;
         }
+        out.flush();
     }
 }
