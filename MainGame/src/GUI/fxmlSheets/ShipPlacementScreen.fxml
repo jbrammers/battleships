@@ -5,21 +5,20 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ShipPlacementController">
    <children>
       <AnchorPane layoutX="83.0" layoutY="110.0" prefHeight="500.0" prefWidth="500.0">
          <children>
-            <Button fx:id="A1" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="A2" layoutX="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="A3" layoutX="100.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="A4" layoutX="150.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="A5" layoutX="200.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="A6" layoutX="250.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="A7" layoutX="300.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="A8" layoutX="350.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="A9" layoutX="400.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="A10" layoutX="450.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="A1" mnemonicParsing="false" onAction="#handleGridButtonPressA1" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="A2" layoutX="50.0" mnemonicParsing="false" onAction="#handleGridButtonPressA2" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="A3" layoutX="100.0" mnemonicParsing="false" onAction="#handleGridButtonPressA3" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="A4" layoutX="150.0" mnemonicParsing="false" onAction="#handleGridButtonPressA4" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="A5" layoutX="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressA5" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="A6" layoutX="250.0" mnemonicParsing="false" onAction="#handleGridButtonPressA6" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="A7" layoutX="300.0" mnemonicParsing="false" onAction="#handleGridButtonPressA7" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="A8" layoutX="350.0" mnemonicParsing="false" onAction="#handleGridButtonPressA8" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="A9" layoutX="400.0" mnemonicParsing="false" onAction="#handleGridButtonPressA9" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="A10" layoutX="450.0" mnemonicParsing="false" onAction="#handleGridButtonPressA10" prefHeight="50.0" prefWidth="50.0" />
             <Button fx:id="B1" layoutY="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
             <Button fx:id="B2" layoutX="50.0" layoutY="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
             <Button fx:id="B3" layoutX="100.0" layoutY="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
@@ -68,8 +67,8 @@
             <Button fx:id="F6" layoutX="250.0" layoutY="250.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
             <Button fx:id="F7" layoutX="300.0" layoutY="250.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
             <Button fx:id="F8" layoutX="350.0" layoutY="250.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="A31111111111112111111111111111111111111111111111111111111" layoutX="400.0" layoutY="250.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="A311111111111121111111111111111111111111111111111111111111" layoutX="450.0" layoutY="250.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="F9" layoutX="400.0" layoutY="250.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="F10" layoutX="450.0" layoutY="250.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
             <Button fx:id="G1" layoutY="300.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
             <Button fx:id="G2" layoutX="50.0" layoutY="300.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
             <Button fx:id="G3" layoutX="100.0" layoutY="300.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
@@ -114,20 +113,20 @@
       </AnchorPane>
       <AnchorPane layoutX="766.0" layoutY="84.0" prefHeight="526.0" prefWidth="343.0">
          <children>
-            <Button fx:id="Zeus1" layoutX="66.0" layoutY="106.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-image: C:\Users\Ollie\IdeaProjects\group40\MainGame\src\resources\zeus1buttonpic.png;" />
-            <Button fx:id="Zeus2" layoutX="116.0" layoutY="106.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="Sledgehammer1" layoutX="66.0" layoutY="200.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="Sledgehammer2" layoutX="116.0" layoutY="200.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="Sledgehammer3" layoutX="166.0" layoutY="200.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="Stellar1" layoutX="66.0" layoutY="297.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="Stellar2" layoutX="116.0" layoutY="297.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="Stellar3" layoutX="166.0" layoutY="297.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="Stellar4" layoutX="216.0" layoutY="297.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="Ajax1" layoutX="66.0" layoutY="402.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="Ajax2" layoutX="116.0" layoutY="402.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="Ajax3" layoutX="166.0" layoutY="402.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="Ajax4" layoutX="216.0" layoutY="402.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="Ajax5" layoutX="266.0" layoutY="402.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="Zeus1" layoutX="66.0" layoutY="106.0" mnemonicParsing="false" onAction="#handleButtonActionZeus1" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="Zeus2" layoutX="116.0" layoutY="106.0" mnemonicParsing="false" onAction="#handleButtonActionZeus2" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="Sledgehammer1" layoutX="66.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonActionSledgehammer1" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="Sledgehammer2" layoutX="116.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonActionSledgehammer2" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="Sledgehammer3" layoutX="166.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonActionSledgehammer3" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="Stellar1" layoutX="66.0" layoutY="297.0" mnemonicParsing="false" onAction="#handleButtonActionStellar1" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="Stellar2" layoutX="116.0" layoutY="297.0" mnemonicParsing="false" onAction="#handleButtonActionStellar2" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="Stellar3" layoutX="166.0" layoutY="297.0" mnemonicParsing="false" onAction="#handleButtonActionStellar3" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="Stellar4" layoutX="216.0" layoutY="297.0" mnemonicParsing="false" onAction="#handleButtonActionStellar4" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="Ajax1" layoutX="66.0" layoutY="402.0" mnemonicParsing="false" onAction="#handleButtonActionAjax1" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="Ajax2" layoutX="116.0" layoutY="402.0" mnemonicParsing="false" onAction="#handleButtonActionAjax2" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="Ajax3" layoutX="166.0" layoutY="402.0" mnemonicParsing="false" onAction="#handleButtonActionAjax3" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="Ajax4" layoutX="216.0" layoutY="402.0" mnemonicParsing="false" onAction="#handleButtonActionAjax4" prefHeight="50.0" prefWidth="50.0" />
+            <Button fx:id="Ajax5" layoutX="266.0" layoutY="402.0" mnemonicParsing="false" onAction="#handleButtonActionAjax5" prefHeight="50.0" prefWidth="50.0" />
             <Label fx:id="ZeusLabel" layoutX="38.0" layoutY="123.0" text="4X" />
             <Label fx:id="SledgehammerLabel" layoutX="38.0" layoutY="217.0" text="3X" />
             <Label fx:id="StellarLabel" layoutX="38.0" layoutY="314.0" text="2X" />
@@ -143,7 +142,7 @@
             <Font name="System Bold" size="31.0" />
          </font>
       </Label>
-      <Button fx:id="BackButton" layoutX="14.0" layoutY="681.0" mnemonicParsing="false" text="Back" />
-      <Button fx:id="ContinueButton" layoutX="1201.0" layoutY="681.0" mnemonicParsing="false" text="Continue" />
+      <Button fx:id="BackButton" layoutX="14.0" layoutY="681.0" mnemonicParsing="false" onAction="#handleButtonActionBack" text="Back" />
+      <Button fx:id="ContinueButton" layoutX="1201.0" layoutY="681.0" mnemonicParsing="false" onAction="#handleButtonActionContinue" text="Continue" />
    </children>
 </AnchorPane>
