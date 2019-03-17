@@ -75,8 +75,8 @@ public class ShipPlacementController {
                             return true;
                         }
                     } else {
-                        if ((splitRowColumnAttempt[0].equals(locationsRows.get(0)) && splitRowColumnAttempt[1].equals(locationsColumns.get(setLocationsButtonNumbers.indexOf(max)) + diff)) || (splitRowColumnAttempt[0] == locationsRows.get(0) && splitRowColumnAttempt[1] == locationsColumns.get(setLocationsButtonNumbers.indexOf(min)) + diff) ||
-                                (splitRowColumnAttempt[0].equals(locationsRows.get(0)) && (splitRowColumnAttempt[1].charAt(0) == (char) (locationsColumns.get(setLocationsButtonNumbers.indexOf(min)).charAt(0) - diff))) || (splitRowColumnAttempt[0] == locationsRows.get(0) && (splitRowColumnAttempt[1].charAt(0) == (char) (locationsColumns.get(setLocationsButtonNumbers.indexOf(max)).charAt(0) - diff)))) {
+                        if ((splitRowColumnAttempt[0].equals(locationsRows.get(0)) && splitRowColumnAttempt[1].equals(locationsColumns.get(setLocationsButtonNumbers.indexOf(max)) + diff)) || (splitRowColumnAttempt[0].equals(locationsRows.get(0)) && splitRowColumnAttempt[1].equals(locationsColumns.get(setLocationsButtonNumbers.indexOf(min)) + diff)) ||
+                                (splitRowColumnAttempt[0].equals(locationsRows.get(0)) && (splitRowColumnAttempt[1].charAt(0) == (char) (locationsColumns.get(setLocationsButtonNumbers.indexOf(min)).charAt(0) - diff))) || (splitRowColumnAttempt[0].equals(locationsRows.get(0)) && (splitRowColumnAttempt[1].charAt(0) == (char) (locationsColumns.get(setLocationsButtonNumbers.indexOf(max)).charAt(0) - diff)))) {
                             return true;
                         }
                     }
@@ -93,8 +93,8 @@ public class ShipPlacementController {
                             return true;
                         }
                     } else {
-                        if ((splitRowColumnAttempt[1].equals(locationsColumns.get(0)) && (splitRowColumnAttempt[0].charAt(0) == ((char) (locationsRows.get(setLocationsButtonNumbers.indexOf(min)).charAt(0) + diff)))) || (splitRowColumnAttempt[1] == locationsColumns.get(0) && (splitRowColumnAttempt[0].charAt(0) == ((char) (locationsRows.get(setLocationsButtonNumbers.indexOf(max)).charAt(0) + diff)))) ||
-                                (splitRowColumnAttempt[1].equals(locationsColumns.get(0)) && (splitRowColumnAttempt[0].charAt(0) == ((char) (locationsRows.get(setLocationsButtonNumbers.indexOf(max)).charAt(0) - diff)))) || (splitRowColumnAttempt[1] == locationsColumns.get(0) && (splitRowColumnAttempt[0].charAt(0) == ((char) (locationsRows.get(setLocationsButtonNumbers.indexOf(min)).charAt(0) - diff))))) {
+                        if ((splitRowColumnAttempt[1].equals(locationsColumns.get(0)) && (splitRowColumnAttempt[0].charAt(0) == ((char) (locationsRows.get(setLocationsButtonNumbers.indexOf(min)).charAt(0) + diff)))) || (splitRowColumnAttempt[1].equals(locationsColumns.get(0)) && (splitRowColumnAttempt[0].charAt(0) == ((char) (locationsRows.get(setLocationsButtonNumbers.indexOf(max)).charAt(0) + diff)))) ||
+                                (splitRowColumnAttempt[1].equals(locationsColumns.get(0)) && (splitRowColumnAttempt[0].charAt(0) == ((char) (locationsRows.get(setLocationsButtonNumbers.indexOf(max)).charAt(0) - diff)))) || (splitRowColumnAttempt[1].equals(locationsColumns.get(0)) && (splitRowColumnAttempt[0].charAt(0) == ((char) (locationsRows.get(setLocationsButtonNumbers.indexOf(min)).charAt(0) - diff))))) {
                             return true;
                         }
                     }
