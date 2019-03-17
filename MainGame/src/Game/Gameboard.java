@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Gameboard {
 
-	private ArrayList<Ship> board;
+	private ArrayList<Ship> board = new ArrayList<>();
 
 	public Gameboard() {
 

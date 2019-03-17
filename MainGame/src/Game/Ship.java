@@ -8,7 +8,7 @@ public class Ship {
 	private String type;
 	private int length;
 	private boolean alive;
-	private ArrayList<String> locations;
+	private ArrayList<String> locations = new ArrayList<>();
 
 	public Ship(String type, int length) {
 		this.type = type;
