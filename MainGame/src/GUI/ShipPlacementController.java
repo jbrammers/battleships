@@ -103,6 +103,27 @@ public class ShipPlacementController {
     @FXML
     private Label AjaxLabel;
 
+    @FXML
+    private Button A1;
+    @FXML
+    private Button A2;
+    @FXML
+    private Button A3;
+    @FXML
+    private Button A4;
+    @FXML
+    private Button A5;
+    @FXML
+    private Button A6;
+    @FXML
+    private Button A7;
+    @FXML
+    private Button A8;
+    @FXML
+    private Button A9;
+    @FXML
+    private Button A10;
+
 
     public void handleButtonActionZeus1(ActionEvent actionEvent) {
         if (zeusShipsRemaining != 0 && zeusButton1 == false) {
@@ -122,7 +143,7 @@ public class ShipPlacementController {
             ajaxButton5 = false;
             currentButtonNumber = 1;
             currentShip = zeusShips.get(4 - zeusShipsRemaining);
-            zeusButton1.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+            Zeus1.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
 
@@ -144,7 +165,7 @@ public class ShipPlacementController {
             ajaxButton5 = false;
             currentButtonNumber = 2;
             currentShip = zeusShips.get(4 - zeusShipsRemaining);
-            zeusButton2.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+            Zeus2.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
 
@@ -166,7 +187,7 @@ public class ShipPlacementController {
             ajaxButton5 = false;
             currentButtonNumber = 1;
             currentShip = sledgehammerShips.get(3 - sledgehammerShipsRemaining);
-            sledgehammerButton1.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+            Sledgehammer1.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
 
@@ -188,7 +209,7 @@ public class ShipPlacementController {
             ajaxButton5 = false;
             currentButtonNumber = 2;
             currentShip = sledgehammerShips.get(3 - sledgehammerShipsRemaining);
-            sledgehammerButton2.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+            Sledgehammer2.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
 
@@ -210,7 +231,7 @@ public class ShipPlacementController {
             ajaxButton5 = false;
             currentButtonNumber = 3;
             currentShip = sledgehammerShips.get(3 - sledgehammerShipsRemaining);
-            sledgehammerButton3.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+            Sledgehammer3.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
 
@@ -232,7 +253,7 @@ public class ShipPlacementController {
             ajaxButton5 = false;
             currentButtonNumber = 1;
             currentShip = stellarShips.get(2 - stellarShipsRemaining);
-            stellarButton1.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+            Stellar1.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
 
@@ -254,7 +275,7 @@ public class ShipPlacementController {
             ajaxButton5 = false;
             currentButtonNumber = 2;
             currentShip = stellarShips.get(2 - stellarShipsRemaining);
-            stellarButton2.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+            Stellar2.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
 
@@ -276,7 +297,7 @@ public class ShipPlacementController {
             ajaxButton5 = false;
             currentButtonNumber = 3;
             currentShip = stellarShips.get(2 - stellarShipsRemaining);
-            stellarButton3.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+            Stellar3.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
 
@@ -298,7 +319,7 @@ public class ShipPlacementController {
             ajaxButton5 = false;
             currentButtonNumber = 4;
             currentShip = stellarShips.get(2 - stellarShipsRemaining);
-            stellarButton4.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+            Stellar4.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
 
@@ -320,7 +341,7 @@ public class ShipPlacementController {
             ajaxButton5 = false;
             currentButtonNumber = 1;
             currentShip = stellarShips.get(1 - ajaxShipsRemaining);
-            ajaxButton1.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+            Ajax1.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
 
@@ -342,7 +363,7 @@ public class ShipPlacementController {
             ajaxButton5 = false;
             currentButtonNumber = 2;
             currentShip = stellarShips.get(1 - ajaxShipsRemaining);
-            ajaxButton2.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+            Ajax2.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
 
@@ -364,7 +385,7 @@ public class ShipPlacementController {
             ajaxButton5 = false;
             currentButtonNumber = 3;
             currentShip = stellarShips.get(1 - ajaxShipsRemaining);
-            ajaxButton3.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+            Ajax3.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
 
@@ -386,7 +407,7 @@ public class ShipPlacementController {
             ajaxButton5 = false;
             currentButtonNumber = 4;
             currentShip = stellarShips.get(1 - ajaxShipsRemaining);
-            ajaxButton1.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+            Ajax4.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
 
@@ -408,42 +429,42 @@ public class ShipPlacementController {
             ajaxButton5 = true;
             currentButtonNumber = 5;
             currentShip = stellarShips.get(1 - ajaxShipsRemaining);
-            ajaxButton5.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+            Ajax5.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
 
     public void handleGridButtonPressA1() {
-        gridButtonHelper("A1");
+        gridButtonHelper("A1", A1);
     }
     public void handleGridButtonPressA2() {
-        gridButtonHelper("A2");
+        gridButtonHelper("A2", A2);
     }
     public void handleGridButtonPressA3() {
-        gridButtonHelper("A3");
+        gridButtonHelper("A3", A3);
     }
     public void handleGridButtonPressA4() {
-        gridButtonHelper("A4");
+        gridButtonHelper("A4", A4);
     }
     public void handleGridButtonPressA5() {
-        gridButtonHelper("A5");
+        gridButtonHelper("A5", A5);
     }
     public void handleGridButtonPressA6() {
-        gridButtonHelper("A6");
+        gridButtonHelper("A6", A6);
     }
     public void handleGridButtonPressA7() {
-        gridButtonHelper("A7");
+        gridButtonHelper("A7", A7);
     }
     public void handleGridButtonPressA8() {
-        gridButtonHelper("A8");
+        gridButtonHelper("A8", A8);
     }
     public void handleGridButtonPressA9() {
-        gridButtonHelper("A9");
+        gridButtonHelper("A9", A9);
     }
     public void handleGridButtonPressA10() {
-        gridButtonHelper("A10");
+        gridButtonHelper("A10", A10);
     }
 
-    private void gridButtonHelper(String location) {
+    private void gridButtonHelper(String location, Button button) {
         location += "_" + currentButtonNumber;
         if (validLocation(location, currentShip)) {
             currentShip.getLocation().add(location);
@@ -453,35 +474,39 @@ public class ShipPlacementController {
                     zeusShipsRemaining--;
                     zeusShips.remove(currentShip);
                     ZeusLabel.setText(zeusShipsRemaining+"X");
-                    zeusButton1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
-                    zeusButton2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    button.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+                    Zeus1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    Zeus2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
                 }
                 else if (currentShip.getType().equals("Sledgehammer")) {
                     sledgehammerShipsRemaining--;
                     sledgehammerShips.remove(currentShip);
                     SledgehammerLabel.setText(sledgehammerShipsRemaining+"X");
-                    sledgehammerButton1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
-                    sledgehammerButton2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
-                    sledgehammerButton3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    button.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    Sledgehammer1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    Sledgehammer2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    Sledgehammer3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
                 }
                 else if (currentShip.getType().equals("Stellar")) {
                     stellarShipsRemaining--;
                     stellarShips.remove(currentShip);
                     StellarLabel.setText(stellarShipsRemaining+"X");
-                    stellarButton1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
-                    stellarButton2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
-                    stellarButton3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
-                    stellarButton4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    button.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+                    Stellar1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    Stellar2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    Stellar3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    Stellar4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
                 }
                 else if (currentShip.getType().equals("Ajax")) {
                     ajaxShipsRemaining--;
                     ajaxShips.remove(currentShip);
                     AjaxLabel.setText(ajaxShipsRemaining+"X");
-                    ajaxButton1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
-                    ajaxButton2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
-                    ajaxButton3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
-                    ajaxButton4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
-                    ajaxButton5.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    button.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+                    Ajax1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    Ajax2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    Ajax3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    Ajax4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    Ajax5.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
                 }
             }
         }
