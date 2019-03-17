@@ -9,6 +9,7 @@ public class Ship {
 	private int length;
 	private boolean alive;
 	private ArrayList<String> locations;
+
 	public Ship(String type, int length) {
 		this.type = type;
 		this.length = length;
@@ -45,6 +46,16 @@ public class Ship {
 
 	public ArrayList<String> getLocation() {
 		return locations;
+	}
+
+	public int locationCount() {
+		int counter = 0;
+
+		for (String location : locations) {
+			counter++;
+		}
+
+		return counter;
 	}
 
 
