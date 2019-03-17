@@ -746,10 +746,10 @@ public class ShipPlacementController {
                 String[] splitLocationButton = ship.getLocation().get(0).split("_");
                 int diff = Math.abs(Integer.parseInt(splitLocationButton[1]) - currentButtonNumber);
                 String[] splitRowColumnLocation = splitLocationButton[0].split("!");
-                if ((char) (splitRowColumnLocation[0].charAt(0) + diff) == splitRowColumnAttempt[0].charAt(0) ||
-                        (char) (splitRowColumnLocation[0].charAt(0) - diff) == splitRowColumnAttempt[0].charAt(0) ||
-                        Integer.parseInt(splitRowColumnLocation[1]) + diff == Integer.parseInt(splitRowColumnAttempt[1]) ||
-                        Integer.parseInt(splitRowColumnLocation[1]) - diff == Integer.parseInt(splitRowColumnAttempt[1])) {
+                if (((char) (splitRowColumnLocation[0].charAt(0) + diff) == splitRowColumnAttempt[0].charAt(0)) && (Integer.parseInt(splitRowColumnLocation[1]) == Integer.parseInt(splitRowColumnAttempt[1])) ||
+                        ((char) (splitRowColumnLocation[0].charAt(0) - diff) == splitRowColumnAttempt[0].charAt(0)) && (Integer.parseInt(splitRowColumnLocation[1]) == Integer.parseInt(splitRowColumnAttempt[1])) ||
+                        (Integer.parseInt(splitRowColumnLocation[1]) + diff == Integer.parseInt(splitRowColumnAttempt[1])) && (( (splitRowColumnLocation[0].charAt(0)) == splitRowColumnAttempt[0].charAt(0))) ||
+                        (Integer.parseInt(splitRowColumnLocation[1]) - diff == Integer.parseInt(splitRowColumnAttempt[1])) && (( (splitRowColumnLocation[0].charAt(0)) == splitRowColumnAttempt[0].charAt(0)))){
                     return true;
                 }
             } else {
