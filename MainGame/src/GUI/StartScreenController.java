@@ -22,9 +22,8 @@ public class StartScreenController {
     }
 
     public void handleStartButtonAction() {
-        // Client client = new Client();
-        // client.run();
         PaneNavigator.loadPane(PaneNavigator.SHIPPLACEMENT);
+        Client.ready();
     }
 
 }

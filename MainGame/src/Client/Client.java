@@ -16,13 +16,10 @@ public class Client {
     private static Socket client;
     private static BufferedReader input;
     private static PrintWriter output;
-    public static String username;
-    private static String password;
+    public String username;
+    private String password;
 
-    public Client(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
+    public Client(){}
 
 
     public static void start() {
@@ -47,14 +44,23 @@ public class Client {
     }
     }
 
-    public void run() {
+    public static void ready() {
         try {
+            output.println("SYSTEM ready");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void run() {
+        try {
+
             InputHandler handler = new InputHandler(client, input, output);
 
             // Listens for inputs whilst open
             while (!client.isClosed()) {
                 String nextLine = input.readLine();
-                if (nextLine == null) Thread.sleep(4000);
+                if (nextLine == null) Thread.yield();
                 else {
                     handler.handle(nextLine);
                 }
@@ -69,6 +75,7 @@ public class Client {
     }
 
     public static void logIn(String username, String password) throws Exception {
+
 
         int counter = 0;
 
@@ -107,4 +114,19 @@ public class Client {
         output.println(out);
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

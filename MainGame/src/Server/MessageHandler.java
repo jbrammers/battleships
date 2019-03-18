@@ -17,7 +17,15 @@ public class MessageHandler {
             switch (identifier) {
 
                 case "MESSAGE":
-                    player.getOpponent().getOut().println(in);
+                    System.out.println("DEBUG IN MESSAGE CASE---------- " + in);
+                    StringBuffer stringBuffer = new StringBuffer();
+                    stringBuffer.append(identifier);
+                    stringBuffer.append(" ");
+                    stringBuffer.append(player.getUsername());
+                    stringBuffer.append(" ");
+                    stringBuffer.append(message);
+                    player.getOut().println(stringBuffer);
+                    player.getOpponent().getOut().println(stringBuffer);
                     return;
 
                 case "GAME":
@@ -29,6 +37,9 @@ public class MessageHandler {
                 case "ECHO":
                     break;
 
+                case "SYSTEM":
+                    break;
+
                 default:
                     System.out.println(in);
                     System.out.println("Identifier unexpected, please report this problem.");
@@ -36,6 +47,7 @@ public class MessageHandler {
             }
             player.getOut().flush();
             player.getOpponent().getOut().flush();
+            Thread.yield();
         }
     }
 }

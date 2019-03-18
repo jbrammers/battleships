@@ -1,6 +1,7 @@
 package Client;
 
 import GUI.MainGameController;
+import GUI.PaneNavigator;
 import javafx.fxml.FXMLLoader;
 
 import java.io.BufferedReader;
@@ -34,14 +35,12 @@ public class InputHandler {
                 break;
 
             case "CLIENT_CLOSE":
-                System.out.println("Game ended, closing service.");
-                client.close();
+                System.out.println("Game ended, going back to start screen.");
+                PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
                 break;
 
             case "MESSAGE":
                 System.out.println(message);
-                MainGameController controllerRef = new FXMLLoader().getController();
-                controllerRef.printReceivedMessage(message);
                 break;
 
             case "GAME":

@@ -54,12 +54,8 @@ public class Game implements Runnable {
                         if (!p.isSocketConnected()) {
                             endGame();
                         }
-//                        MessageHandler.inputCheck(p.getInput().readLine(), p);
+                        MessageHandler.inputCheck(p.getInput().readLine(), p);
                     }
-
-                    player1.getOut().println("MESSAGE this is a message");
-                    player2.getOut().println("GAME this is an action");
-                    Thread.sleep(5000);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -67,13 +63,9 @@ public class Game implements Runnable {
 
                 // TODO add the winning clause here in an if statement maybe?
                 endGame++;
-                if (endGame == 2) {
-                    gameFinished = true;
-                }
             }
 
             endGame();
-            Thread.yield();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -107,6 +99,7 @@ public class Game implements Runnable {
             p.getOut().println("CLIENT_CLOSE");
             p.getSocket().close();
         }
+        gameFinished = true;
     }
 
     public ArrayList<Player> getPlayerList() {
