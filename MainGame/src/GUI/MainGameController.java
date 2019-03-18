@@ -1,14 +1,19 @@
 package GUI;
 
+import Client.Client;
 import Game.Gameboard;
 import Game.Ship;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -236,6 +241,207 @@ public class MainGameController {
     @FXML
     Rectangle ownShipsJ10;
 
+    @FXML
+    private Button A1;
+    @FXML
+    private Button A2;
+    @FXML
+    private Button A3;
+    @FXML
+    private Button A4;
+    @FXML
+    private Button A5;
+    @FXML
+    private Button A6;
+    @FXML
+    private Button A7;
+    @FXML
+    private Button A8;
+    @FXML
+    private Button A9;
+    @FXML
+    private Button A10;
+    @FXML
+    private Button B1;
+    @FXML
+    private Button B2;
+    @FXML
+    private Button B3;
+    @FXML
+    private Button B4;
+    @FXML
+    private Button B5;
+    @FXML
+    private Button B6;
+    @FXML
+    private Button B7;
+    @FXML
+    private Button B8;
+    @FXML
+    private Button B9;
+    @FXML
+    private Button B10;
+    @FXML
+    private Button C1;
+    @FXML
+    private Button C2;
+    @FXML
+    private Button C3;
+    @FXML
+    private Button C4;
+    @FXML
+    private Button C5;
+    @FXML
+    private Button C6;
+    @FXML
+    private Button C7;
+    @FXML
+    private Button C8;
+    @FXML
+    private Button C9;
+    @FXML
+    private Button C10;
+    @FXML
+    private Button D1;
+    @FXML
+    private Button D2;
+    @FXML
+    private Button D3;
+    @FXML
+    private Button D4;
+    @FXML
+    private Button D5;
+    @FXML
+    private Button D6;
+    @FXML
+    private Button D7;
+    @FXML
+    private Button D8;
+    @FXML
+    private Button D9;
+    @FXML
+    private Button D10;
+    @FXML
+    private Button E1;
+    @FXML
+    private Button E2;
+    @FXML
+    private Button E3;
+    @FXML
+    private Button E4;
+    @FXML
+    private Button E5;
+    @FXML
+    private Button E6;
+    @FXML
+    private Button E7;
+    @FXML
+    private Button E8;
+    @FXML
+    private Button E9;
+    @FXML
+    private Button E10;
+    @FXML
+    private Button F1;
+    @FXML
+    private Button F2;
+    @FXML
+    private Button F3;
+    @FXML
+    private Button F4;
+    @FXML
+    private Button F5;
+    @FXML
+    private Button F6;
+    @FXML
+    private Button F7;
+    @FXML
+    private Button F8;
+    @FXML
+    private Button F9;
+    @FXML
+    private Button F10;
+    @FXML
+    private Button G1;
+    @FXML
+    private Button G2;
+    @FXML
+    private Button G3;
+    @FXML
+    private Button G4;
+    @FXML
+    private Button G5;
+    @FXML
+    private Button G6;
+    @FXML
+    private Button G7;
+    @FXML
+    private Button G8;
+    @FXML
+    private Button G9;
+    @FXML
+    private Button G10;
+    @FXML
+    private Button H1;
+    @FXML
+    private Button H2;
+    @FXML
+    private Button H3;
+    @FXML
+    private Button H4;
+    @FXML
+    private Button H5;
+    @FXML
+    private Button H6;
+    @FXML
+    private Button H7;
+    @FXML
+    private Button H8;
+    @FXML
+    private Button H9;
+    @FXML
+    private Button H10;
+    @FXML
+    private Button I1;
+    @FXML
+    private Button I2;
+    @FXML
+    private Button I3;
+    @FXML
+    private Button I4;
+    @FXML
+    private Button I5;
+    @FXML
+    private Button I6;
+    @FXML
+    private Button I7;
+    @FXML
+    private Button I8;
+    @FXML
+    private Button I9;
+    @FXML
+    private Button I10;
+    @FXML
+    private Button J1;
+    @FXML
+    private Button J2;
+    @FXML
+    private Button J3;
+    @FXML
+    private Button J4;
+    @FXML
+    private Button J5;
+    @FXML
+    private Button J6;
+    @FXML
+    private Button J7;
+    @FXML
+    private Button J8;
+    @FXML
+    private Button J9;
+    @FXML
+    private Button J10;
+
     private ArrayList<Rectangle> initiateRectangleArrayList() {
         ArrayList<Rectangle> ownShipsRectangles = new ArrayList<>();
         ownShipsRectangles.add(ownShipsA1);
@@ -404,8 +610,6 @@ public class MainGameController {
 
         //cuts message down if it is particularly long
         if (messageField.getCharacters().length() > 30) {
-            /*TODO get username and insert here*/
-            message += "\nUSER1: ";
             double j = 1;
             for (int i = 0; i < messageField.getCharacters().length(); i++) {
                 if (i % 30 == 0 && i != 0) {
@@ -422,7 +626,7 @@ public class MainGameController {
             messageField.setText("");
             messageCount++;
         } else {
-            message += /*TODO get username and insert here*/ "\nUSER1: " + messageField.getText();
+            message += messageField.getText();
             messageLog.add(message);
             messageDisplay.setPrefHeight(messageDisplay.getPrefHeight() + 17);
             anchorPane.setPrefHeight(messageDisplay.getPrefHeight());
@@ -433,7 +637,7 @@ public class MainGameController {
 
 
         //TODO send message to server to be printed on other players messenger
-        Client.Client.send("MESSAGE " + message);
+        Client.send("MESSAGE " + message);
 
     }
 
@@ -464,106 +668,125 @@ public class MainGameController {
         return messageLog.get(messageCount);
     }
 
-    public void handleGridButtonPressA1() {}
-    public void handleGridButtonPressA2() {}
-    public void handleGridButtonPressA3() {}
-    public void handleGridButtonPressA4() {}
-    public void handleGridButtonPressA5() {}
-    public void handleGridButtonPressA6() {}
-    public void handleGridButtonPressA7() {}
-    public void handleGridButtonPressA8() {}
-    public void handleGridButtonPressA9() {}
-    public void handleGridButtonPressA10() {}
-    public void handleGridButtonPressB1() {}
-    public void handleGridButtonPressB2() {}
-    public void handleGridButtonPressB3() {}
-    public void handleGridButtonPressB4() {}
-    public void handleGridButtonPressB5() {}
-    public void handleGridButtonPressB6() {}
-    public void handleGridButtonPressB7() {}
-    public void handleGridButtonPressB8() {}
-    public void handleGridButtonPressB9() {}
-    public void handleGridButtonPressB10() {}
-    public void handleGridButtonPressC1() {}
-    public void handleGridButtonPressC2() {}
-    public void handleGridButtonPressC3() {}
-    public void handleGridButtonPressC4() {}
-    public void handleGridButtonPressC5() {}
-    public void handleGridButtonPressC6() {}
-    public void handleGridButtonPressC7() {}
-    public void handleGridButtonPressC8() {}
-    public void handleGridButtonPressC9() {}
-    public void handleGridButtonPressC10() {}
-    public void handleGridButtonPressD1() {}
-    public void handleGridButtonPressD2() {}
-    public void handleGridButtonPressD3() {}
-    public void handleGridButtonPressD4() {}
-    public void handleGridButtonPressD5() {}
-    public void handleGridButtonPressD6() {}
-    public void handleGridButtonPressD7() {}
-    public void handleGridButtonPressD8() {}
-    public void handleGridButtonPressD9() {}
-    public void handleGridButtonPressD10() {}
-    public void handleGridButtonPressE1() {}
-    public void handleGridButtonPressE2() {}
-    public void handleGridButtonPressE3() {}
-    public void handleGridButtonPressE4() {}
-    public void handleGridButtonPressE5() {}
-    public void handleGridButtonPressE6() {}
-    public void handleGridButtonPressE7() {}
-    public void handleGridButtonPressE8() {}
-    public void handleGridButtonPressE9() {}
-    public void handleGridButtonPressE10() {}
-    public void handleGridButtonPressF1() {}
-    public void handleGridButtonPressF2() {}
-    public void handleGridButtonPressF3() {}
-    public void handleGridButtonPressF4() {}
-    public void handleGridButtonPressF5() {}
-    public void handleGridButtonPressF6() {}
-    public void handleGridButtonPressF7() {}
-    public void handleGridButtonPressF8() {}
-    public void handleGridButtonPressF9() {}
-    public void handleGridButtonPressF10() {}
-    public void handleGridButtonPressG1() {}
-    public void handleGridButtonPressG2() {}
-    public void handleGridButtonPressG3() {}
-    public void handleGridButtonPressG4() {}
-    public void handleGridButtonPressG5() {}
-    public void handleGridButtonPressG6() {}
-    public void handleGridButtonPressG7() {}
-    public void handleGridButtonPressG8() {}
-    public void handleGridButtonPressG9() {}
-    public void handleGridButtonPressG10() {}
-    public void handleGridButtonPressH1() {}
-    public void handleGridButtonPressH2() {}
-    public void handleGridButtonPressH3() {}
-    public void handleGridButtonPressH4() {}
-    public void handleGridButtonPressH5() {}
-    public void handleGridButtonPressH6() {}
-    public void handleGridButtonPressH7() {}
-    public void handleGridButtonPressH8() {}
-    public void handleGridButtonPressH9() {}
-    public void handleGridButtonPressH10() {}
-    public void handleGridButtonPressI1() {}
-    public void handleGridButtonPressI2() {}
-    public void handleGridButtonPressI3() {}
-    public void handleGridButtonPressI4() {}
-    public void handleGridButtonPressI5() {}
-    public void handleGridButtonPressI6() {}
-    public void handleGridButtonPressI7() {}
-    public void handleGridButtonPressI8() {}
-    public void handleGridButtonPressI9() {}
-    public void handleGridButtonPressI10() {}
-    public void handleGridButtonPressJ1() {}
-    public void handleGridButtonPressJ2() {}
-    public void handleGridButtonPressJ3() {}
-    public void handleGridButtonPressJ4() {}
-    public void handleGridButtonPressJ5() {}
-    public void handleGridButtonPressJ6() {}
-    public void handleGridButtonPressJ7() {}
-    public void handleGridButtonPressJ8() {}
-    public void handleGridButtonPressJ9() {}
-    public void handleGridButtonPressJ10() {}
+    private boolean targetLocated = false;
+    private Button currentlySelectedButton;
+
+    public void targetLocationAction(String location, Button button) {
+        if (!targetLocated) {
+            targetLocated = true;
+            currentlySelectedButton = button;
+            button.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+        }
+        else {
+            currentlySelectedButton.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+            currentlySelectedButton = button;
+            button.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+        }
+    }
+
+    public void handleGridButtonPressA1() {
+        targetLocationAction("A1", A1);
+        initialiseOwnShips(gameboard);
+    }
+    public void handleGridButtonPressA2() {targetLocationAction("A2", A2);}
+    public void handleGridButtonPressA3() {targetLocationAction("A3", A3);}
+    public void handleGridButtonPressA4() {targetLocationAction("A4", A4);}
+    public void handleGridButtonPressA5() {targetLocationAction("A5", A5);}
+    public void handleGridButtonPressA6() {targetLocationAction("A6", A6);}
+    public void handleGridButtonPressA7() {targetLocationAction("A7", A7);}
+    public void handleGridButtonPressA8() {targetLocationAction("A8", A8);}
+    public void handleGridButtonPressA9() {targetLocationAction("A9", A9);}
+    public void handleGridButtonPressA10() {targetLocationAction("A10", A10);}
+    public void handleGridButtonPressB1() {targetLocationAction("B1", B1);}
+    public void handleGridButtonPressB2() {targetLocationAction("B2", B2);}
+    public void handleGridButtonPressB3() {targetLocationAction("B3", B3);}
+    public void handleGridButtonPressB4() {targetLocationAction("B4", B4);}
+    public void handleGridButtonPressB5() {targetLocationAction("B5", B5);}
+    public void handleGridButtonPressB6() {targetLocationAction("B6", B6);}
+    public void handleGridButtonPressB7() {targetLocationAction("B7", B7);}
+    public void handleGridButtonPressB8() {targetLocationAction("B8", B8);}
+    public void handleGridButtonPressB9() {targetLocationAction("B9", B9);}
+    public void handleGridButtonPressB10() {targetLocationAction("B10", B10);}
+    public void handleGridButtonPressC1() {targetLocationAction("C1", C1);}
+    public void handleGridButtonPressC2() {targetLocationAction("C2", C2);}
+    public void handleGridButtonPressC3() {targetLocationAction("C3", C3);}
+    public void handleGridButtonPressC4() {targetLocationAction("C4", C4);}
+    public void handleGridButtonPressC5() {targetLocationAction("C5", C5);}
+    public void handleGridButtonPressC6() {targetLocationAction("C6", C6);}
+    public void handleGridButtonPressC7() {targetLocationAction("C7", C7);}
+    public void handleGridButtonPressC8() {targetLocationAction("C8", C8);}
+    public void handleGridButtonPressC9() {targetLocationAction("C9", C9);}
+    public void handleGridButtonPressC10() {targetLocationAction("C10", C10);}
+    public void handleGridButtonPressD1() {targetLocationAction("D1", D1);}
+    public void handleGridButtonPressD2() {targetLocationAction("D2", D2);}
+    public void handleGridButtonPressD3() {targetLocationAction("D3", D3);}
+    public void handleGridButtonPressD4() {targetLocationAction("D4", D4);}
+    public void handleGridButtonPressD5() {targetLocationAction("D5", D5);}
+    public void handleGridButtonPressD6() {targetLocationAction("D6", D6);}
+    public void handleGridButtonPressD7() {targetLocationAction("D7", D7);}
+    public void handleGridButtonPressD8() {targetLocationAction("D8", D8);}
+    public void handleGridButtonPressD9() {targetLocationAction("D9", D9);}
+    public void handleGridButtonPressD10() {targetLocationAction("D10", D10);}
+    public void handleGridButtonPressE1() {targetLocationAction("E1", E1);}
+    public void handleGridButtonPressE2() {targetLocationAction("E2", E2);}
+    public void handleGridButtonPressE3() {targetLocationAction("E3", E3);}
+    public void handleGridButtonPressE4() {targetLocationAction("E4", E4);}
+    public void handleGridButtonPressE5() {targetLocationAction("E5", E5);}
+    public void handleGridButtonPressE6() {targetLocationAction("E6", E6);}
+    public void handleGridButtonPressE7() {targetLocationAction("E7", E7);}
+    public void handleGridButtonPressE8() {targetLocationAction("E8", E8);}
+    public void handleGridButtonPressE9() {targetLocationAction("E9", E9);}
+    public void handleGridButtonPressE10() {targetLocationAction("E10", E10);}
+    public void handleGridButtonPressF1() {targetLocationAction("F1", F1);}
+    public void handleGridButtonPressF2() {targetLocationAction("F2", F2);}
+    public void handleGridButtonPressF3() {targetLocationAction("F3", F3);}
+    public void handleGridButtonPressF4() {targetLocationAction("F4", F4);}
+    public void handleGridButtonPressF5() {targetLocationAction("F5", F5);}
+    public void handleGridButtonPressF6() {targetLocationAction("F6", F6);}
+    public void handleGridButtonPressF7() {targetLocationAction("F7", F7);}
+    public void handleGridButtonPressF8() {targetLocationAction("F8", F8);}
+    public void handleGridButtonPressF9() {targetLocationAction("F9", F9);}
+    public void handleGridButtonPressF10() {targetLocationAction("F10", F10);}
+    public void handleGridButtonPressG1() {targetLocationAction("G1", G1);}
+    public void handleGridButtonPressG2() {targetLocationAction("G2", G2);}
+    public void handleGridButtonPressG3() {targetLocationAction("G3", G3);}
+    public void handleGridButtonPressG4() {targetLocationAction("G4", G4);}
+    public void handleGridButtonPressG5() {targetLocationAction("G5", G5);}
+    public void handleGridButtonPressG6() {targetLocationAction("G6", G6);}
+    public void handleGridButtonPressG7() {targetLocationAction("G7", G7);}
+    public void handleGridButtonPressG8() {targetLocationAction("G8", G8);}
+    public void handleGridButtonPressG9() {targetLocationAction("G9", G9);}
+    public void handleGridButtonPressG10() {targetLocationAction("G10", G10);}
+    public void handleGridButtonPressH1() {targetLocationAction("H1", H1);}
+    public void handleGridButtonPressH2() {targetLocationAction("H2", H2);}
+    public void handleGridButtonPressH3() {targetLocationAction("H3", H3);}
+    public void handleGridButtonPressH4() {targetLocationAction("H4", H4);}
+    public void handleGridButtonPressH5() {targetLocationAction("H5", H5);}
+    public void handleGridButtonPressH6() {targetLocationAction("H6", H6);}
+    public void handleGridButtonPressH7() {targetLocationAction("H7", H7);}
+    public void handleGridButtonPressH8() {targetLocationAction("H8", H8);}
+    public void handleGridButtonPressH9() {targetLocationAction("H9", H9);}
+    public void handleGridButtonPressH10() {targetLocationAction("H10", H10);}
+    public void handleGridButtonPressI1() {targetLocationAction("I1", I1);}
+    public void handleGridButtonPressI2() {targetLocationAction("I2", I2);}
+    public void handleGridButtonPressI3() {targetLocationAction("I3", I3);}
+    public void handleGridButtonPressI4() {targetLocationAction("I4", I4);}
+    public void handleGridButtonPressI5() {targetLocationAction("I5", I5);}
+    public void handleGridButtonPressI6() {targetLocationAction("I6", I6);}
+    public void handleGridButtonPressI7() {targetLocationAction("I7", I7);}
+    public void handleGridButtonPressI8() {targetLocationAction("I8", I8);}
+    public void handleGridButtonPressI9() {targetLocationAction("I9", I9);}
+    public void handleGridButtonPressI10() {targetLocationAction("I10", I10);}
+    public void handleGridButtonPressJ1() {targetLocationAction("J1", J1);}
+    public void handleGridButtonPressJ2() {targetLocationAction("J2", J2);}
+    public void handleGridButtonPressJ3() {targetLocationAction("J3", J3);}
+    public void handleGridButtonPressJ4() {targetLocationAction("J4", J4);}
+    public void handleGridButtonPressJ5() {targetLocationAction("J5", J5);}
+    public void handleGridButtonPressJ6() {targetLocationAction("J6", J6);}
+    public void handleGridButtonPressJ7() {targetLocationAction("J7", J7);}
+    public void handleGridButtonPressJ8() {targetLocationAction("J8", J8);}
+    public void handleGridButtonPressJ9() {targetLocationAction("J9", J9);}
+    public void handleGridButtonPressJ10() {targetLocationAction("J10", J10);}
 
     public void handleFireButtonAction(ActionEvent actionEvent) {
     }

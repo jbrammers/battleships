@@ -16,7 +16,7 @@ public class Client {
     private static Socket client;
     private static BufferedReader input;
     private static PrintWriter output;
-    private static String username;
+    public static String username;
     private static String password;
 
     public Client(String username, String password) {
