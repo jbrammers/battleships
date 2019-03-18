@@ -19,7 +19,7 @@ import java.util.Arrays;
 
 public class ShipPlacementController {
 
-    Gameboard gameboard = new Gameboard();
+    public static Gameboard gameboard = new Gameboard();
 
     private ArrayList<Ship> zeusShips = new ArrayList<>(Arrays.asList(new Ship("Zeus", 2), new Ship("Zeus", 2), new Ship("Zeus", 2), new Ship("Zeus", 2)));
     private ArrayList<Ship> sledgehammerShips = new ArrayList<>(Arrays.asList(new Ship("Sledgehammer", 3), new Ship("Sledgehammer", 3), new Ship("Sledgehammer", 3)));
@@ -1257,5 +1257,6 @@ public class ShipPlacementController {
 
     public void handleButtonActionContinue(ActionEvent actionEvent) {
         //TODO send completed gameboard to server
+        PaneNavigator.loadPane(PaneNavigator.MAINGAME);
     }
 }
