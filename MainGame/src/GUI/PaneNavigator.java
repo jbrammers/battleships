@@ -15,7 +15,6 @@ public class PaneNavigator {
     public static final String LOGIN = "/GUI/fxmlSheets/Login.fxml";
     public static final String NEWUSER = "/GUI/fxmlSheets/NewUser.fxml";
     public static final String STARTSCREEN = "/GUI/fxmlSheets/StartScreen.fxml";
-    public static final String MESSENGER = "/GUI/fxmlSheets/messengerWindow.fxml";
     public static final String SHIPPLACEMENT = "/GUI/fxmlSheets/ShipPlacementScreen.fxml";
     public static final String MAINGAME = "/GUI/fxmlSheets/MainGameScreen.fxml";
 
@@ -28,6 +27,7 @@ public class PaneNavigator {
     public static void loadPane(String fxml) {
         try {
             mainController.setPane(FXMLLoader.load(PaneNavigator.class.getResource(fxml)));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
