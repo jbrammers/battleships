@@ -1,6 +1,7 @@
 package Client;
 
-import javax.net.ssl.SSLSocketFactory;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,8 +17,7 @@ public class Client {
     public static void main(String args[]) throws InterruptedException {
         try {
             // Open connection on port number, throws exception if not found
-            SSLSocketFactory ssf = (SSLSocketFactory) SSLSocketFactory.getDefault();
-            Socket client = ssf.createSocket("localhost", portNumber);
+            Socket client = new Socket("localhost", portNumber);
             client.setKeepAlive(true);
 
             // Prints connection established message
@@ -32,12 +32,12 @@ public class Client {
 
             if (!loggedIn) return;
 
-//            ActionListener sendMessage = new ActionListener() {
-//                @Override
-//                public void actionPerformed(ActionEvent e) {
-//                    output.println();
-//                }
-//            };
+            ActionListener sendMessage = new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    output.println();
+                }
+            };
             // TODO add an action listener for the messenger here
 
             InputHandler handler = new InputHandler(client, input, output);
@@ -50,6 +50,7 @@ public class Client {
                     handler.handle(nextLine);
                 }
             }
+
         } catch (IOException e) {
             System.out.println("Connection failed to server. Please try again.");
             e.printStackTrace();
@@ -87,6 +88,15 @@ public class Client {
         } else {
             loggedIn = true;
         }
+    }
+
+    /**
+     * Method used to send a message to the server whenever required. Messages should be prefixed with
+     * their type otherwise they will simply get ignored
+     * @param out String to be sent to the server
+     */
+    public static void send(String out) {
+        output.println(out);
     }
 
 }

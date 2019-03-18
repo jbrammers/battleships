@@ -1,6 +1,5 @@
 package Server;
 
-import javax.net.ssl.SSLServerSocketFactory;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -105,8 +104,7 @@ public class ServerThread implements Runnable {
     private void startServer() {
         try {
             // Creates a secure server socket for password transmission
-            SSLServerSocketFactory ssf = (SSLServerSocketFactory) SSLServerSocketFactory.getDefault();
-            this.serverSocket = ssf.createServerSocket(this.port);
+            this.serverSocket = new ServerSocket(this.port);
             running = true;
             System.out.printf("Server started on port %d \n", port);
         } catch (IOException e) {

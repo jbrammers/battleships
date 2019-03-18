@@ -68,6 +68,7 @@ public class MessengerController {
 
 
         //TODO send message to server to be printed on other players messenger
+        Client.Client.send("MESSAGE " + message);
 
     }
 

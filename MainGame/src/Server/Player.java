@@ -10,6 +10,7 @@ public class Player {
     private OutputStream os;
     private PrintWriter out;
     private BufferedReader input;
+    private Player opponent;
 
     public Player (String username, Socket socket) {
         this.username = username;
@@ -60,6 +61,14 @@ public class Player {
     public PrintWriter getOut() {
         return out;
     }
+
+    public BufferedReader getInput() { return input; }
+
+    public void setOpponent(Player opponent) {
+        this.opponent = opponent;
+    }
+
+    public Player getOpponent() { return opponent; }
 
     @Override
     public String toString() {

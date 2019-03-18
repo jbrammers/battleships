@@ -12,24 +12,41 @@ public class InputHandler {
 
     public InputHandler(Socket client, BufferedReader in, PrintWriter out) {
         this.client = client;
-        this.in = in;
         this.out = out;
+        this.in = in;
     }
 
     public void handle(String in) throws IOException {
-        switch (in) {
+        String identifier;
+        String message = null;
+        if (in.contains(" ")) {
+            identifier = in.substring(0, in.indexOf(" "));
+            message = in.substring(in.indexOf(" ") + 1);
+        } else {
+            identifier = in;
+        }
+        switch (identifier) {
             case "ECHO":
-            out.println("ECHO");
-            break;
+                out.println("ECHO");
+                break;
 
             case "CLIENT_CLOSE":
-            System.out.println("Closing service");
-            client.close();
-            break;
+                System.out.println("Closing service");
+                client.close();
+                break;
+
+            case "MESSAGE":
+                System.out.println(message);
+                // GUI.MessengerController.printReceivedMessage(message);
+                break;
+
+            case "GAME":
+                System.out.println(message);
+                break;
 
             default:
-            System.out.println(in);
-            break;
+                System.out.println(in);
+                break;
         }
         out.flush();
     }

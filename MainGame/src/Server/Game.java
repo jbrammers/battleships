@@ -4,14 +4,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Game implements Runnable {
-    private double gameID;
+    private int gameID;
     private ArrayList<Player> playerList;
+    private Player player1;
+    private Player player2;
     private boolean gameFilled = false;
     private boolean gameProgressing = false;
     private boolean gameFinished = false;
 
     public Game (Player player) {
-        this.gameID = Math.random()*100;
+        this.gameID = (int) (Math.random()*100);
         playerList = new ArrayList<>();
         this.playerList.add(player);
     }
@@ -41,24 +43,33 @@ public class Game implements Runnable {
         try {
             // Starts the game
             gameStart();
-
+            int endGame = 0;
             // Loops through the game until a winner is found
             while (!this.isGameFinished()) {
                 // TODO replace this sleeping thread with the game engine
+
                 try {
                     for (Player p :
                             playerList) {
                         if (!p.isSocketConnected()) {
                             endGame();
                         }
+                        MessageHandler.inputCheck(p.getInput().readLine(), p);
                     }
+
+                    player1.getOut().println("MESSAGE this is a message");
+                    player2.getOut().println("GAME this is an action");
                     Thread.sleep(5000);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
                 // TODO add the winning clause here in an if statement maybe?
-                gameFinished = true;
+                endGame++;
+                if (endGame == 10) {
+                    gameFinished = true;
+                }
             }
 
             endGame();
@@ -77,6 +88,10 @@ public class Game implements Runnable {
             player.getOut().println(("Welcome to a BattleShips match between " + playerList.get(0).getUsername() +
                                     " and " + playerList.get(1).getUsername()));
         }
+        player1 = playerList.get(0);
+        player2 = playerList.get(1);
+        player1.setOpponent(player2);
+        player2.setOpponent(player1);
         gameProgressing = true;
     }
 
@@ -85,7 +100,7 @@ public class Game implements Runnable {
      * @throws IOException
      */
     public void endGame() throws IOException {
-        System.out.println(String.format("Game ID %.0f ending!", gameID));
+        System.out.println(String.format("Game ID %d ending!", gameID));
         for (Player p:
                 playerList) {
             p.getOut().println("CLIENT_CLOSE");
