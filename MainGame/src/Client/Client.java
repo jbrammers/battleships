@@ -1,6 +1,5 @@
 package Client;
 
-import javax.net.ssl.SSLSocketFactory;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,8 +15,7 @@ public class Client {
     public static void main(String args[]) throws InterruptedException {
         try {
             // Open connection on port number, throws exception if not found
-            SSLSocketFactory ssf = (SSLSocketFactory) SSLSocketFactory.getDefault();
-            Socket client = ssf.createSocket("localhost", portNumber);
+            Socket client = new Socket("localhost", portNumber);
             client.setKeepAlive(true);
 
             // Prints connection established message
@@ -50,6 +48,7 @@ public class Client {
                     handler.handle(nextLine);
                 }
             }
+
         } catch (IOException e) {
             System.out.println("Connection failed to server. Please try again.");
             e.printStackTrace();
