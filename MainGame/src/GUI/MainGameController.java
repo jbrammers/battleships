@@ -17,10 +17,13 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 
-public class MainGameController {
+public class MainGameController implements javafx.fxml.Initializable {
+
 
     @FXML
     Label scoreLabel;
@@ -684,10 +687,7 @@ public class MainGameController {
         }
     }
 
-    public void handleGridButtonPressA1() {
-        targetLocationAction("A1", A1);
-        initialiseOwnShips(gameboard);
-    }
+    public void handleGridButtonPressA1() {targetLocationAction("A1", A1);}
     public void handleGridButtonPressA2() {targetLocationAction("A2", A2);}
     public void handleGridButtonPressA3() {targetLocationAction("A3", A3);}
     public void handleGridButtonPressA4() {targetLocationAction("A4", A4);}
@@ -792,5 +792,10 @@ public class MainGameController {
     }
 
     public void handleShopButtonAction(ActionEvent actionEvent) {
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        initialiseOwnShips(gameboard);
     }
 }
