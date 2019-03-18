@@ -1,5 +1,7 @@
 package Client;
 
+import GUI.PaneNavigator;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -13,8 +15,16 @@ public class Client {
     private static boolean loggedIn = false;
     private static BufferedReader input;
     private static PrintWriter output;
+    private static String username;
+    private static String password;
 
-    public static void main(String args[]) throws InterruptedException {
+    public Client(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+
+    public void run() {
         try {
             // Open connection on port number, throws exception if not found
             Socket client = new Socket("localhost", portNumber);
@@ -31,14 +41,6 @@ public class Client {
             logIn();
 
             if (!loggedIn) return;
-
-            ActionListener sendMessage = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    output.println();
-                }
-            };
-            // TODO add an action listener for the messenger here
 
             InputHandler handler = new InputHandler(client, input, output);
 
@@ -59,20 +61,18 @@ public class Client {
         }
     }
 
-    private static void logIn() throws Exception {
-        String username = "player" + String.format(" %.0f", Math.random()*100); // TODO request username and password here (and again lower down)
-//        String username = requestUsername();
-//        String password = requestPassword();
+    public static void logIn() throws Exception {
 
         int counter = 0;
 
         while (!loggedIn && counter <= 3) {
             output.println(username);
-            output.println(""); // password goes here
+            output.println(password); // password goes here
             String in = input.readLine();
 
             if (in.equals("AUTHENTICATED")) {
                 System.out.println("Authentication successful!");
+//                PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
                 loggedIn = true;
             } else if (in.equals("Connection established, authentication in progress.")) {
                 System.out.println(in);

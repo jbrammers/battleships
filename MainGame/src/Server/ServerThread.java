@@ -44,13 +44,7 @@ public class ServerThread implements Runnable {
         while (running) {
 
             // Checks to see if there is a new player each loop
-            Player newPlayer = listening();
-
-            // If there is a new player the server will either pair them with someone waiting
-            // or put them in the waiting queue
-            if (newPlayer != null) {
-                addPlayer(newPlayer);
-            }
+            listening();
 
             // Iterates over the game list and executes them
             // TODO games might require threads to yield so one game doesn't have to run to completetion before the next
@@ -71,7 +65,7 @@ public class ServerThread implements Runnable {
      * and the player is added using a recursive call
      * @param newPlayer new player to be added
      */
-    private void addPlayer(Player newPlayer) {
+    public void addPlayer(Player newPlayer) {
         if (waitingGames.isEmpty()) {
             waitingGames.add(new Game(newPlayer));
         } else {
@@ -124,30 +118,16 @@ public class ServerThread implements Runnable {
         }
     }
 
-    private Player listening() {
+    private void listening() {
         try {
             // Accepts connection from a new user and sends them a message to confirm
             Socket clientSocket = this.serverSocket.accept();
-            System.out.println("Connection received from " + clientSocket.getPort());
-
-            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-            out.println("Connection established, authentication in progress.");
-
-            // Once this happens the client will send input authentication to be checked against the database
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(clientSocket.getInputStream()));
-            String username = in.readLine();
-            String password = in.readLine();
-            out.println("AUTHENTICATED");
-            return new Player(username, clientSocket);
-            // TODO Need to add database interaction to check username and password and then create a player instance
-
+            threadpool.execute(new Thread(new ConnectionHandler(clientSocket, this)));
         } catch (IOException e) {
             if (!running) {
                 System.out.println("Server is stopped");
             }
             System.out.println("Problem accepting connection");
-            return null;
         }
     }
 }

@@ -54,7 +54,7 @@ public class Game implements Runnable {
                         if (!p.isSocketConnected()) {
                             endGame();
                         }
-                        MessageHandler.inputCheck(p.getInput().readLine(), p);
+//                        MessageHandler.inputCheck(p.getInput().readLine(), p);
                     }
 
                     player1.getOut().println("MESSAGE this is a message");
@@ -67,12 +67,13 @@ public class Game implements Runnable {
 
                 // TODO add the winning clause here in an if statement maybe?
                 endGame++;
-                if (endGame == 10) {
+                if (endGame == 2) {
                     gameFinished = true;
                 }
             }
 
             endGame();
+            Thread.yield();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -82,10 +83,10 @@ public class Game implements Runnable {
      * Starts the game by sending a message to each player that they are now in a game
      */
     public void gameStart() {
-        System.out.printf("Game ID %.0f started!\n", gameID);
+        System.out.printf("Game ID %d started!\n", gameID);
         for (Player player: playerList) {
             System.out.println(player.toString());
-            player.getOut().println(("Welcome to a BattleShips match between " + playerList.get(0).getUsername() +
+            player.getOut().println(("MESSAGE Welcome to a BattleShips match between " + playerList.get(0).getUsername() +
                                     " and " + playerList.get(1).getUsername()));
         }
         player1 = playerList.get(0);

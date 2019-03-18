@@ -44,6 +44,8 @@ public class Player {
                 }
             } catch (IOException e) {
                 tries ++;
+            } catch (NullPointerException e) {
+                tries ++;
             }
         }
 

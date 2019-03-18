@@ -26,9 +26,16 @@ public class MessageHandler {
                     player.getOut().println("GAME Hit/Miss/Sunk"); // TODO add result of shot here
                     break;
 
+                case "ECHO":
+                    break;
+
                 default:
+                    System.out.println(in);
                     System.out.println("Identifier unexpected, please report this problem.");
+                    break;
             }
+            player.getOut().flush();
+            player.getOpponent().getOut().flush();
         }
     }
 }

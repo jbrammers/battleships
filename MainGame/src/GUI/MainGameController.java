@@ -34,11 +34,11 @@ public class MainGameController {
     public static String incomingMessage;
     public static Gameboard gameboard = ShipPlacementController.gameboard;
 
-    private void initialiseOwnShips(Gameboard gameboard) {
-        for (Ship ship : gameboard.getBoard()) {
-
-        }
-    }
+//    private void initialiseOwnShips(Gameboard gameboard) {
+//        for (Ship ship : gameboard.getBoard()) {
+//
+//        }
+//    }
     @FXML
     public void handleSendButtonAction() {
         if (messageField.getText().equals("END")) {
@@ -406,9 +406,6 @@ public class MainGameController {
     }
 
     public void handleGridButtonPressJ10() {
-    }
-
-    public void handleSendButtonAction(ActionEvent actionEvent) {
     }
 
     public void handleFireButtonAction(ActionEvent actionEvent) {

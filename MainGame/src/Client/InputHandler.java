@@ -31,7 +31,7 @@ public class InputHandler {
                 break;
 
             case "CLIENT_CLOSE":
-                System.out.println("Closing service");
+                System.out.println("Game ended, closing service.");
                 client.close();
                 break;
 

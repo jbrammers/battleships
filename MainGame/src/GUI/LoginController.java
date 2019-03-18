@@ -1,9 +1,11 @@
 package GUI;
 
+import Client.Client;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import Client.Client;
 
 /**
  * @author Oliver Grubb
@@ -38,14 +40,15 @@ public class LoginController {
             String userInput = usernameField.getText();
             String passInput = passwordField.getText();
 
+            Client client = new Client(userInput, passInput);
+            client.run();
 
-            //TODO Send login info to server to be checked against database
 
             //if (correct) {
             //    PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
            // }
            // else LoginErrorMessage.errorMessage("Login information incorrect");
-            PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
+//            PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
         }
 
     }
