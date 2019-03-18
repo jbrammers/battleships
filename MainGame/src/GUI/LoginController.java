@@ -40,8 +40,12 @@ public class LoginController {
             String userInput = usernameField.getText();
             String passInput = passwordField.getText();
 
-            Client client = new Client(userInput, passInput);
-            client.run();
+            try {
+                Client.start();
+                Client.logIn(userInput, passInput);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
 
             //if (correct) {

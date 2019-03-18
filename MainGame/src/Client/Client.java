@@ -13,6 +13,7 @@ import java.net.Socket;
 public class Client {
     private static int portNumber = 3000;
     private static boolean loggedIn = false;
+    private static Socket client;
     private static BufferedReader input;
     private static PrintWriter output;
     private static String username;
@@ -24,10 +25,10 @@ public class Client {
     }
 
 
-    public void run() {
+    public static void start() {
         try {
             // Open connection on port number, throws exception if not found
-            Socket client = new Socket("localhost", portNumber);
+            client = new Socket("localhost", portNumber);
             client.setKeepAlive(true);
 
             // Prints connection established message
@@ -38,10 +39,16 @@ public class Client {
             output = new PrintWriter(
                     client.getOutputStream(), true);
 
-            logIn();
+        } catch (IOException e) {
+            System.out.println("Connection failed to server. Please try again.");
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+    }
+    }
 
-            if (!loggedIn) return;
-
+    public void run() {
+        try {
             InputHandler handler = new InputHandler(client, input, output);
 
             // Listens for inputs whilst open
@@ -61,7 +68,7 @@ public class Client {
         }
     }
 
-    public static void logIn() throws Exception {
+    public static void logIn(String username, String password) throws Exception {
 
         int counter = 0;
 
@@ -85,6 +92,7 @@ public class Client {
 
         if (counter>3) {
             System.out.println("Authentication failed, please try again.");
+
         } else {
             loggedIn = true;
         }
