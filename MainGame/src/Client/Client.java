@@ -2,8 +2,6 @@ package Client;
 
 import GUI.PaneNavigator;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,8 +14,6 @@ public class Client {
     private static Socket client;
     private static BufferedReader input;
     private static PrintWriter output;
-    public String username;
-    private String password;
 
     public Client(){}
 
@@ -112,21 +108,5 @@ public class Client {
      */
     public static void send(String out) {
         output.println(out);
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

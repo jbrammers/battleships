@@ -12,8 +12,8 @@ public class Game implements Runnable {
     private boolean gameProgressing = false;
     private boolean gameFinished = false;
 
-    public Game (Player player) {
-        this.gameID = (int) (Math.random()*100);
+    public Game (Player player, int ID) {
+        this.gameID = ID;
         playerList = new ArrayList<>();
         this.playerList.add(player);
     }

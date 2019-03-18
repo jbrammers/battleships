@@ -1,8 +1,6 @@
 package Client;
 
-import GUI.MainGameController;
 import GUI.PaneNavigator;
-import javafx.fxml.FXMLLoader;
 
 import java.io.BufferedReader;
 import java.io.IOException;

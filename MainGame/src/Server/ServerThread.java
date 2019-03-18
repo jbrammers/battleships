@@ -1,9 +1,6 @@
 package Server;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -18,6 +15,7 @@ public class ServerThread implements Runnable {
     private ExecutorService threadpool = Executors.newCachedThreadPool();
     private ArrayList<Game> gameInstances;
     private ArrayList<Game> waitingGames;
+    private int idIterator = 1;
 
     public ServerThread(int port) {
         this.port = port;
@@ -26,7 +24,7 @@ public class ServerThread implements Runnable {
     }
 
     /**
-     * Runs the server thread on the given port and creates a thread with this running.
+     * Runs the server on the given port and creates a thread with this running.
      */
     @Override
     public void run() {
@@ -66,9 +64,11 @@ public class ServerThread implements Runnable {
      * @param newPlayer new player to be added
      */
     public void addPlayer(Player newPlayer) {
+        // creates game if none are waiting
         if (waitingGames.isEmpty()) {
-            waitingGames.add(new Game(newPlayer));
+            waitingGames.add(new Game(newPlayer, idIterator++));
         } else {
+            // if person waiting is still connected, add new player to the game and start it
             if (waitingGames.get(0).waitingCheck()) {
                 Game nextGame = waitingGames.get(0);
                 nextGame.addPlayer(newPlayer);
@@ -77,6 +77,7 @@ public class ServerThread implements Runnable {
 
                 createThread(nextGame);
             } else {
+                // else remove that game from waiting list and create a new one recursively
                 waitingGames.remove(0);
                 addPlayer(newPlayer);
             }
@@ -88,8 +89,10 @@ public class ServerThread implements Runnable {
      * @param newGame new game to be executed
      */
     private void createThread(Game newGame) {
-        Thread temp = new Thread(newGame);
-        threadpool.execute(temp);
+        synchronized (this) {
+            Thread temp = new Thread(newGame);
+            threadpool.execute(temp);
+        }
     }
 
     /**
@@ -122,7 +125,9 @@ public class ServerThread implements Runnable {
         try {
             // Accepts connection from a new user and sends them a message to confirm
             Socket clientSocket = this.serverSocket.accept();
-            threadpool.execute(new Thread(new ConnectionHandler(clientSocket, this)));
+            synchronized (this) {
+                threadpool.execute(new Thread(new ConnectionHandler(clientSocket, this)));
+            }
         } catch (IOException e) {
             if (!running) {
                 System.out.println("Server is stopped");

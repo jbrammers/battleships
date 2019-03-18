@@ -1,8 +1,6 @@
 package GUI;
-import Client.Client;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import Client.Client;
 
 /**
  * @author Oliver Grubb
@@ -23,7 +21,6 @@ public class StartScreenController {
 
     public void handleStartButtonAction() {
         PaneNavigator.loadPane(PaneNavigator.SHIPPLACEMENT);
-        Client.ready();
     }
 
 }
