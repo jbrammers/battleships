@@ -72,7 +72,7 @@ public class Client {
 
             if (in.equals("AUTHENTICATED")) {
                 System.out.println("Authentication successful!");
-//                PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
+                PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
                 loggedIn = true;
             } else if (in.equals("Connection established, authentication in progress.")) {
                 System.out.println(in);
