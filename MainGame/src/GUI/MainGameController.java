@@ -31,7 +31,7 @@ public class MainGameController {
     public static ArrayList<String> messageLog = new ArrayList<String>();
     public static String message = "";
     public static int messageCount = 0;
-    public static String incomingMessage;
+    public String incomingMessage;
     public static Gameboard gameboard = ShipPlacementController.gameboard;
 
 //    private void initialiseOwnShips(Gameboard gameboard) {
@@ -80,7 +80,8 @@ public class MainGameController {
     }
 
 
-    public void printReceivedMessage() {
+    public void printReceivedMessage(String incomingMessage) {
+        this.incomingMessage = incomingMessage;
         double j = 1;
         if (incomingMessage.toCharArray().length > 30) {
             for (int i = 0; i < incomingMessage.toCharArray().length; i= i+30) {

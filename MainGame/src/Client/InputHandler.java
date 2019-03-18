@@ -1,5 +1,8 @@
 package Client;
 
+import GUI.MainGameController;
+import javafx.fxml.FXMLLoader;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,7 +40,8 @@ public class InputHandler {
 
             case "MESSAGE":
                 System.out.println(message);
-                // GUI.MessengerController.printReceivedMessage(message);
+                MainGameController controllerRef = new FXMLLoader().getController();
+                controllerRef.printReceivedMessage(message);
                 break;
 
             case "GAME":
