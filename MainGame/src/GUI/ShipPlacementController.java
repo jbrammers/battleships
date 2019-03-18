@@ -811,11 +811,11 @@ public class ShipPlacementController {
                 //horizontal
                 if (locationsRows.get(0).equals(locationsRows.get(1))) {
                     //left
-                    if ((currentButtonNumber == min - 1) && Integer.parseInt(splitRowColumnAttempt[1]) == Integer.parseInt(locationsColumns.get(setLocationsButtonNumbers.indexOf(min))) - 1 && splitRowColumnAttempt[0].equals(locationsRows.get(0))) {
+                    if ((currentButtonNumber == min - 1) && ((Integer.parseInt(splitRowColumnAttempt[1]) == Integer.parseInt(locationsColumns.get(setLocationsButtonNumbers.indexOf(min))) - 1) || (Integer.parseInt(splitRowColumnAttempt[1]) == Integer.parseInt(locationsColumns.get(setLocationsButtonNumbers.indexOf(min))) + 1)) && splitRowColumnAttempt[0].equals(locationsRows.get(0))) {
                         return true;
                     }
                     //right
-                    else if ((currentButtonNumber == max + 1) && Integer.parseInt(splitRowColumnAttempt[1]) == Integer.parseInt(locationsColumns.get(setLocationsButtonNumbers.indexOf(max))) + 1 && splitRowColumnAttempt[0].equals(locationsRows.get(0))) {
+                    else if ((currentButtonNumber == max + 1) && ((Integer.parseInt(splitRowColumnAttempt[1]) == Integer.parseInt(locationsColumns.get(setLocationsButtonNumbers.indexOf(max))) + 1) || (Integer.parseInt(splitRowColumnAttempt[1]) == Integer.parseInt(locationsColumns.get(setLocationsButtonNumbers.indexOf(max))) - 1)) && splitRowColumnAttempt[0].equals(locationsRows.get(0))) {
                         return true;
                     }
                 }
@@ -824,11 +824,11 @@ public class ShipPlacementController {
                 //vertical
                 else if (locationsColumns.get(0).equals(locationsColumns.get(1))) {
                     //below
-                    if ((currentButtonNumber == min - 1) && splitRowColumnAttempt[0].equals(rowNavigator(locationsRows.get(setLocationsButtonNumbers.indexOf(max)), -1)) && Integer.parseInt(splitRowColumnAttempt[1]) == Integer.parseInt(locationsColumns.get(0))) {
+                    if ((currentButtonNumber == min - 1) && ((splitRowColumnAttempt[0].equals(rowNavigator(locationsRows.get(setLocationsButtonNumbers.indexOf(min)), -1))) || (splitRowColumnAttempt[0].equals(rowNavigator(locationsRows.get(setLocationsButtonNumbers.indexOf(min)), 1))))&& Integer.parseInt(splitRowColumnAttempt[1]) == Integer.parseInt(locationsColumns.get(0))) {
                         return true;
                     }
                     //above
-                    if ((currentButtonNumber == max + 1) && splitRowColumnAttempt[0].equals(rowNavigator(locationsRows.get(setLocationsButtonNumbers.indexOf(max)), 1)) && Integer.parseInt(splitRowColumnAttempt[1]) == Integer.parseInt(locationsColumns.get(0))) {
+                    if ((currentButtonNumber == max + 1) && ((splitRowColumnAttempt[0].equals(rowNavigator(locationsRows.get(setLocationsButtonNumbers.indexOf(max)), 1))) || (splitRowColumnAttempt[0].equals(rowNavigator(locationsRows.get(setLocationsButtonNumbers.indexOf(max)), -1))))&& Integer.parseInt(splitRowColumnAttempt[1]) == Integer.parseInt(locationsColumns.get(0))) {
                         return true;
                     }
                 }

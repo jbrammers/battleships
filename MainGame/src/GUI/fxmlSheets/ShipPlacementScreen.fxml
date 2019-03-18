@@ -144,5 +144,105 @@
       </Label>
       <Button fx:id="BackButton" layoutX="14.0" layoutY="681.0" mnemonicParsing="false" onAction="#handleButtonActionBack" text="Back" />
       <Button fx:id="ContinueButton" layoutX="1201.0" layoutY="681.0" mnemonicParsing="false" onAction="#handleButtonActionContinue" text="Continue" />
+      <Label layoutX="67.0" layoutY="122.0" text="A">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="173.0" text="B">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="225.0" text="C">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="274.0" text="D">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="322.0" text="E">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="375.0" text="F">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="423.0" text="G">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="474.0" text="H">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="71.0" layoutY="527.0" text="I">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="70.0" layoutY="575.0" text="J">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="103.0" layoutY="84.0" text="1">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="154.0" layoutY="84.0" text="2">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="202.0" layoutY="84.0" text="3">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="253.0" layoutY="84.0" text="4">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="303.0" layoutY="84.0" text="5">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="352.0" layoutY="84.0" text="6">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="402.0" layoutY="84.0" text="7">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="452.0" layoutY="84.0" text="8">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="502.0" layoutY="84.0" text="9">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="549.0" layoutY="84.0" text="10">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
