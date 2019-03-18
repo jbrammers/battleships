@@ -43,7 +43,7 @@ public class Game implements Runnable {
         try {
             // Starts the game
             gameStart();
-
+            int endGame = 0;
             // Loops through the game until a winner is found
             while (!this.isGameFinished()) {
                 // TODO replace this sleeping thread with the game engine
@@ -54,6 +54,7 @@ public class Game implements Runnable {
                         if (!p.isSocketConnected()) {
                             endGame();
                         }
+                        MessageHandler.inputCheck(p.getInput().readLine(), p);
                     }
 
                     player1.getOut().println("MESSAGE this is a message");
@@ -65,7 +66,10 @@ public class Game implements Runnable {
                 }
 
                 // TODO add the winning clause here in an if statement maybe?
-                gameFinished = true;
+                endGame++;
+                if (endGame == 10) {
+                    gameFinished = true;
+                }
             }
 
             endGame();
@@ -86,6 +90,8 @@ public class Game implements Runnable {
         }
         player1 = playerList.get(0);
         player2 = playerList.get(1);
+        player1.setOpponent(player2);
+        player2.setOpponent(player1);
         gameProgressing = true;
     }
 

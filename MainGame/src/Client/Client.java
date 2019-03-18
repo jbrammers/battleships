@@ -1,5 +1,7 @@
 package Client;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -30,12 +32,12 @@ public class Client {
 
             if (!loggedIn) return;
 
-//            ActionListener sendMessage = new ActionListener() {
-//                @Override
-//                public void actionPerformed(ActionEvent e) {
-//                    output.println();
-//                }
-//            };
+            ActionListener sendMessage = new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    output.println();
+                }
+            };
             // TODO add an action listener for the messenger here
 
             InputHandler handler = new InputHandler(client, input, output);
@@ -86,6 +88,15 @@ public class Client {
         } else {
             loggedIn = true;
         }
+    }
+
+    /**
+     * Method used to send a message to the server whenever required. Messages should be prefixed with
+     * their type otherwise they will simply get ignored
+     * @param out String to be sent to the server
+     */
+    public static void send(String out) {
+        output.println(out);
     }
 
 }

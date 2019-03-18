@@ -12,8 +12,8 @@ public class InputHandler {
 
     public InputHandler(Socket client, BufferedReader in, PrintWriter out) {
         this.client = client;
-        this.in = in;
         this.out = out;
+        this.in = in;
     }
 
     public void handle(String in) throws IOException {
@@ -37,6 +37,7 @@ public class InputHandler {
 
             case "MESSAGE":
                 System.out.println(message);
+                // GUI.MessengerController.printReceivedMessage(message);
                 break;
 
             case "GAME":
