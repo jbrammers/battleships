@@ -1256,5 +1256,6 @@ public class ShipPlacementController {
     }
 
     public void handleButtonActionContinue(ActionEvent actionEvent) {
+        //TODO send completed gameboard to server
     }
 }
