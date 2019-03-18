@@ -79,6 +79,7 @@ public class MainGameController {
 
     }
 
+
     public void printReceivedMessage() {
         double j = 1;
         if (incomingMessage.toCharArray().length > 30) {
