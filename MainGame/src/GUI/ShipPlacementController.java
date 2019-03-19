@@ -1,5 +1,6 @@
 package GUI;
 
+import Client.Client;
 import Game.Gameboard;
 import Game.Ship;
 import javafx.event.ActionEvent;
@@ -1264,6 +1265,7 @@ public class ShipPlacementController implements javafx.fxml.Initializable{
 
     public void handleButtonActionContinue(ActionEvent actionEvent) {
         //TODO send completed gameboard to server
+        Client.send(gameboard.toString());
         PaneNavigator.loadPane(PaneNavigator.MAINGAME);
     }
 

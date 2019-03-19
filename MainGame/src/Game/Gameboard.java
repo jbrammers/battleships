@@ -28,6 +28,7 @@ public class Gameboard {
 	}
 
 	public String attempt(String location) {
+
 		for (Ship ship : board) {
 			if (ship.attempt(location).equals("HIT")) {
 				return "HIT";
@@ -38,5 +39,16 @@ public class Gameboard {
 			else return "MISS";
 		}
 		return "error";
+	}
+
+	public String toString() {
+		String boardState = "";
+		for (Ship ship : board) {
+			for (String location : ship.getLocation()) {
+				String[] split = location.split("_");
+				boardState += split[0] + " ";
+			}
+		}
+		return boardState;
 	}
 }
