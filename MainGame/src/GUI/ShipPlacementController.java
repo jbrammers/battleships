@@ -1265,6 +1265,7 @@ public class ShipPlacementController extends Controller {
 
     public void handleButtonActionContinue(ActionEvent actionEvent) {
         //TODO send completed gameboard to server
+        Client.send(gameboard.toString());
         PaneNavigator.loadPane(PaneNavigator.MAINGAME);
         System.out.println("New Pane Loaded");
         Thread thread = (Thread) DataStore.getData().getObject("thread");

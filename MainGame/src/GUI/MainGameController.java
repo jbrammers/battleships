@@ -446,6 +446,8 @@ public class MainGameController implements javafx.fxml.Initializable {
     @FXML
     private Button J10;
 
+    public static boolean turn;
+
     private ArrayList<Rectangle> initiateRectangleArrayList() {
         ArrayList<Rectangle> ownShipsRectangles = new ArrayList<>();
         ownShipsRectangles.add(ownShipsA1);
@@ -646,7 +648,7 @@ public class MainGameController implements javafx.fxml.Initializable {
             messageField.setText("");
             messageCount++;
         } else {
-            message += messageField.getText();
+            message += "\n" + messageField.getText();
             messageLog.add(message);
             messageDisplay.setPrefHeight(messageDisplay.getPrefHeight() + 17);
             anchorPane.setPrefHeight(messageDisplay.getPrefHeight());
@@ -659,7 +661,6 @@ public class MainGameController implements javafx.fxml.Initializable {
         client.send("MESSAGE " + message);
 
     }
-
 
     public void printReceivedMessage(String incomingMessage) {
         this.incomingMessage = incomingMessage;
@@ -1105,7 +1106,10 @@ public class MainGameController implements javafx.fxml.Initializable {
     }
 
     public void handleFireButtonAction(ActionEvent actionEvent) {
-        //TODO send location attempt to server
+        if (turn) {
+            turn = false;
+            //TODO send location attempt to server
+        }
     }
 
     public void handleOpponentAttempt(String location) {

@@ -36,25 +36,30 @@ public class NewUserController {
         if (usernameField.getText().isEmpty()) {
             LoginErrorMessage.errorMessage("Please enter a username");
             return;
-
         }
 
         if (!passwordField.getText().equals(rePasswordField.getText())) {
             LoginErrorMessage.errorMessage("Passwords must match");
             return;
-
         }
 
         if (passwordField.getText().isEmpty()) {
             LoginErrorMessage.errorMessage("Please enter a password");
             return;
-
         }
 
         if (rePasswordField.getText().isEmpty()) {
             LoginErrorMessage.errorMessage("Please re-enter your password");
             return;
+        }
 
+        if (usernameField.getText().length() > 16) {
+            LoginErrorMessage.errorMessage("Username must be 16 characters or less");
+            return;
+        }
+        else if (passwordField.getText().length() > 32) {
+            LoginErrorMessage.errorMessage("Username must be 16 characters or less");
+            return;
         }
 
         else {

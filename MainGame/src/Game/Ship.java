@@ -28,6 +28,7 @@ public class Ship {
 		this.alive = alive;
 	}
 
+
 	public String getType() {
 		return type;
 	}
@@ -82,6 +83,7 @@ public class Ship {
 		}
 		return "MISS";
 	}
+
 }
 
 
