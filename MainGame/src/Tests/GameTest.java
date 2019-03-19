@@ -35,12 +35,13 @@ public class GameTest {
 		expected.addShip(ship4);
 
 
-		ArrayList<String> locations = new ArrayList<>();
+		locations = new ArrayList<>();
 		locations.add("1");
 		locations.add("2");
 		locations.add("3");
 		locations.add("4");
-
+		locations.add("5");
+	// locations.add("6");
 
 
 	}
@@ -83,7 +84,7 @@ public class GameTest {
 		ship1.setLocation(locations);
 
 
-		assertEquals(locations, ship1.getLocation());
+		assertEquals("1", ship1.getLocation().get(0));
 	}
 
 
@@ -91,14 +92,65 @@ public class GameTest {
 	public void setTypeTest() {
 		Gameboard gameboard = new Gameboard();
 
-		ship1.setType("1");
-
 		assertEquals("1", ship1.getType());
 		assertEquals("2", ship2.getType());
 		assertEquals("3", ship3.getType());
 		assertEquals("4", ship4.getType());
 
 	}
+
+    @Test
+    public void setLengthTest()
+    {
+        Gameboard gameboard = new Gameboard();
+
+        assertEquals(5, ship1.getLength());
+        assertEquals(4, ship2.getLength());
+        assertEquals(3, ship3.getLength());
+        assertEquals(3, ship4.getLength());
+
+    }
+
+    @Test
+    public void locationFullTest()
+    {
+        Gameboard gameboard = new Gameboard();
+
+        gameboard.addShip(ship1);
+        ship1.setLocation(locations);
+
+
+		assertEquals(true, ship1.locationsFull());
+    }
+
+
+
+    @Test
+	public void locationCountTest()
+	{
+		Gameboard gameboard = new Gameboard();
+
+		assertEquals(5, locations.size());
+	}
+
+
+	@Test
+	public void setAliveTest()
+	{
+		Gameboard gameboard = new Gameboard();
+
+		assertTrue(ship1.getAlive());
+		assertTrue(ship2.getAlive());
+		assertTrue(ship3.getAlive());
+		assertTrue(ship4.getAlive());
+	}
+
+
+
+
+
+
+
 
 
 }
