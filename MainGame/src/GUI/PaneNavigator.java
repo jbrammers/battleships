@@ -17,6 +17,7 @@ public class PaneNavigator {
     public static final String STARTSCREEN = "/GUI/fxmlSheets/StartScreen.fxml";
     public static final String SHIPPLACEMENT = "/GUI/fxmlSheets/ShipPlacementScreen.fxml";
     public static final String MAINGAME = "/GUI/fxmlSheets/MainGameScreen.fxml";
+    public static final String LEADERBOARD = "/GUI/fxmlSheets/LeaderboardScreen.fxml";
 
     private static MainController mainController;
 

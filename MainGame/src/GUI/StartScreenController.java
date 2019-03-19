@@ -16,7 +16,7 @@ public class StartScreenController {
     private Button startButton;
 
     public void handleLeaderboardsButtonAction() {
-
+        PaneNavigator.loadPane(PaneNavigator.LEADERBOARD);
     }
 
     public void handleStartButtonAction() {

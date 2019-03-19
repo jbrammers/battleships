@@ -14,10 +14,17 @@ import javafx.scene.paint.Color;
 
 
 import java.lang.reflect.Array;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ResourceBundle;
 
-public class ShipPlacementController {
+public class ShipPlacementController implements javafx.fxml.Initializable{
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        gameboard = new Gameboard();
+    }
 
     public static Gameboard gameboard = new Gameboard();
 
@@ -1259,4 +1266,6 @@ public class ShipPlacementController {
         //TODO send completed gameboard to server
         PaneNavigator.loadPane(PaneNavigator.MAINGAME);
     }
+
+
 }
