@@ -14,13 +14,13 @@ public class ServerThread implements Runnable {
     private Thread currentThread;
     private ExecutorService threadpool = Executors.newCachedThreadPool();
     private ArrayList<Game> gameInstances;
-    private ArrayList<Game> waitingGames;
+    private ArrayList<Player> waitingPlayers;
     private int idIterator = 1;
 
     public ServerThread(int port) {
         this.port = port;
         gameInstances = new ArrayList<>();
-        waitingGames = new ArrayList<>();
+        waitingPlayers = new ArrayList<>();
     }
 
     /**
@@ -44,6 +44,15 @@ public class ServerThread implements Runnable {
             // Checks to see if there is a new player each loop
             listening();
 
+            while (waitingPlayers.size() > 1) {
+
+                    Player player1 = waitingPlayers.get(0);
+                    waitingPlayers.remove(player1);
+                    Player player2 = waitingPlayers.get(0);
+                    waitingPlayers.remove(player2);
+                    newGame(player1,player2);
+            }
+
             // Iterates over the game list and executes them
             // TODO games might require threads to yield so one game doesn't have to run to completetion before the next
             for (int i = 0; i < gameInstances.size(); i++) {
@@ -58,30 +67,19 @@ public class ServerThread implements Runnable {
     }
 
     /**
-     * Adds a new player to the waiting games list either in a new game or to an existing one
-     * Checks to see if a waiting game still has its first player connected, if not it will be removed
-     * and the player is added using a recursive call
-     * @param newPlayer new player to be added
+     * Creates a new game with 2 players in the waiting list
+     * @param player1 new player to be added
+     * @param player2 2nd player to be added
      */
+    public void newGame(Player player1, Player player2) {
+        Game newGame = new Game(player1, idIterator++);
+        newGame.addPlayer(player2);
+        createThread(newGame);
+        gameInstances.add(newGame);
+    }
+
     public void addPlayer(Player newPlayer) {
-        // creates game if none are waiting
-        if (waitingGames.isEmpty()) {
-            Game nextGame = new Game(newPlayer,idIterator++);
-            createThread(nextGame);
-            waitingGames.add(nextGame);
-        } else {
-            // if person waiting is still connected, add new player to the game and start it
-            if (waitingGames.get(0).getPlayerList().get(0).isSocketConnected()) {
-                Game nextGame = waitingGames.get(0);
-                nextGame.addPlayer(newPlayer);
-                gameInstances.add(nextGame);
-                waitingGames.remove(nextGame);
-            } else {
-                // else remove that game from waiting list and create a new one recursively
-                waitingGames.remove(0);
-                addPlayer(newPlayer);
-            }
-        }
+        waitingPlayers.add(newPlayer);
     }
 
     /**
@@ -100,6 +98,7 @@ public class ServerThread implements Runnable {
         try {
             // Creates a secure server socket for password transmission
             this.serverSocket = new ServerSocket(this.port);
+            serverSocket.setSoTimeout(1000);
             running = true;
             System.out.printf("Server started on port %d \n", port);
         } catch (IOException e) {
@@ -128,7 +127,6 @@ public class ServerThread implements Runnable {
             if (!running) {
                 System.out.println("Server is stopped");
             }
-            System.out.println("Problem accepting connection");
         }
     }
 }

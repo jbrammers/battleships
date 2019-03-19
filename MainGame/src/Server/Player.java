@@ -2,15 +2,14 @@ package Server;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.Scanner;
 
-public class Player {
+public class Player implements Runnable{
     private String username;
     private Socket socket;
     private InputStreamReader is;
     private OutputStream os;
     private PrintWriter out;
-    private Scanner input;
+    private BufferedReader input;
     private Player opponent;
     private boolean ready;
 
@@ -21,11 +20,22 @@ public class Player {
             this.is = new InputStreamReader(socket.getInputStream());
             this.os = socket.getOutputStream();
             out = new PrintWriter(os, true);
-            input = new Scanner(is);
+            input = new BufferedReader(is);
         } catch (IOException e) {
             e.printStackTrace();
         }
         ready = false;
+    }
+
+    public void run() {
+        try {
+            String nextLine;
+            while ((nextLine = input.readLine()) != null) {
+                MessageHandler.inputCheck(nextLine, this);
+            }
+        } catch (IOException e) {
+            return;
+        }
     }
 
     public String getUsername() {
@@ -41,8 +51,10 @@ public class Player {
         int tries = 1;
         while (tries <= 3) {
             try {
-                input.nextLine();
-                break;
+                out.println("ECHO");
+                if (input.readLine().equals("ECHO")) {
+                    break;
+                }
             } catch (Exception e) {
                 tries++;
             }
@@ -63,7 +75,7 @@ public class Player {
         return out;
     }
 
-    public Scanner getInput() { return input; }
+    public BufferedReader getInput() { return input; }
 
     public void setOpponent(Player opponent) {
         this.opponent = opponent;

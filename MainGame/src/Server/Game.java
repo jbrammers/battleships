@@ -3,7 +3,6 @@ package Server;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Scanner;
 
 public class Game implements Runnable {
     private int gameID;
@@ -28,8 +27,10 @@ public class Game implements Runnable {
         playerList.add(player);
         if (player1 == null) {
             player1 = player;
+            new Thread(player1).start();
         } else {
             player2 = player;
+            new Thread(player2).start();
             player1.setOpponent(player2);
             player2.setOpponent(player1);
             gameFilled = true;
@@ -54,28 +55,41 @@ public class Game implements Runnable {
                         Player p = iterator.next();
 
 
-                        String nextLine;
-                        if ((nextLine = p.getInput().nextLine()) != null) {
-                            MessageHandler.inputCheck(nextLine, p);
-                        }
+//                        String nextLine;
+//                        try {
+//                            while ((nextLine = p.getInput().readLine()) != null)  {
+//                                MessageHandler.inputCheck(nextLine, p);
+//                            }
+//                        } catch (IndexOutOfBoundsException e) {
+//                            endGame();
+//                        }
                     }
 
                     if (player1.isReady() &&
                         player2.isReady() &&
                             !gameProgressing) {
                         gameStart();
+                    } else {
+                        Thread.yield();
                     }
 
-                } catch (Exception e) {
+                } catch (IllegalStateException e) {
+                    Thread.yield();
+                } catch (NullPointerException e){
+                    Thread.sleep(1000);
+                }
+                catch (Exception e) {
                     e.printStackTrace();
                 }
 
                 // TODO add the winning clause here in an if statement maybe?
                 endGame++;
+                if (endGame == 5) {
+                    endGame();
+                }
             }
 
-            endGame();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

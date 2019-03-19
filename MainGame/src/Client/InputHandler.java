@@ -9,14 +9,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class InputHandler {
     Socket client;
-    Scanner in;
+    BufferedReader in;
     PrintWriter out;
 
-    public InputHandler(Socket client, Scanner in, PrintWriter out) {
+    public InputHandler(Socket client, BufferedReader in, PrintWriter out) {
         this.client = client;
         this.out = out;
         this.in = in;

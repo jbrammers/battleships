@@ -2,7 +2,6 @@ package GUI;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 
 /**
@@ -18,10 +17,6 @@ public class MainController {
 
     public void setPane(Node node) {
         paneHolder.getChildren().setAll(node);
-    }
-
-    public StackPane getPanes() {
-        return paneHolder;
     }
 
 }

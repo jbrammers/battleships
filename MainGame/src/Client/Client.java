@@ -1,19 +1,18 @@
 package Client;
 
-import GUI.PaneNavigator;
+import GUI.DataStore;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class Client implements Runnable {
     private int portNumber = 3000;
     private boolean loggedIn = false;
     private Socket client;
-    private Scanner input;
+    private BufferedReader input;
     private PrintWriter output;
 
     public Client(){}
@@ -26,7 +25,7 @@ public class Client implements Runnable {
             client.setKeepAlive(true);
 
             // Prints connection established message
-            input = new Scanner(
+            input = new BufferedReader(
                     new InputStreamReader(client.getInputStream()));
 
             // Output client
@@ -56,9 +55,8 @@ public class Client implements Runnable {
 
             // Listens for inputs whilst open
             while (!client.isClosed()) {
-                String nextLine = input.nextLine();
-                if (nextLine == null) Thread.sleep(200);
-                else {
+                String nextLine;
+                while ((nextLine = input.readLine()) != null) {
                     handler.handle(nextLine);
                 }
                 output.flush();
@@ -67,12 +65,15 @@ public class Client implements Runnable {
         } catch (IOException e) {
             System.out.println("Connection failed to server. Please try again.");
             e.printStackTrace();
+            Thread thread = (Thread) DataStore.getData().getObject("gui thread");
+            thread.interrupt();
+            return;
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void logIn(String username, String password) throws Exception {
+    public boolean logIn(String username, String password) throws Exception {
 
 
         int counter = 0;
@@ -80,11 +81,10 @@ public class Client implements Runnable {
         while (!loggedIn && counter <= 3) {
             output.println(username);
             output.println(password); // password goes here
-            String in = input.nextLine();
+            String in = input.readLine();
 
             if (in.equals("AUTHENTICATED")) {
                 System.out.println("Authentication successful!");
-                PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
                 loggedIn = true;
             } else if (in.equals("Connection established, authentication in progress.")) {
                 System.out.println(in);
@@ -97,10 +97,10 @@ public class Client implements Runnable {
 
         if (counter>3) {
             System.out.println("Authentication failed, please try again.");
-
         } else {
             loggedIn = true;
         }
+        return loggedIn;
     }
 
     /**

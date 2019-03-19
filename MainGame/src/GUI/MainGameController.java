@@ -648,7 +648,7 @@ public class MainGameController implements javafx.fxml.Initializable {
             messageField.setText("");
             messageCount++;
         } else {
-            message += "\n" + messageField.getText();
+            message += messageField.getText();
             messageLog.add(message);
             messageDisplay.setPrefHeight(messageDisplay.getPrefHeight() + 17);
             anchorPane.setPrefHeight(messageDisplay.getPrefHeight());
@@ -663,7 +663,7 @@ public class MainGameController implements javafx.fxml.Initializable {
     }
 
     public void printReceivedMessage(String incomingMessage) {
-        this.incomingMessage = incomingMessage;
+        this.incomingMessage = "\n" + incomingMessage;
         double j = 1;
         if (incomingMessage.toCharArray().length > 30) {
             for (int i = 0; i < incomingMessage.toCharArray().length; i = i + 30) {

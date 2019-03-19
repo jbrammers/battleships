@@ -8,6 +8,7 @@ public class ClientRunner {
         Client client = new Client();
         client.start();
         client.logIn("player", "password");
-        client.run();
+        new Thread(client).start();
+        client.send("SYSTEM ready");
     }
 }

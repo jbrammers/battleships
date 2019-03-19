@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import Client.Client;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,21 +41,21 @@ public class LoginController extends Controller {
         else {
             String userInput = usernameField.getText();
             String passInput = passwordField.getText();
-
+            boolean auth = false;
             try {
                 Client client = (Client) DataStore.getData().getObject("client");
                 client.start();
-                client.logIn(userInput, passInput);
+                auth = client.logIn(userInput, passInput);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
 
-            //if (correct) {
-            //    PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
-           // }
-           // else LoginErrorMessage.errorMessage("Login information incorrect");
-//            PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
+            if (auth) {
+                PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
+            }
+            else LoginErrorMessage.errorMessage("Login information incorrect");
+            PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
         }
 
     }

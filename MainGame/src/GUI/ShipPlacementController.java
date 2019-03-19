@@ -13,8 +13,6 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 
-
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -1265,17 +1263,16 @@ public class ShipPlacementController extends Controller {
 
     public void handleButtonActionContinue(ActionEvent actionEvent) {
         //TODO send completed gameboard to server
-        Client.send(gameboard.toString());
+        // Client.send(gameboard.toString());
+
         PaneNavigator.loadPane(PaneNavigator.MAINGAME);
-        System.out.println("New Pane Loaded");
+
         Thread thread = (Thread) DataStore.getData().getObject("thread");
         thread.start();
-        System.out.println("Thread started");
 
         Client client = (Client) DataStore.getData().getObject("client");
-        System.out.println(client.getSocket());
-        client.send("connected!");
-        System.out.println("Client message sent");
+        client.send("SYSTEM ready");
+        System.out.println("Ready message sent");
     }
 
 
