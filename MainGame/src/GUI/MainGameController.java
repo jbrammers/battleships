@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 
 
 public class MainGameController implements javafx.fxml.Initializable {
+    private static MainGameController controller;
 
 
     @FXML
@@ -654,9 +655,8 @@ public class MainGameController implements javafx.fxml.Initializable {
             messageCount++;
         }
 
-
-        //TODO send message to server to be printed on other players messenger
-        Client.send("MESSAGE " + message);
+        Client client = (Client) DataStore.getData().getObject("client");
+        client.send("MESSAGE " + message);
 
     }
 
@@ -1126,5 +1126,14 @@ public class MainGameController implements javafx.fxml.Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initialiseOwnShips(gameboard);
+        controller = this;
+        DataStore.getData().addObjects("main game", controller);
+
+        Thread thread = Thread.currentThread();
+        DataStore.getData().addObjects("gui thread", thread);
+    }
+
+    public static MainGameController getController() {
+        return controller;
     }
 }

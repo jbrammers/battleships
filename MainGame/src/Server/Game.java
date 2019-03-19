@@ -2,6 +2,8 @@ package Server;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
 
 public class Game implements Runnable {
     private int gameID;
@@ -15,7 +17,7 @@ public class Game implements Runnable {
     public Game (Player player, int ID) {
         this.gameID = ID;
         playerList = new ArrayList<>();
-        this.playerList.add(player);
+        addPlayer(player);
     }
 
     /**
@@ -24,37 +26,44 @@ public class Game implements Runnable {
      */
     public void addPlayer(Player player) {
         playerList.add(player);
-        gameFilled = true;
+        if (player1 == null) {
+            player1 = player;
+        } else {
+            player2 = player;
+            player1.setOpponent(player2);
+            player2.setOpponent(player1);
+            gameFilled = true;
+        }
     }
 
-    /**
-     * Checks to see if the first player is still connected
-     * @return
-     */
-    public boolean waitingCheck() {
-        if (playerList.isEmpty()) return false;
-        return playerList.get(0).isSocketConnected();
-    }
 
     /**
      * Runs the game itself
      */
     public void run() {
         try {
-            // Starts the game
-            gameStart();
             int endGame = 0;
+
             // Loops through the game until a winner is found
             while (!this.isGameFinished()) {
                 // TODO replace this sleeping thread with the game engine
 
                 try {
-                    for (Player p :
-                            playerList) {
-                        if (!p.isSocketConnected()) {
-                            endGame();
+                    Iterator<Player> iterator = playerList.iterator();
+                    while (iterator.hasNext()) {
+                        Player p = iterator.next();
+
+
+                        String nextLine;
+                        if ((nextLine = p.getInput().nextLine()) != null) {
+                            MessageHandler.inputCheck(nextLine, p);
                         }
-                        MessageHandler.inputCheck(p.getInput().readLine(), p);
+                    }
+
+                    if (player1.isReady() &&
+                        player2.isReady() &&
+                            !gameProgressing) {
+                        gameStart();
                     }
 
                 } catch (Exception e) {
@@ -81,10 +90,6 @@ public class Game implements Runnable {
             player.getOut().println(("MESSAGE Welcome to a BattleShips match between " + playerList.get(0).getUsername() +
                                     " and " + playerList.get(1).getUsername()));
         }
-        player1 = playerList.get(0);
-        player2 = playerList.get(1);
-        player1.setOpponent(player2);
-        player2.setOpponent(player1);
         gameProgressing = true;
     }
 

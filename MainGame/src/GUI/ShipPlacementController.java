@@ -1,5 +1,6 @@
 package GUI;
 
+import Client.Client;
 import Game.Gameboard;
 import Game.Ship;
 import javafx.event.ActionEvent;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
-public class ShipPlacementController implements javafx.fxml.Initializable{
+public class ShipPlacementController extends Controller {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -1265,6 +1266,15 @@ public class ShipPlacementController implements javafx.fxml.Initializable{
     public void handleButtonActionContinue(ActionEvent actionEvent) {
         //TODO send completed gameboard to server
         PaneNavigator.loadPane(PaneNavigator.MAINGAME);
+        System.out.println("New Pane Loaded");
+        Thread thread = (Thread) DataStore.getData().getObject("thread");
+        thread.start();
+        System.out.println("Thread started");
+
+        Client client = (Client) DataStore.getData().getObject("client");
+        System.out.println(client.getSocket());
+        client.send("connected!");
+        System.out.println("Client message sent");
     }
 
 

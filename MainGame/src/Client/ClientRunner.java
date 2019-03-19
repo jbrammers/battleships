@@ -5,9 +5,9 @@ package Client;
  */
 public class ClientRunner {
     public static void main(String[] args) throws Exception {
-        Client.start();
-        Client.logIn("player", "password");
         Client client = new Client();
+        client.start();
+        client.logIn("player", "password");
         client.run();
     }
 }

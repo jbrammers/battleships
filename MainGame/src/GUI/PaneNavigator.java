@@ -33,4 +33,10 @@ public class PaneNavigator {
             e.printStackTrace();
         }
     }
+
+    public static MainController getController(){
+        return mainController;
+    }
+
+
 }

@@ -33,6 +33,7 @@ public class ConnectionHandler implements Runnable {
             String username = in.readLine();
             String password = in.readLine();
             System.out.println("User: " + username + " Pass: " + password);
+            in.readLine();
             out.println("AUTHENTICATED");
 
             // TODO Need to add database interaction to check username and password and then create a player instance

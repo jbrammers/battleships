@@ -2,6 +2,7 @@ package Server;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class Player {
     private String username;
@@ -9,8 +10,9 @@ public class Player {
     private InputStreamReader is;
     private OutputStream os;
     private PrintWriter out;
-    private BufferedReader input;
+    private Scanner input;
     private Player opponent;
+    private boolean ready;
 
     public Player (String username, Socket socket) {
         this.username = username;
@@ -19,10 +21,11 @@ public class Player {
             this.is = new InputStreamReader(socket.getInputStream());
             this.os = socket.getOutputStream();
             out = new PrintWriter(os, true);
-            input = new BufferedReader(is);
+            input = new Scanner(is);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        ready = false;
     }
 
     public String getUsername() {
@@ -37,19 +40,15 @@ public class Player {
 
         int tries = 1;
         while (tries <= 3) {
-            out.println("ECHO");
             try {
-                if (input.readLine().equals("ECHO")) {
-                    return true;
-                }
-            } catch (IOException e) {
-                tries ++;
-            } catch (NullPointerException e) {
-                tries ++;
+                input.nextLine();
+                break;
+            } catch (Exception e) {
+                tries++;
             }
         }
 
-        return false;
+        return !(tries >= 3);
     }
 
     public InputStreamReader getIs() {
@@ -64,13 +63,21 @@ public class Player {
         return out;
     }
 
-    public BufferedReader getInput() { return input; }
+    public Scanner getInput() { return input; }
 
     public void setOpponent(Player opponent) {
         this.opponent = opponent;
     }
 
     public Player getOpponent() { return opponent; }
+
+    public boolean isReady() {
+        return ready;
+    }
+
+    public void setReady(boolean ready) {
+        this.ready = ready;
+    }
 
     @Override
     public String toString() {

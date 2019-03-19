@@ -7,25 +7,26 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Scanner;
 
-public class Client {
-    private static int portNumber = 3000;
-    private static boolean loggedIn = false;
-    private static Socket client;
-    private static BufferedReader input;
-    private static PrintWriter output;
+public class Client implements Runnable {
+    private int portNumber = 3000;
+    private boolean loggedIn = false;
+    private Socket client;
+    private Scanner input;
+    private PrintWriter output;
 
     public Client(){}
 
 
-    public static void start() {
+    public void start() {
         try {
             // Open connection on port number, throws exception if not found
             client = new Socket("localhost", portNumber);
             client.setKeepAlive(true);
 
             // Prints connection established message
-            input = new BufferedReader(
+            input = new Scanner(
                     new InputStreamReader(client.getInputStream()));
 
             // Output client
@@ -40,7 +41,7 @@ public class Client {
     }
     }
 
-    public static void ready() {
+    public void ready() {
         try {
             output.println("SYSTEM ready");
         } catch (Exception e) {
@@ -48,18 +49,19 @@ public class Client {
         }
     }
 
-    public static void run() {
+    public void run() {
         try {
 
             InputHandler handler = new InputHandler(client, input, output);
 
             // Listens for inputs whilst open
             while (!client.isClosed()) {
-                String nextLine = input.readLine();
-                if (nextLine == null) Thread.yield();
+                String nextLine = input.nextLine();
+                if (nextLine == null) Thread.sleep(200);
                 else {
                     handler.handle(nextLine);
                 }
+                output.flush();
             }
 
         } catch (IOException e) {
@@ -70,7 +72,7 @@ public class Client {
         }
     }
 
-    public static void logIn(String username, String password) throws Exception {
+    public void logIn(String username, String password) throws Exception {
 
 
         int counter = 0;
@@ -78,7 +80,7 @@ public class Client {
         while (!loggedIn && counter <= 3) {
             output.println(username);
             output.println(password); // password goes here
-            String in = input.readLine();
+            String in = input.nextLine();
 
             if (in.equals("AUTHENTICATED")) {
                 System.out.println("Authentication successful!");
@@ -86,9 +88,9 @@ public class Client {
                 loggedIn = true;
             } else if (in.equals("Connection established, authentication in progress.")) {
                 System.out.println(in);
-                Thread.sleep(4000);
             } else {
                 counter++;
+                Thread.sleep(200);
                 // TODO request username + password again
             }
         }
@@ -106,7 +108,9 @@ public class Client {
      * their type otherwise they will simply get ignored
      * @param out String to be sent to the server
      */
-    public static void send(String out) {
+    public void send(String out) {
         output.println(out);
     }
+
+    public Socket getSocket() { return client; }
 }

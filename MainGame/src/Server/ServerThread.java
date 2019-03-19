@@ -66,16 +66,16 @@ public class ServerThread implements Runnable {
     public void addPlayer(Player newPlayer) {
         // creates game if none are waiting
         if (waitingGames.isEmpty()) {
-            waitingGames.add(new Game(newPlayer, idIterator++));
+            Game nextGame = new Game(newPlayer,idIterator++);
+            createThread(nextGame);
+            waitingGames.add(nextGame);
         } else {
             // if person waiting is still connected, add new player to the game and start it
-            if (waitingGames.get(0).waitingCheck()) {
+            if (waitingGames.get(0).getPlayerList().get(0).isSocketConnected()) {
                 Game nextGame = waitingGames.get(0);
                 nextGame.addPlayer(newPlayer);
                 gameInstances.add(nextGame);
                 waitingGames.remove(nextGame);
-
-                createThread(nextGame);
             } else {
                 // else remove that game from waiting list and create a new one recursively
                 waitingGames.remove(0);
@@ -89,10 +89,8 @@ public class ServerThread implements Runnable {
      * @param newGame new game to be executed
      */
     private void createThread(Game newGame) {
-        synchronized (this) {
-            Thread temp = new Thread(newGame);
-            threadpool.execute(temp);
-        }
+        Thread temp = new Thread(newGame);
+        threadpool.execute(temp);
     }
 
     /**
@@ -125,9 +123,7 @@ public class ServerThread implements Runnable {
         try {
             // Accepts connection from a new user and sends them a message to confirm
             Socket clientSocket = this.serverSocket.accept();
-            synchronized (this) {
-                threadpool.execute(new Thread(new ConnectionHandler(clientSocket, this)));
-            }
+            threadpool.execute(new Thread(new ConnectionHandler(clientSocket, this)));
         } catch (IOException e) {
             if (!running) {
                 System.out.println("Server is stopped");

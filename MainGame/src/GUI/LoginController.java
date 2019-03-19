@@ -7,12 +7,15 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import Client.Client;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 /**
  * @author Oliver Grubb
  * This class is the controller for the elements in the login screen
  *
  */
-public class LoginController {
+public class LoginController extends Controller {
 
     @FXML
     private TextField usernameField;
@@ -41,8 +44,9 @@ public class LoginController {
             String passInput = passwordField.getText();
 
             try {
-                Client.start();
-                Client.logIn(userInput, passInput);
+                Client client = (Client) DataStore.getData().getObject("client");
+                client.start();
+                client.logIn(userInput, passInput);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -59,10 +63,14 @@ public class LoginController {
 
     public void handleNewUserButtonAction() {
         PaneNavigator.loadPane(PaneNavigator.NEWUSER);
-
     }
 
 
-
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Client client = new Client();
+        Thread thread = new Thread(client);
+        DataStore.getData().addObjects("client", client);
+        DataStore.getData().addObjects("thread", thread);
+    }
 }

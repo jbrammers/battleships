@@ -17,15 +17,19 @@ public class MessageHandler {
             switch (identifier) {
 
                 case "MESSAGE":
-                    System.out.println("DEBUG IN MESSAGE CASE---------- " + in);
                     StringBuffer stringBuffer = new StringBuffer();
                     stringBuffer.append(identifier);
                     stringBuffer.append(" ");
                     stringBuffer.append(player.getUsername());
                     stringBuffer.append(" ");
                     stringBuffer.append(message);
+
                     player.getOut().println(stringBuffer);
-                    player.getOpponent().getOut().println(stringBuffer);
+                    try {
+                        player.getOpponent().getOut().println(stringBuffer);
+                    } catch (NullPointerException e) {
+                        player.getOut().println("MESSAGE No opponent connected yet!");
+                    }
                     return;
 
                 case "GAME":
@@ -38,6 +42,9 @@ public class MessageHandler {
                     break;
 
                 case "SYSTEM":
+                    if (message.equals("ready")) {
+                        player.setReady(true);
+                    }
                     break;
 
                 default:
@@ -46,8 +53,6 @@ public class MessageHandler {
                     break;
             }
             player.getOut().flush();
-            player.getOpponent().getOut().flush();
-            Thread.yield();
         }
     }
 }

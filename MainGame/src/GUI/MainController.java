@@ -20,4 +20,8 @@ public class MainController {
         paneHolder.getChildren().setAll(node);
     }
 
+    public StackPane getPanes() {
+        return paneHolder;
+    }
+
 }
