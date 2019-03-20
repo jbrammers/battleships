@@ -3,6 +3,7 @@ package Client;
 import GUI.DataStore;
 import GUI.MainGameController;
 import GUI.PaneNavigator;
+import GUI.PopUpMessage;
 import Game.Gameboard;
 import javafx.application.Platform;
 
@@ -38,8 +39,7 @@ public class InputHandler {
                 break;
 
             case "CLIENT_CLOSE":
-                System.out.println("Game ended, going back to start screen.");
-                Platform.runLater(() -> PaneNavigator.loadPane(PaneNavigator.STARTSCREEN));
+                Platform.runLater(() -> PaneNavigator.loadPane(PaneNavigator.LOGIN));
                 break;
 
             case "MESSAGE":
@@ -51,24 +51,33 @@ public class InputHandler {
                 if (message.startsWith("REPLY")) {
                     ctrl = (MainGameController) DataStore.getData().getObject("main game");
                     Platform.runLater(() -> ctrl.printReceivedMessage(message.substring(5)));
+                } else if (message.startsWith("END")) {
+                    Platform.runLater(() -> PopUpMessage.popUp(message.substring(4)));
                 } else {
                     Gameboard gameboard = (Gameboard) DataStore.getData().getObject("gameboard");
-                    String reply = null;
-                    while (reply == null) {
-                        reply = gameboard.attempt(message);
+                    String reply = gameboard.attempt(message);
+                    if (reply==null) {
+                        out.println("SYSTEM noattempt");
+                        break;
                     }
                     final String displayMessage;
 
+
                     if (gameboard.endTurnCheck()) {
-                        out.println("GAME REPLY Final ship sunk. You have won good job!");
+                        out.println("GAME END Final ship sunk. You have won good job!");
                         displayMessage = "Your final ship was sunk! Unlucky.";
+                        Platform.runLater(() -> PopUpMessage.popUp(displayMessage));
                         out.println("SYSTEM gameEnd");
                     } else {
                         displayMessage = "Opponent fired at " + message + " and it was a " + reply.toLowerCase();
+
+                        ctrl = (MainGameController) DataStore.getData().getObject("main game");
+                        Platform.runLater(() -> ctrl.printReceivedMessage(displayMessage));
+
                         out.println("GAME REPLY " + reply);
                     }
-                    ctrl = (MainGameController) DataStore.getData().getObject("main game");
-                    Platform.runLater(() -> ctrl.printReceivedMessage(displayMessage));
+
+
                 }
                 break;
 
@@ -79,6 +88,8 @@ public class InputHandler {
                 } else if (message.equals("theirturn")) {
                     ctrl = (MainGameController) DataStore.getData().getObject("main game");
                     ctrl.setTurn(false);
+                } else if (message.equals("nullattempt")) {
+                    Platform.runLater(() -> PopUpMessage.errorMessage("Something went wrong when firing at this co-ordinate. Please try again."));
                 }
                 break;
 

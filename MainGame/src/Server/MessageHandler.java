@@ -36,6 +36,8 @@ public class MessageHandler {
 
                 case "GAME":
                     player.getOpponent().getOut().println(in);
+                    player.getOut().println("SYSTEM theirturn");
+                    player.getOpponent().getOut().println("SYSTEM yourturn");
                     break;
 
                 case "ECHO":
@@ -50,6 +52,10 @@ public class MessageHandler {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                    } else if (message.equals("nullattempt")) {
+                        player.getOut().println("SYSTEM theirturn");
+                        player.getOpponent().getOut().println("SYSTEM yourturn");
+                        player.getOpponent().getOut().println(in);
                     }
                     break;
 

@@ -1080,9 +1080,9 @@ public class MainGameController implements javafx.fxml.Initializable {
 
     public void handleFireButtonAction(ActionEvent actionEvent) {
         if (turn) {
-            turn = false;
             Client client = (Client) DataStore.getData().getObject("client");
             client.send("GAME " + currentLocationAttempt);
+            System.out.println(currentLocationAttempt);
         } else {
             PopUpMessage.popUp("Please wait for your turn!");
         }
