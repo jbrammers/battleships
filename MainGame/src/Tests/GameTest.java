@@ -186,8 +186,7 @@ public class GameTest {
         assertEquals("HIT", ship1.attempt("2"));
         assertEquals("HIT", ship1.attempt("3"));
         assertEquals("HIT", ship1.attempt("4"));
-        assertEquals("HIT", ship1.attempt("5"));
-
+        assertEquals("DESTROYED", ship1.attempt("5"));
 
     }
 
