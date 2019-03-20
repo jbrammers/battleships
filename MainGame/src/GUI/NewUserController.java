@@ -34,37 +34,38 @@ public class NewUserController {
     public void handleCreateAccountButtonAction() {
 
         if (usernameField.getText().isEmpty()) {
-            LoginErrorMessage.errorMessage("Please enter a username");
+            PopUpMessage.errorMessage("Please enter a username");
             return;
         }
 
         if (!passwordField.getText().equals(rePasswordField.getText())) {
-            LoginErrorMessage.errorMessage("Passwords must match");
+            PopUpMessage.errorMessage("Passwords must match");
             return;
         }
 
         if (passwordField.getText().isEmpty()) {
-            LoginErrorMessage.errorMessage("Please enter a password");
+            PopUpMessage.errorMessage("Please enter a password");
             return;
         }
 
         if (rePasswordField.getText().isEmpty()) {
-            LoginErrorMessage.errorMessage("Please re-enter your password");
+            PopUpMessage.errorMessage("Please re-enter your password");
             return;
         }
 
         if (usernameField.getText().length() > 16) {
-            LoginErrorMessage.errorMessage("Username must be 16 characters or less");
+            PopUpMessage.errorMessage("Username must be 16 characters or less");
             return;
         }
         else if (passwordField.getText().length() > 32) {
-            LoginErrorMessage.errorMessage("Username must be 16 characters or less");
+            PopUpMessage.errorMessage("Username must be 16 characters or less");
             return;
         }
 
         else {
             //TODO check if username is unique, if so add new user into database, else display error
             StandardUser newUser = new StandardUser(usernameField.getText(), passwordField.getText());
+            PopUpMessage.popUp("Congratulations, your account has been successfully created!");
             PaneNavigator.loadPane(PaneNavigator.LOGIN);
         }
 

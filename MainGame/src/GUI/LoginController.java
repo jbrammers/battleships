@@ -32,11 +32,11 @@ public class LoginController implements Initializable {
     public void handleLoginButtonAction() {
 
         if (usernameField.getText().isEmpty()) {
-            LoginErrorMessage.errorMessage("Please enter a valid username");
+            PopUpMessage.errorMessage("Please enter a valid username");
         }
 
         else if (passwordField.getText().isEmpty()) {
-            LoginErrorMessage.errorMessage("Please enter a valid password");
+            PopUpMessage.errorMessage("Please enter a valid password");
         }
 
         else {
@@ -55,7 +55,7 @@ public class LoginController implements Initializable {
             if (auth) {
                 PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
             }
-            else LoginErrorMessage.errorMessage("Login information incorrect");
+            else PopUpMessage.errorMessage("Login information incorrect");
             PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
         }
 
