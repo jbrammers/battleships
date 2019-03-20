@@ -79,6 +79,7 @@ public class Client implements Runnable {
         int counter = 0;
 
         while (!loggedIn && counter <= 3) {
+            output.println("login");
             output.println(username);
             output.println(password); // password goes here
             String in = input.readLine();
@@ -95,12 +96,32 @@ public class Client implements Runnable {
             }
         }
 
-        if (counter>3) {
-            System.out.println("Authentication failed, please try again.");
-        } else {
-            loggedIn = true;
-        }
         return loggedIn;
+    }
+
+    public boolean newUser(String username, String password) {
+        output.println("newuser");
+        output.println(username);
+        output.println(password);
+
+        String response;
+        boolean auth = false;
+
+        while (true) {
+            try {
+                response = input.readLine();
+            } catch (IOException e) {
+                response = "";
+            }
+            if (response.equals("NEWSUCCESS")) {
+                auth = true;
+                break;
+            } else if (response.equals("NEWFAIL")) {
+                break;
+            }
+        }
+
+        return auth;
     }
 
     /**

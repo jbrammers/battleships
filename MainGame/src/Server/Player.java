@@ -14,7 +14,7 @@ public class Player implements Runnable{
     private boolean ready;
     private Game game;
 
-    public Player (String username, Socket socket, Game game) {
+    public Player (String username, Socket socket) {
         this.username = username;
         this.socket = socket;
         try {
@@ -26,7 +26,6 @@ public class Player implements Runnable{
             e.printStackTrace();
         }
         ready = false;
-        this.game = game;
     }
 
     public void run() {
@@ -50,6 +49,10 @@ public class Player implements Runnable{
 
     public Game getGame() {
         return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     public boolean isSocketConnected() {

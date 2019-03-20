@@ -118,14 +118,26 @@ public class ServerThread implements Runnable {
         }
     }
 
+    /**
+     * Method that listens for new connections and accepts them. Connections are handed off to a new thread to
+     * increase listening time.
+     */
     private void listening() {
         try {
-            // Accepts connection from a new user and sends them a message to confirm
+            // Accepts connection from a new user and hands to a new thread to be dealt with
             Socket clientSocket = this.serverSocket.accept();
             threadpool.execute(new Thread(new ConnectionHandler(clientSocket, this)));
         } catch (IOException e) {
             if (!running) {
+                // If server hasn't been started for any reason this triggers
                 System.out.println("Server is stopped");
+            } else {
+                // Thread should yield if no connection accepted
+                try {
+                    Thread.sleep(1000);
+                } catch (Exception a) {
+                    a.printStackTrace();
+                }
             }
         }
     }

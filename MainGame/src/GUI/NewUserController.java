@@ -1,16 +1,21 @@
 package GUI;
 
+import Client.Client;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * @author Oliver Grubb
  * This class is the controller for the elements in the New User scene
  *
  */
-public class NewUserController {
+public class NewUserController implements Initializable {
 
     @FXML
     private TextField usernameField;
@@ -63,13 +68,19 @@ public class NewUserController {
         }
 
         else {
-            //TODO check if username is unique, if so add new user into database, else display error
-            StandardUser newUser = new StandardUser(usernameField.getText(), passwordField.getText());
-            PopUpMessage.popUp("Congratulations, your account has been successfully created!");
-            PaneNavigator.loadPane(PaneNavigator.LOGIN);
+            Client client = (Client) DataStore.getData().getObject("client");
+
+            if (client.newUser(usernameField.getText(), passwordField.getText())) {
+                PopUpMessage.popUp("Congratulations, your account has been successfully created!");
+                PaneNavigator.loadPane(PaneNavigator.LOGIN);
+            } else {
+                PopUpMessage.errorMessage("Couldn't set up your account. Please try again with a new username.");
+                PaneNavigator.loadPane(PaneNavigator.NEWUSER);
+            }
         }
 
     }
 
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {    }
 }

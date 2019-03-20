@@ -45,7 +45,6 @@ public class LoginController implements Initializable {
             boolean auth = false;
             try {
                 Client client = (Client) DataStore.getData().getObject("client");
-                client.start();
                 auth = client.logIn(userInput, passInput);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -55,8 +54,10 @@ public class LoginController implements Initializable {
             if (auth) {
                 PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
             }
-            else PopUpMessage.errorMessage("Login information incorrect");
-            PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
+            else {
+                PopUpMessage.errorMessage("Login information incorrect");
+                PaneNavigator.loadPane(PaneNavigator.LOGIN);
+            }
         }
 
     }
@@ -70,6 +71,7 @@ public class LoginController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         Client client = new Client();
         Thread thread = new Thread(client);
+        client.start();
         DataStore.getData().addObjects("client", client);
         DataStore.getData().addObjects("thread", thread);
     }

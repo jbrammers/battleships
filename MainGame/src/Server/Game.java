@@ -2,7 +2,6 @@ package Server;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Game implements Runnable {
     private int gameID;
@@ -27,9 +26,11 @@ public class Game implements Runnable {
         playerList.add(player);
         if (player1 == null) {
             player1 = player;
+            player1.setGame(this);
             new Thread(player1).start();
         } else {
             player2 = player;
+            player2.setGame(this);
             new Thread(player2).start();
             player1.setOpponent(player2);
             player2.setOpponent(player1);
@@ -42,34 +43,19 @@ public class Game implements Runnable {
      * Runs the game itself
      */
     public void run() {
-        try {
-            int endGame = 0;
-
+        try{
             // Loops through the game until a winner is found
             while (!this.isGameFinished()) {
-                // TODO replace this sleeping thread with the game engine
 
                 try {
-                    Iterator<Player> iterator = playerList.iterator();
-                    while (iterator.hasNext()) {
-                        Player p = iterator.next();
 
-
-//                        String nextLine;
-//                        try {
-//                            while ((nextLine = p.getInput().readLine()) != null)  {
-//                                MessageHandler.inputCheck(nextLine, p);
-//                            }
-//                        } catch (IndexOutOfBoundsException e) {
-//                            endGame();
-//                        }
-                    }
-
+                    // Checks to see if both players are ready and the game isn't already progressing
                     if (player1.isReady() &&
                         player2.isReady() &&
                             !gameProgressing) {
                         gameStart();
                     } else {
+                        // Otherwise the game is either in progress or not ready, so the thread yields
                         Thread.yield();
                     }
 
@@ -81,15 +67,11 @@ public class Game implements Runnable {
                 catch (Exception e) {
                     e.printStackTrace();
                 }
-
-                // TODO add the winning clause here in an if statement maybe?
-                endGame++;
-                // Uncomment these lines if you want a finite game length - can change the MAX_VALUE too
-//                if (endGame == Integer.MAX_VALUE) {
-//                    endGame();
-//                }
             }
 
+        } catch (InterruptedException e) {
+            System.out.println("Game ID" + gameID + " stalled ");
+            new Thread(this).start();
         } catch (Exception e) {
             e.printStackTrace();
         }
