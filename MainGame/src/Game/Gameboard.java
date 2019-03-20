@@ -54,10 +54,10 @@ public class Gameboard {
 	public boolean endTurnCheck() {
 		for (Ship ship :
 				board) {
-			if (ship.getAlive()) {
-				return true;
+			if (!ship.getAlive()) {
+				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 }
