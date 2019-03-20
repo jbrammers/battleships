@@ -18,9 +18,9 @@
             <font>
                 <Font name="System Bold" size="15.0" />
             </font></Button>
-        <PasswordField fx:id="rePasswordField" layoutX="547.0" layoutY="405.0" />
-        <PasswordField fx:id="passwordField" layoutX="547.0" layoutY="343.0" />
         <TextField fx:id="usernameField" layoutX="547.0" layoutY="279.0" />
+        <PasswordField fx:id="passwordField" layoutX="547.0" layoutY="343.0" />
+        <PasswordField fx:id="rePasswordField" layoutX="547.0" layoutY="405.0" />
         <Label layoutX="547.0" layoutY="258.0" text="Choose a username:" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="15.0" />
