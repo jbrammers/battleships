@@ -5,6 +5,7 @@ import Game.Gameboard;
 import Game.Ship;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
-public class ShipPlacementController extends Controller {
+public class ShipPlacementController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

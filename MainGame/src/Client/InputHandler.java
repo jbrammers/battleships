@@ -3,6 +3,7 @@ package Client;
 import GUI.DataStore;
 import GUI.MainGameController;
 import GUI.PaneNavigator;
+import Game.Gameboard;
 import javafx.application.Platform;
 
 import java.io.BufferedReader;
@@ -47,7 +48,25 @@ public class InputHandler {
                 break;
 
             case "GAME":
-                System.out.println(message);
+                if (message.startsWith("REPLY")) {
+                    ctrl = (MainGameController) DataStore.getData().getObject("main game");
+                    Platform.runLater(() -> ctrl.printReceivedMessage(message.substring(5)));
+                } else {
+                    Gameboard gameboard = (Gameboard) DataStore.getData().getObject("gameboard");
+                    String reply = gameboard.attempt(message);
+                    final String displayMessage;
+
+                    if (gameboard.endTurnCheck()) {
+                        out.println("GAME REPLY Final ship sunk. You have won good job!");
+                        displayMessage = "Your final ship was sunk! Unlucky.";
+                        out.println("SYSTEM gameEnd");
+                    } else {
+                        displayMessage = "Opponent fired at " + message + " and it was a " + reply.toLowerCase();
+                        out.println("GAME REPLY " + reply);
+                    }
+                    ctrl = (MainGameController) DataStore.getData().getObject("main game");
+                    Platform.runLater(() -> ctrl.printReceivedMessage(displayMessage));
+                }
                 break;
 
             default:

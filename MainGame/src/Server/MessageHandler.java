@@ -1,5 +1,7 @@
 package Server;
 
+import java.io.IOException;
+
 public class MessageHandler {
     public static void inputCheck(String in, Player player) {
         if (in == null) {
@@ -33,9 +35,7 @@ public class MessageHandler {
                     return;
 
                 case "GAME":
-                    // TODO add changes to game board here
-                    player.getOpponent().getOut().println("GAME Your opponent fired at " + message);
-                    player.getOut().println("GAME Hit/Miss/Sunk"); // TODO add result of shot here
+                    player.getOpponent().getOut().println(in);
                     break;
 
                 case "ECHO":
@@ -44,15 +44,24 @@ public class MessageHandler {
                 case "SYSTEM":
                     if (message.equals("ready")) {
                         player.setReady(true);
+                    } else if (message.equals("gameEnd")) {
+                        try {
+                            player.getGame().endGame();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                     break;
 
                 default:
+                    System.out.println("Error: Identifier unexpected.");
                     System.out.println(in);
-                    System.out.println("Identifier unexpected, please report this problem.");
                     break;
             }
             player.getOut().flush();
+            if (player.getOpponent() != null) {
+                player.getOpponent().getOut().flush();
+            }
         }
     }
 }

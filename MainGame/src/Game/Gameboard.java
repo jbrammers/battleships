@@ -1,6 +1,5 @@
 package Game;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Gameboard {
@@ -50,5 +49,15 @@ public class Gameboard {
 			}
 		}
 		return boardState;
+	}
+
+	public boolean endTurnCheck() {
+		for (Ship ship :
+				board) {
+			if (ship.getAlive()) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

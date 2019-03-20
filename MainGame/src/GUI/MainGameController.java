@@ -1135,6 +1135,8 @@ public class MainGameController implements javafx.fxml.Initializable {
 
         Thread thread = Thread.currentThread();
         DataStore.getData().addObjects("gui thread", thread);
+
+        DataStore.getData().addObjects("gameboard", gameboard);
     }
 
     public static MainGameController getController() {

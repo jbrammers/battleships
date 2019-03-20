@@ -2,6 +2,7 @@ package GUI;
 
 import Client.Client;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -14,7 +15,7 @@ import java.util.ResourceBundle;
  * This class is the controller for the elements in the login screen
  *
  */
-public class LoginController extends Controller {
+public class LoginController implements Initializable {
 
     @FXML
     private TextField usernameField;
