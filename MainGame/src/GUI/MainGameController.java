@@ -6,11 +6,7 @@ import Game.Ship;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -37,11 +33,9 @@ public class MainGameController implements javafx.fxml.Initializable {
     @FXML
     Button shopButton;
     @FXML
-    Label messageDisplay;
+    TextArea messagesDisplay;
     @FXML
     TextField messageField;
-    @FXML
-    AnchorPane anchorPane;
     @FXML
     Button sendButton;
     @FXML
@@ -630,58 +624,38 @@ public class MainGameController implements javafx.fxml.Initializable {
 
     public void handleSendButtonAction() {
 
-        //cuts message down if it is particularly long
-        if (messageField.getCharacters().length() > 30) {
-            double j = 1;
-            for (int i = 0; i < messageField.getCharacters().length(); i++) {
-                if (i % 30 == 0 && i != 0) {
-                    message += "-\n";
-                    j++;
-                }
-                message += messageField.getCharacters().charAt(i);
-            }
-            messageLog.add(message);
-            //Scales the chat box for infinite chat length
-            messageDisplay.setPrefHeight(messageDisplay.getPrefHeight() + 17 * j);
-            anchorPane.setPrefHeight(messageDisplay.getPrefHeight());
-            messageDisplay.setText(messageLog.get(messageCount) + "\n");
-            messageField.setText("");
-            messageCount++;
-        } else {
-            message += messageField.getText();
-            messageLog.add(message);
-            messageDisplay.setPrefHeight(messageDisplay.getPrefHeight() + 17);
-            anchorPane.setPrefHeight(messageDisplay.getPrefHeight());
-            messageDisplay.setText(messageLog.get(messageCount) + "\n");
-            messageField.setText("");
-            messageCount++;
-        }
+
+        message = messageField.getText();
+        messageLog.add(message);
+        message = "";
+        String previousMessages = messagesDisplay.getText();
+       // messagesDisplay.setText(previousMessages + messageLog.get(messageCount) + "\n");
+        messageField.setText("");
+
 
         Client client = (Client) DataStore.getData().getObject("client");
-        client.send("MESSAGE " + message);
+        client.send("MESSAGE " + messageLog.get(messageCount));
+        messageCount++;
+
 
     }
 
     public void printReceivedMessage(String incomingMessage) {
         this.incomingMessage = "\n" + incomingMessage;
-        double j = 1;
-        if (incomingMessage.toCharArray().length > 30) {
-            for (int i = 0; i < incomingMessage.toCharArray().length; i = i + 30) {
-                j++;
-            }
 
-            messageLog.add(incomingMessage);
-            messageDisplay.setPrefHeight(messageDisplay.getPrefHeight() + 17 * j);
-            anchorPane.setPrefHeight(messageDisplay.getPrefHeight());
-            messageDisplay.setText(messageLog.get(messageCount) + "\n");
-            messageCount++;
-        } else {
-            messageLog.add(incomingMessage);
-            messageDisplay.setPrefHeight(messageDisplay.getPrefHeight() + 17);
-            anchorPane.setPrefHeight(messageDisplay.getPrefHeight());
-            messageDisplay.setText(messageLog.get(messageCount) + "\n");
-            messageCount++;
+        messageLog.add(incomingMessage);
+        message = "";
+        if (messagesDisplay.getText().isEmpty()){
+            messagesDisplay.setText(messageLog.get(messageCount) + "\n");
+
         }
+        else {
+            String previousMessages = messagesDisplay.getText();
+            messagesDisplay.setText(previousMessages + messageLog.get(messageCount) + "\n");
+        }
+        messageCount++;
+
+
     }
 
     public static String getMostRecentMessage() {

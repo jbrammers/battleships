@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-
-
 <?import javafx.collections.FXCollections?>
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainGameController">
    <children>
       <AnchorPane layoutX="71.0" layoutY="198.0" prefHeight="400.0" prefWidth="400.0">
@@ -237,20 +237,12 @@
                   <Font size="13.0" />
                </font>
             </Button>
-            <ScrollPane layoutX="22.0" layoutY="50.0" prefHeight="438.0" prefWidth="298.0">
-               <content>
-                  <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="36.0" prefWidth="291.0">
-                     <children>
-                        <Label fx:id="messageDisplay" layoutX="-1.0" layoutY="1.0" prefHeight="26.0" prefWidth="298.0" />
-                     </children>
-                  </AnchorPane>
-               </content>
-            </ScrollPane>
             <Label layoutX="151.0" layoutY="14.0" text="Chat">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
+            <TextArea fx:id="messagesDisplay" editable="false" layoutX="22.0" layoutY="50.0" prefHeight="441.0" prefWidth="298.0" />
          </children>
       </AnchorPane>
       <Label fx:id="scoreLabel" layoutX="35.0" layoutY="35.0" text="Score: 0">
@@ -278,7 +270,7 @@
             <Font size="27.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="weaponsList" layoutX="676.0" layoutY="39.0" prefWidth="150.0" value="Normal Cannon" >
+      <ChoiceBox fx:id="weaponsList" layoutX="676.0" layoutY="39.0" prefWidth="150.0" value="Normal Cannon">
       <items>
           <FXCollections fx:factory="observableArrayList">
              <String fx:value="Nuke" />
