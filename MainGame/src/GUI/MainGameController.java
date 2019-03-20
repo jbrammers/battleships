@@ -1082,21 +1082,13 @@ public class MainGameController implements javafx.fxml.Initializable {
     public void handleFireButtonAction(ActionEvent actionEvent) {
         if (turn) {
             turn = false;
-            //TODO send location attempt to server
+            Client client = (Client) DataStore.getData().getObject("client");
+            client.send("GAME " + currentLocationAttempt);
+        } else {
+            PopUpMessage.popUp("Please wait for your turn!");
         }
     }
 
-    public void handleOpponentAttempt(String location) {
-        String result = gameboard.attempt(location);
-
-        if (result.equals("HIT")) {
-
-        } else if (result.contains("DESTROYED")) {
-
-        } else if (result.equals("MISS")) {
-
-        }
-    }
 
     public void handleShopButtonAction(ActionEvent actionEvent) {
     }
