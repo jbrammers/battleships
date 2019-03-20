@@ -84,9 +84,10 @@ public class Game implements Runnable {
 
                 // TODO add the winning clause here in an if statement maybe?
                 endGame++;
-                if (endGame == 5) {
-                    endGame();
-                }
+                // Uncomment these lines if you want a finite game length - can change the MAX_VALUE too
+//                if (endGame == Integer.MAX_VALUE) {
+//                    endGame();
+//                }
             }
 
         } catch (Exception e) {

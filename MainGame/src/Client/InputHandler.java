@@ -38,14 +38,12 @@ public class InputHandler {
 
             case "CLIENT_CLOSE":
                 System.out.println("Game ended, going back to start screen.");
-                PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
+                Platform.runLater(() -> PaneNavigator.loadPane(PaneNavigator.STARTSCREEN));
                 break;
 
             case "MESSAGE":
                 MainGameController ctrl = (MainGameController) DataStore.getData().getObject("main game");
-                Platform.runLater(() -> {
-                    ctrl.printReceivedMessage(message);
-                });
+                Platform.runLater(() -> ctrl.printReceivedMessage(message));
                 break;
 
             case "GAME":
