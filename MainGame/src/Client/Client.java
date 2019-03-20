@@ -1,6 +1,7 @@
 package Client;
 
 import GUI.DataStore;
+import GUI.LoginController;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -76,23 +77,35 @@ public class Client implements Runnable {
     public boolean logIn(String username, String password) throws Exception {
 
 
-        int counter = 0;
+        output.println("login");
+        output.println("LOGIN " + username);
+        output.println("LOGIN " + password);
 
-        while (!loggedIn && counter <= 3) {
-            output.println("login");
-            output.println(username);
-            output.println(password); // password goes here
+
+        boolean authFinished = false;
+
+        while (!authFinished) {
             String in = input.readLine();
 
             if (in.equals("AUTHENTICATED")) {
                 System.out.println("Authentication successful!");
                 loggedIn = true;
+                authFinished = true;
             } else if (in.equals("Connection established, authentication in progress.")) {
                 System.out.println(in);
-            } else {
-                counter++;
-                Thread.sleep(200);
-                // TODO request username + password again
+            } else if (in.startsWith("AUTHFAIL")) {
+
+                int type;
+                if (in.substring(8).matches("USER")) {
+                    type = 1;
+                } else if (in.substring(8).matches("PASS")) {
+                    type = 2;
+                } else {
+                    type = 3;
+                }
+                LoginController ctrl = (LoginController) DataStore.getData().getObject("login");
+                ctrl.requestNewDetails(username, type);
+                authFinished = true;
             }
         }
 
@@ -101,8 +114,8 @@ public class Client implements Runnable {
 
     public boolean newUser(String username, String password) {
         output.println("newuser");
-        output.println(username);
-        output.println(password);
+        output.println("LOGIN " + username);
+        output.println("LOGIN " +password);
 
         String response;
         boolean auth = false;

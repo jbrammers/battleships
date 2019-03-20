@@ -53,7 +53,10 @@ public class InputHandler {
                     Platform.runLater(() -> ctrl.printReceivedMessage(message.substring(5)));
                 } else {
                     Gameboard gameboard = (Gameboard) DataStore.getData().getObject("gameboard");
-                    String reply = gameboard.attempt(message);
+                    String reply = null;
+                    while (reply == null) {
+                        reply = gameboard.attempt(message);
+                    }
                     final String displayMessage;
 
                     if (gameboard.endTurnCheck()) {
@@ -66,6 +69,16 @@ public class InputHandler {
                     }
                     ctrl = (MainGameController) DataStore.getData().getObject("main game");
                     Platform.runLater(() -> ctrl.printReceivedMessage(displayMessage));
+                }
+                break;
+
+            case "SYSTEM":
+                if (message.equals("yourturn")) {
+                    ctrl = (MainGameController) DataStore.getData().getObject("main game");
+                    ctrl.setTurn(true);
+                } else if (message.equals("theirturn")) {
+                    ctrl = (MainGameController) DataStore.getData().getObject("main game");
+                    ctrl.setTurn(false);
                 }
                 break;
 

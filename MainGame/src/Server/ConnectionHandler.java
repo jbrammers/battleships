@@ -43,9 +43,10 @@ public class ConnectionHandler implements Runnable {
             while (!authFinished) {
 
                 String type = in.readLine();
-                username = in.readLine();
-                String password = in.readLine();
+                username = in.readLine().substring(6);
+                String password = in.readLine().substring(6);
 
+                // if the user is new, they are added to the database, fails if already present
                 if (type.equals("newuser")) {
                     boolean success = newUser(username, password);
                     if (success) {
@@ -55,11 +56,17 @@ public class ConnectionHandler implements Runnable {
                     }
 
                 } else {
-                    if (databaseCheck(username, password)) {
+                    // Check username and password against database, int gives result
+                    int auth = databaseCheck(username,password);
+                    if (auth == 0) { // username and password match
                         out.println("AUTHENTICATED");
                         authFinished = true;
+                    } else if (auth == 1) {
+                        out.println("AUTHFAIL USER"); // no user
+                    } else if (auth == 2) {
+                        out.println("AUTHFAIL PASS"); // password incorrect
                     } else {
-                        out.println("AUTHFAIL");
+                        out.println("AUTHFAIL ?");
                     }
                 }
                 out.flush();
@@ -79,8 +86,8 @@ public class ConnectionHandler implements Runnable {
      * @param password password of user to be check
      * @return true if the username and password match those stored in the database, false if not
      */
-    public boolean databaseCheck(String username, String password) {
-        return true; // TODO Check user's details against database, true if a match is found
+    public int databaseCheck(String username, String password) {
+        return 0; // TODO Check user's details against database, true if a match is found
     }
 
     public boolean newUser(String username, String password) {

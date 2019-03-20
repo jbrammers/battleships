@@ -37,7 +37,7 @@ public class Gameboard {
 			}
 			else return "MISS";
 		}
-		return "error";
+		return null;
 	}
 
 	public String toString() {

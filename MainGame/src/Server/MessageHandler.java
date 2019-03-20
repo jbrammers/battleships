@@ -53,9 +53,11 @@ public class MessageHandler {
                     }
                     break;
 
+                case "LOGIN":
+                    break;
+
                 default:
                     System.out.println("Error: Identifier unexpected.");
-                    System.out.println(in);
                     break;
             }
             player.getOut().flush();

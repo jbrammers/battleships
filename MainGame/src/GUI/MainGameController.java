@@ -624,7 +624,6 @@ public class MainGameController implements javafx.fxml.Initializable {
 
     public void handleSendButtonAction() {
 
-
         message = messageField.getText();
         messageLog.add(message);
         message = "";
@@ -1103,9 +1102,15 @@ public class MainGameController implements javafx.fxml.Initializable {
         DataStore.getData().addObjects("gui thread", thread);
 
         DataStore.getData().addObjects("gameboard", gameboard);
+
+        setTurn(false);
     }
 
     public static MainGameController getController() {
         return controller;
+    }
+
+    public void setTurn(boolean turn) {
+        MainGameController.turn = turn;
     }
 }

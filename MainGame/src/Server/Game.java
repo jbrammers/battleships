@@ -88,6 +88,8 @@ public class Game implements Runnable {
                                     " and " + playerList.get(1).getUsername()));
         }
         gameProgressing = true;
+        player1.getOut().println("SYSTEM yourturn");
+        player2.getOut().println("SYSTEM theirturn");
     }
 
     /**

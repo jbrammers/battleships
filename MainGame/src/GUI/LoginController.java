@@ -56,7 +56,6 @@ public class LoginController implements Initializable {
             }
             else {
                 PopUpMessage.errorMessage("Login information incorrect");
-                PaneNavigator.loadPane(PaneNavigator.LOGIN);
             }
         }
 
@@ -66,6 +65,18 @@ public class LoginController implements Initializable {
         PaneNavigator.loadPane(PaneNavigator.NEWUSER);
     }
 
+    public void requestNewDetails (String username, int type) {
+        String message;
+        if (type == 1) {
+            message = "That username is not in use, please check and try again or sign up as a new user.";
+        } else if (type ==2) {
+            usernameField.setText(username);
+            message = "The password does not match the one we have stored for this username, please try again";
+        } else {
+            message = "Something went wrong while logging in, please try again.";
+        }
+        PopUpMessage.errorMessage(message);
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -74,5 +85,6 @@ public class LoginController implements Initializable {
         client.start();
         DataStore.getData().addObjects("client", client);
         DataStore.getData().addObjects("thread", thread);
+        DataStore.getData().addObjects("login", this);
     }
 }
