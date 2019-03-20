@@ -9,6 +9,7 @@ public class Ship {
 	private int length;
 	private boolean alive;
 	private ArrayList<String> locations = new ArrayList<>();
+	private int counter = 0;
 
 	public Ship(String type, int length) {
 		this.type = type;
@@ -41,8 +42,17 @@ public class Ship {
 		return alive;
 	}
 
+	public int getCounter() {
+		return counter;
+	}
+
+	public void setCounter(int counter) {
+		this.counter = counter;
+	}
+
 	public void setLocation(ArrayList<String> locations) {
 		this.locations = locations;
+		locationCount();
 	}
 
 	public ArrayList<String> getLocation() {
@@ -51,7 +61,6 @@ public class Ship {
 
 	public int locationCount() {
 		int counter = 0;
-
 		for (String location : locations) {
 			counter++;
 		}
@@ -68,17 +77,15 @@ public class Ship {
 	}
 
 	public String attempt(String locationAttempt) {
-		int counter = 0;
 		for (String location : locations) {
 			if (locationAttempt.equals(location)) {
-				location = "DESTROYED";
-				if (counter == length) {
+				if (counter == length-1) {
+					setAlive(false);
 					return "DESTROYED";
+				} else {
+					counter++;
+					return "HIT";
 				}
-				else return "HIT";
-			}
-			else {
-				counter++;
 			}
 		}
 		return "MISS";
