@@ -7,9 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -652,6 +650,13 @@ public class MainGameController implements javafx.fxml.Initializable {
     public static Gameboard gameboard = ShipPlacementController.gameboard;
     public boolean turn;
 
+    public  void initialiseButtonLayout() {
+        for (Button button : buttonArray) {
+            button.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+            button.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+        }
+    }
+
     public void initialiseOwnShips(Gameboard gameboard) {
 
         for (Ship ship : gameboard.getBoard()) {
@@ -766,7 +771,11 @@ public class MainGameController implements javafx.fxml.Initializable {
             targetLocated = true;
             currentlySelectedButton = button;
             button.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
-        } else {
+        } else if (currentlySelectedButton.getBackground().equals(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY))) || currentlySelectedButton.getBackground().equals(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)))){
+            currentlySelectedButton = button;
+            button.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+        }
+        else {
             currentlySelectedButton.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
             currentlySelectedButton = button;
             button.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -1224,7 +1233,7 @@ public class MainGameController implements javafx.fxml.Initializable {
                 if (button.getId().equals(location)) {
                     if (tempCh.length == 2 && button.getId().contains("10")) {
                     } else {
-                        button.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+                        button.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
                         button.setDisable(true);
                     }
                 }
@@ -1234,9 +1243,10 @@ public class MainGameController implements javafx.fxml.Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        buttonArray();
+        initialiseButtonLayout();
         initiateRectangleArrayList();
         initialiseOwnShips(gameboard);
-        buttonArray();
         controller = this;
         DataStore.getData().addObjects("main game", controller);
 

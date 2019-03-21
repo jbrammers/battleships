@@ -32,7 +32,7 @@ public class Gameboard {
 			if (ship.attempt(location).equals("HIT")) {
 				return "HIT";
 			}
-			if (ship.attempt(location).equals("DESTROYED")) {
+			else if (ship.attempt(location).equals("DESTROYED")) {
 				return ship.getType() + " CLASS SHIP DESTROYED";
 			}
 			else return "MISS";

@@ -26,7 +26,7 @@ public class ShipPlacementController implements Initializable {
         gameboard = new Gameboard();
     }
 
-    public static Gameboard gameboard = new Gameboard();
+    public static Gameboard gameboard;
 
     private ArrayList<Ship> zeusShips = new ArrayList<>(Arrays.asList(new Ship("Zeus", 2), new Ship("Zeus", 2), new Ship("Zeus", 2), new Ship("Zeus", 2)));
     private ArrayList<Ship> sledgehammerShips = new ArrayList<>(Arrays.asList(new Ship("Sledgehammer", 3), new Ship("Sledgehammer", 3), new Ship("Sledgehammer", 3)));
