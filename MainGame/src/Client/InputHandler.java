@@ -74,7 +74,7 @@ public class InputHandler {
 
                         ctrl = (MainGameController) DataStore.getData().getObject("main game");
                         Platform.runLater(() -> ctrl.printReceivedMessage(displayMessage));
-
+                        Platform.runLater(() -> ctrl.incomingAttempt(message, reply));
                         out.println("GAME REPLY " + reply);
                         out.println("SYSTEM turnchange");
                     }
