@@ -69,7 +69,6 @@ public class Client implements Runnable {
         }catch (SocketException e){
             Platform.runLater(() -> PopUpMessage.popUp("Connection lost. Please log in again."));
             Platform.exit();
-            GUI.application.main(null);
         }
         catch (IOException e) {
             System.out.println("Connection failed to server. Please try again.");
@@ -82,7 +81,7 @@ public class Client implements Runnable {
         }
     }
 
-    public boolean logIn(String username, String password) throws Exception {
+    public boolean logIn(String username, String password) {
 
 
         output.println("login");
@@ -93,7 +92,13 @@ public class Client implements Runnable {
         boolean authFinished = false;
 
         while (!authFinished) {
-            String in = input.readLine();
+            String in;
+            try {
+                in = input.readLine();
+            } catch (IOException e) {
+                in = "";
+                e.printStackTrace();
+            }
 
             if (in.equals("AUTHENTICATED")) {
                 System.out.println("Authentication successful!");

@@ -1,13 +1,12 @@
 package Tests;
 
 
-import GUI.StandardUser;
 import Game.Gameboard;
 import Game.Ship;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import org.junit.Before;
 import org.junit.Test;
-import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
 
 import java.util.ArrayList;
 
@@ -16,7 +15,6 @@ import static org.junit.Assert.*;
 
 public class GameTest {
 
-    private StandardUser user1, user2, user3, user4;
 	private Gameboard expected;
 	private Ship ship1, ship2, ship3, ship4;
 	private ArrayList<String> locations;
@@ -27,13 +25,6 @@ public class GameTest {
 	
 	@Before
 	public void setUp() {
-
-		user1 = new StandardUser("user01", "password");
-		user2 = new StandardUser("user02", "password");
-		user3 = new StandardUser("user03", "password");
-
-
-
 		ship1 = new Ship("1", 5);
 		ship2 = new Ship("2", 4);
 		ship3 = new Ship("3", 3);
@@ -245,20 +236,7 @@ public class GameTest {
 		assertFalse(ship2.getAlive());
 	}
 
-	@Test
-	public void setUsernameTest()
-	{
-		assertEquals("user01", user1.getUsername());
-		assertEquals("user02", user2.getUsername());
-		assertEquals("user03", user3.getUsername());
-	}
 
-
-	@Test
-	public void setPasswordTest()
-	{
-		assertEquals("password", user1.getPassword());
-	}
 
 
 	/* @Test

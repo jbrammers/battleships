@@ -77,14 +77,19 @@ public class Ship {
 
 
 		for (String location : locations) {
+			String[] split = location.split("_");
+			String newLoc = split[0];
+			System.out.println(newLoc);
 
-			location = location.substring(0,4);
-			char[] chars = location.toCharArray();
+			char[] chars = newLoc.toCharArray();
 			StringBuffer loc = new StringBuffer();
+
 			for (char c : chars) {
 				StringBuffer temp = new StringBuffer();
 				temp.append(c);
+				System.out.println(c);
 				if (temp.toString().matches("[A-Z0-9]")) loc.append(temp);
+				System.out.println(loc);
 			}
 
 			if (locationAttempt.equals(loc.toString())) {
