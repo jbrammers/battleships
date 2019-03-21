@@ -28,6 +28,8 @@ public class Gameboard {
 
 	public String attempt(String location) {
 
+		String result = "";
+
 		for (Ship ship : board) {
 			if (ship.attempt(location).equals("HIT")) {
 				return "HIT";
@@ -35,9 +37,9 @@ public class Gameboard {
 			else if (ship.attempt(location).equals("DESTROYED")) {
 				return ship.getType() + " CLASS SHIP DESTROYED";
 			}
-			else return "MISS";
+			else result = "MISS";
 		}
-		return null;
+		return result;
 	}
 
 	public String toString() {
