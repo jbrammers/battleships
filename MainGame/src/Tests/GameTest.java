@@ -232,21 +232,6 @@ public class GameTest {
 
 
 	@Test
-	public void hitSameLocationTest()
-	{
-		Gameboard gameboard = new Gameboard();
-		ship1.setLocation(locations);
-
-		assertEquals("HIT", ship1.attempt("1"));
-		assertEquals("MISS", ship1.attempt("1"));
-		assertEquals("HIT", ship1.attempt("4"));
-		assertEquals("MISS", ship1.attempt("1"));
-		assertEquals("MISS", ship1.attempt("4"));
-		assertFalse(ship1.getAlive());
-
-	}
-
-	@Test
 	public void destroyShip2Test()
 	{
 		Gameboard gameboard = new Gameboard();

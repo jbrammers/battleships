@@ -75,6 +75,7 @@ public class InputHandler {
                         Platform.runLater(() -> PopUpMessage.popUp(displayMessage));
                         out.println("SYSTEM gameEnd");
                     } else {
+
                         displayMessage = "Opponent fired at " + message + " and it was a " + reply.toLowerCase();
 
                         ctrl = (MainGameController) DataStore.getData().getObject("main game");
