@@ -23,15 +23,9 @@ public class MainGameController implements javafx.fxml.Initializable {
 
 
     @FXML
-    Label scoreLabel;
-    @FXML
     Button fireButton;
     @FXML
     Label turnLabel;
-    @FXML
-    ChoiceBox weaponList;
-    @FXML
-    Button shopButton;
     @FXML
     TextArea messagesDisplay;
     @FXML
@@ -441,9 +435,8 @@ public class MainGameController implements javafx.fxml.Initializable {
     private Button J10;
 
 
+    private void initiateRectangleArrayList() {
 
-    private ArrayList<Rectangle> initiateRectangleArrayList() {
-        ArrayList<Rectangle> ownShipsRectangles = new ArrayList<>();
         ownShipsRectangles.add(ownShipsA1);
         ownShipsRectangles.add(ownShipsA2);
         ownShipsRectangles.add(ownShipsA3);
@@ -544,9 +537,113 @@ public class MainGameController implements javafx.fxml.Initializable {
         ownShipsRectangles.add(ownShipsJ8);
         ownShipsRectangles.add(ownShipsJ9);
         ownShipsRectangles.add(ownShipsJ10);
-        return ownShipsRectangles;
     }
 
+    ArrayList<Button> buttonArray = new ArrayList<>();
+    ArrayList<Rectangle> ownShipsRectangles = new ArrayList<>();
+
+    private void buttonArray() {
+        buttonArray.add(A1);
+        buttonArray.add(A2);
+        buttonArray.add(A3);
+        buttonArray.add(A4);
+        buttonArray.add(A5);
+        buttonArray.add(A6);
+        buttonArray.add(A7);
+        buttonArray.add(A8);
+        buttonArray.add(A9);
+        buttonArray.add(A10);
+        buttonArray.add(B1);
+        buttonArray.add(B2);
+        buttonArray.add(B3);
+        buttonArray.add(B4);
+        buttonArray.add(B5);
+        buttonArray.add(B6);
+        buttonArray.add(B7);
+        buttonArray.add(B8);
+        buttonArray.add(B9);
+        buttonArray.add(B10);
+        buttonArray.add(C1);
+        buttonArray.add(C2);
+        buttonArray.add(C3);
+        buttonArray.add(C4);
+        buttonArray.add(C5);
+        buttonArray.add(C6);
+        buttonArray.add(C7);
+        buttonArray.add(C8);
+        buttonArray.add(C9);
+        buttonArray.add(C10);
+        buttonArray.add(D1);
+        buttonArray.add(D2);
+        buttonArray.add(D3);
+        buttonArray.add(D4);
+        buttonArray.add(D5);
+        buttonArray.add(D6);
+        buttonArray.add(D7);
+        buttonArray.add(D8);
+        buttonArray.add(D9);
+        buttonArray.add(D10);
+        buttonArray.add(E1);
+        buttonArray.add(E2);
+        buttonArray.add(E3);
+        buttonArray.add(E4);
+        buttonArray.add(E5);
+        buttonArray.add(E6);
+        buttonArray.add(E7);
+        buttonArray.add(E8);
+        buttonArray.add(E9);
+        buttonArray.add(E10);
+        buttonArray.add(F1);
+        buttonArray.add(F2);
+        buttonArray.add(F3);
+        buttonArray.add(F4);
+        buttonArray.add(F5);
+        buttonArray.add(F6);
+        buttonArray.add(F7);
+        buttonArray.add(F8);
+        buttonArray.add(F9);
+        buttonArray.add(F10);
+        buttonArray.add(G1);
+        buttonArray.add(G2);
+        buttonArray.add(G3);
+        buttonArray.add(G4);
+        buttonArray.add(G5);
+        buttonArray.add(G6);
+        buttonArray.add(G7);
+        buttonArray.add(G8);
+        buttonArray.add(G9);
+        buttonArray.add(G10);
+        buttonArray.add(H1);
+        buttonArray.add(H2);
+        buttonArray.add(H3);
+        buttonArray.add(H4);
+        buttonArray.add(H5);
+        buttonArray.add(H6);
+        buttonArray.add(H7);
+        buttonArray.add(H8);
+        buttonArray.add(H9);
+        buttonArray.add(H10);
+        buttonArray.add(I1);
+        buttonArray.add(I2);
+        buttonArray.add(I3);
+        buttonArray.add(I4);
+        buttonArray.add(I5);
+        buttonArray.add(I6);
+        buttonArray.add(I7);
+        buttonArray.add(I8);
+        buttonArray.add(I9);
+        buttonArray.add(I10);
+        buttonArray.add(J1);
+        buttonArray.add(J2);
+        buttonArray.add(J3);
+        buttonArray.add(J4);
+        buttonArray.add(J5);
+        buttonArray.add(J6);
+        buttonArray.add(J7);
+        buttonArray.add(J8);
+        buttonArray.add(J9);
+        buttonArray.add(J10);
+    }
 
     public static ArrayList<String> messageLog = new ArrayList<>();
     public static String message = "";
@@ -556,8 +653,6 @@ public class MainGameController implements javafx.fxml.Initializable {
     public boolean turn;
 
     public void initialiseOwnShips(Gameboard gameboard) {
-
-        ArrayList<Rectangle> ownShipsRectangles = initiateRectangleArrayList();
 
         for (Ship ship : gameboard.getBoard()) {
             ArrayList<String> rows = new ArrayList<>();
@@ -614,7 +709,7 @@ public class MainGameController implements javafx.fxml.Initializable {
                             if (columns.get(i).equals("1") && rect.getId().contains("10")) {
 
                             } else {
-                                rect.setFill(Color.RED);
+                                rect.setFill(Color.PURPLE);
                             }
                         }
                     }
@@ -629,7 +724,7 @@ public class MainGameController implements javafx.fxml.Initializable {
         messageLog.add(message);
         message = "";
         String previousMessages = messagesDisplay.getText();
-       // messagesDisplay.setText(previousMessages + messageLog.get(messageCount) + "\n");
+        // messagesDisplay.setText(previousMessages + messageLog.get(messageCount) + "\n");
         messageField.setText("");
 
 
@@ -645,11 +740,10 @@ public class MainGameController implements javafx.fxml.Initializable {
 
         messageLog.add(incomingMessage);
         message = "";
-        if (messagesDisplay.getText().isEmpty()){
+        if (messagesDisplay.getText().isEmpty()) {
             messagesDisplay.setText(messageLog.get(messageCount) + "\n");
 
-        }
-        else {
+        } else {
             String previousMessages = messagesDisplay.getText();
             messagesDisplay.setText(previousMessages + messageLog.get(messageCount) + "\n");
         }
@@ -1083,19 +1177,66 @@ public class MainGameController implements javafx.fxml.Initializable {
         if (turn) {
             Client client = (Client) DataStore.getData().getObject("client");
             client.send("GAME " + currentLocationAttempt);
-            System.out.println(currentLocationAttempt);
         } else {
             PopUpMessage.popUp("Please wait for your turn!");
         }
     }
 
+    public void incomingAttempt(String location, String result) {
 
-    public void handleShopButtonAction(ActionEvent actionEvent) {
+        char[] tempCh = location.toCharArray();
+
+        if (result.equals("HIT") || result.contains("DESTROYED")) {
+            for (Rectangle rect : ownShipsRectangles) {
+                if (rect.getId().contains(location)) {
+                    if (tempCh.length == 2 && rect.getId().contains("10")) {
+                    } else rect.setFill(Color.RED);
+                }
+            }
+        }
+        if (result.equals("MISS")) {
+            for (Rectangle rect : ownShipsRectangles) {
+                if (rect.getId().contains(location)) {
+                    if (tempCh.length == 2 && rect.getId().contains("10")) {
+                    } else rect.setFill(Color.WHITE);
+                }
+            }
+        }
+
+    }
+
+    public void outgoingAttempt(String location, String result) {
+        char[] tempCh = location.toCharArray();
+
+        if (result.equals("HIT") || result.contains("DESTROYED")) {
+            for (Button button : buttonArray) {
+                if (button.getId().equals(location)) {
+                    if (tempCh.length == 2 && button.getId().contains("10")) {
+                    } else {
+                        button.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+                        button.setDisable(true);
+                    }
+                }
+            }
+        }
+        if (result.equals("MISS")) {
+            for (Button button : buttonArray) {
+                if (button.getId().equals(location)) {
+                    if (tempCh.length == 2 && button.getId().contains("10")) {
+                    } else {
+                        button.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+                        button.setDisable(true);
+                    }
+                }
+            }
+        }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        initiateRectangleArrayList();
         initialiseOwnShips(gameboard);
+        buttonArray();
         controller = this;
         DataStore.getData().addObjects("main game", controller);
 

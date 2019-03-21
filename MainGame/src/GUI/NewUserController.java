@@ -63,7 +63,7 @@ public class NewUserController implements Initializable {
             return;
         }
         else if (passwordField.getText().length() > 32) {
-            PopUpMessage.errorMessage("Username must be 16 characters or less");
+            PopUpMessage.errorMessage("Username must be 32 characters or less");
             return;
         }
 

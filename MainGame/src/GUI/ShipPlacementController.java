@@ -541,7 +541,7 @@ public class ShipPlacementController implements Initializable {
             otherButtonActive = true;
             currentButtonNumber = 1;
             currentShip = ajaxShips.get(ajaxShips.size() - ajaxShipsRemaining);
-            Ajax1.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+            Ajax1.setBackground(new Background(new BackgroundFill(Color.PURPLE, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
 
@@ -564,7 +564,7 @@ public class ShipPlacementController implements Initializable {
             otherButtonActive = true;
             currentButtonNumber = 2;
             currentShip = ajaxShips.get(ajaxShips.size() - ajaxShipsRemaining);
-            Ajax2.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+            Ajax2.setBackground(new Background(new BackgroundFill(Color.PURPLE, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
 
@@ -587,7 +587,7 @@ public class ShipPlacementController implements Initializable {
             otherButtonActive = true;
             currentButtonNumber = 3;
             currentShip = ajaxShips.get(ajaxShips.size() - ajaxShipsRemaining);
-            Ajax3.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+            Ajax3.setBackground(new Background(new BackgroundFill(Color.PURPLE, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
 
@@ -610,7 +610,7 @@ public class ShipPlacementController implements Initializable {
             otherButtonActive = true;
             currentButtonNumber = 4;
             currentShip = ajaxShips.get(ajaxShips.size() - ajaxShipsRemaining);
-            Ajax4.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+            Ajax4.setBackground(new Background(new BackgroundFill(Color.PURPLE, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
 
@@ -633,7 +633,7 @@ public class ShipPlacementController implements Initializable {
             otherButtonActive = true;
             currentButtonNumber = 5;
             currentShip = ajaxShips.get(ajaxShips.size() - ajaxShipsRemaining);
-            Ajax5.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+            Ajax5.setBackground(new Background(new BackgroundFill(Color.PURPLE, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
 
@@ -727,7 +727,7 @@ public class ShipPlacementController implements Initializable {
                     ajaxShipsRemaining--;
                     ajaxShips.remove(currentShip);
                     AjaxLabel.setText(ajaxShipsRemaining + "X");
-                    button.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+                    button.setBackground(new Background(new BackgroundFill(Color.PURPLE, CornerRadii.EMPTY, Insets.EMPTY)));
                     Ajax1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
                     Ajax2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
                     Ajax3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -743,7 +743,7 @@ public class ShipPlacementController implements Initializable {
                 } else if (currentShip.getType().equals("Stellar")) {
                     button.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
                 } else if (currentShip.getType().equals("Ajax")) {
-                    button.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+                    button.setBackground(new Background(new BackgroundFill(Color.PURPLE, CornerRadii.EMPTY, Insets.EMPTY)));
                 }
             }
 
