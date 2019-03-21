@@ -1182,6 +1182,13 @@ public class MainGameController implements javafx.fxml.Initializable {
         targetLocationAction("J10", J10);
     }
 
+    public void setTurnLabel(String turn) {
+        if (turn.equals("yourturn")) {
+            turnLabel.setText("Your Turn");
+        }
+        else turnLabel.setText("Opponents Turn");
+    }
+
     public void handleFireButtonAction(ActionEvent actionEvent) {
         if (turn) {
             Client client = (Client) DataStore.getData().getObject("client");
@@ -1233,7 +1240,7 @@ public class MainGameController implements javafx.fxml.Initializable {
                 if (button.getId().equals(location)) {
                     if (tempCh.length == 2 && button.getId().contains("10")) {
                     } else {
-                        button.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+                        button.setBackground(new Background(new BackgroundFill(Color.DODGERBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
                         button.setDisable(true);
                     }
                 }

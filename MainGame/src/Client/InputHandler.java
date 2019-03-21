@@ -95,10 +95,12 @@ public class InputHandler {
                     System.out.println(message);
                     ctrl = (MainGameController) DataStore.getData().getObject("main game");
                     ctrl.setTurn(true);
+                    Platform.runLater(() ->ctrl.setTurnLabel(message));
                 } else if (message.equals("theirturn")) {
                     System.out.println(message);
                     ctrl = (MainGameController) DataStore.getData().getObject("main game");
                     ctrl.setTurn(false);
+                    Platform.runLater(() ->ctrl.setTurnLabel(message));
                 } else if (message.equals("nullattempt")) {
                     Platform.runLater(() -> PopUpMessage.errorMessage("Something went wrong when firing at this co-ordinate. Please try again."));
                 }

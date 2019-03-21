@@ -9,9 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
@@ -23,6 +21,8 @@ public class ShipPlacementController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        buttonsArray();
+        initialiseAllButtons();
         gameboard = new Gameboard();
     }
 
@@ -314,6 +314,134 @@ public class ShipPlacementController implements Initializable {
     @FXML
     private Button J10;
 
+    private ArrayList<Button> buttonArray = new ArrayList<>();
+
+    private void buttonsArray() {
+        buttonArray.add(A1);
+        buttonArray.add(A2);
+        buttonArray.add(A3);
+        buttonArray.add(A4);
+        buttonArray.add(A5);
+        buttonArray.add(A6);
+        buttonArray.add(A7);
+        buttonArray.add(A8);
+        buttonArray.add(A9);
+        buttonArray.add(A10);
+        buttonArray.add(B1);
+        buttonArray.add(B2);
+        buttonArray.add(B3);
+        buttonArray.add(B4);
+        buttonArray.add(B5);
+        buttonArray.add(B6);
+        buttonArray.add(B7);
+        buttonArray.add(B8);
+        buttonArray.add(B9);
+        buttonArray.add(B10);
+        buttonArray.add(C1);
+        buttonArray.add(C2);
+        buttonArray.add(C3);
+        buttonArray.add(C4);
+        buttonArray.add(C5);
+        buttonArray.add(C6);
+        buttonArray.add(C7);
+        buttonArray.add(C8);
+        buttonArray.add(C9);
+        buttonArray.add(C10);
+        buttonArray.add(D1);
+        buttonArray.add(D2);
+        buttonArray.add(D3);
+        buttonArray.add(D4);
+        buttonArray.add(D5);
+        buttonArray.add(D6);
+        buttonArray.add(D7);
+        buttonArray.add(D8);
+        buttonArray.add(D9);
+        buttonArray.add(D10);
+        buttonArray.add(E1);
+        buttonArray.add(E2);
+        buttonArray.add(E3);
+        buttonArray.add(E4);
+        buttonArray.add(E5);
+        buttonArray.add(E6);
+        buttonArray.add(E7);
+        buttonArray.add(E8);
+        buttonArray.add(E9);
+        buttonArray.add(E10);
+        buttonArray.add(F1);
+        buttonArray.add(F2);
+        buttonArray.add(F3);
+        buttonArray.add(F4);
+        buttonArray.add(F5);
+        buttonArray.add(F6);
+        buttonArray.add(F7);
+        buttonArray.add(F8);
+        buttonArray.add(F9);
+        buttonArray.add(F10);
+        buttonArray.add(G1);
+        buttonArray.add(G2);
+        buttonArray.add(G3);
+        buttonArray.add(G4);
+        buttonArray.add(G5);
+        buttonArray.add(G6);
+        buttonArray.add(G7);
+        buttonArray.add(G8);
+        buttonArray.add(G9);
+        buttonArray.add(G10);
+        buttonArray.add(H1);
+        buttonArray.add(H2);
+        buttonArray.add(H3);
+        buttonArray.add(H4);
+        buttonArray.add(H5);
+        buttonArray.add(H6);
+        buttonArray.add(H7);
+        buttonArray.add(H8);
+        buttonArray.add(H9);
+        buttonArray.add(H10);
+        buttonArray.add(I1);
+        buttonArray.add(I2);
+        buttonArray.add(I3);
+        buttonArray.add(I4);
+        buttonArray.add(I5);
+        buttonArray.add(I6);
+        buttonArray.add(I7);
+        buttonArray.add(I8);
+        buttonArray.add(I9);
+        buttonArray.add(I10);
+        buttonArray.add(J1);
+        buttonArray.add(J2);
+        buttonArray.add(J3);
+        buttonArray.add(J4);
+        buttonArray.add(J5);
+        buttonArray.add(J6);
+        buttonArray.add(J7);
+        buttonArray.add(J8);
+        buttonArray.add(J9);
+        buttonArray.add(J10);
+        buttonArray.add(Zeus1);
+        buttonArray.add(Zeus2);
+        buttonArray.add(Sledgehammer1);
+        buttonArray.add(Sledgehammer2);
+        buttonArray.add(Sledgehammer3);
+        buttonArray.add(Stellar1);
+        buttonArray.add(Stellar2);
+        buttonArray.add(Stellar3);
+        buttonArray.add(Stellar4);
+        buttonArray.add(Ajax1);
+        buttonArray.add(Ajax2);
+        buttonArray.add(Ajax3);
+        buttonArray.add(Ajax4);
+        buttonArray.add(Ajax5);
+    }
+    private void initialiseAllButtons() {
+        for (int i = 0; i < 100; i++) {
+            buttonArray.get(i).setBackground(new Background(new BackgroundFill(Color.DODGERBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+            buttonArray.get(i).setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+        }
+        for (int i = 100; i < buttonArray.size(); i++) {
+            buttonArray.get(i).setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+            buttonArray.get(i).setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+        }
+    }
 
     public void handleButtonActionZeus1(ActionEvent actionEvent) {
         if (zeusShipsRemaining != 0 && zeusButton1 == false && otherButtonActive == false && shipButtonSelectHelper((zeusShips.get(zeusShips.size() - zeusShipsRemaining)), 1)) {
@@ -831,11 +959,11 @@ public class ShipPlacementController implements Initializable {
                 //vertical
                 else if (locationsColumns.get(0).equals(locationsColumns.get(1))) {
                     //below
-                    if ((currentButtonNumber == min - 1) && ((splitRowColumnAttempt[0].equals(rowNavigator(locationsRows.get(setLocationsButtonNumbers.indexOf(min)), -1))) || (splitRowColumnAttempt[0].equals(rowNavigator(locationsRows.get(setLocationsButtonNumbers.indexOf(min)), 1))))&& Integer.parseInt(splitRowColumnAttempt[1]) == Integer.parseInt(locationsColumns.get(0))) {
+                    if ((currentButtonNumber == min - 1) && ((splitRowColumnAttempt[0].equals(rowNavigator(locationsRows.get(setLocationsButtonNumbers.indexOf(min)), -1))) || (splitRowColumnAttempt[0].equals(rowNavigator(locationsRows.get(setLocationsButtonNumbers.indexOf(min)), 1)))) && Integer.parseInt(splitRowColumnAttempt[1]) == Integer.parseInt(locationsColumns.get(0))) {
                         return true;
                     }
                     //above
-                    if ((currentButtonNumber == max + 1) && ((splitRowColumnAttempt[0].equals(rowNavigator(locationsRows.get(setLocationsButtonNumbers.indexOf(max)), 1))) || (splitRowColumnAttempt[0].equals(rowNavigator(locationsRows.get(setLocationsButtonNumbers.indexOf(max)), -1))))&& Integer.parseInt(splitRowColumnAttempt[1]) == Integer.parseInt(locationsColumns.get(0))) {
+                    if ((currentButtonNumber == max + 1) && ((splitRowColumnAttempt[0].equals(rowNavigator(locationsRows.get(setLocationsButtonNumbers.indexOf(max)), 1))) || (splitRowColumnAttempt[0].equals(rowNavigator(locationsRows.get(setLocationsButtonNumbers.indexOf(max)), -1)))) && Integer.parseInt(splitRowColumnAttempt[1]) == Integer.parseInt(locationsColumns.get(0))) {
                         return true;
                     }
                 }
@@ -851,8 +979,7 @@ public class ShipPlacementController implements Initializable {
         for (String row : rows) {
             if (ch.equals(row)) {
                 break;
-            }
-            else index++;
+            } else index++;
         }
         return rows[index + i];
     }
