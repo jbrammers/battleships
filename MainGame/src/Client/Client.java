@@ -2,12 +2,15 @@ package Client;
 
 import GUI.DataStore;
 import GUI.LoginController;
+import GUI.PopUpMessage;
+import javafx.application.Platform;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class Client implements Runnable {
     private int portNumber = 3000;
@@ -63,7 +66,12 @@ public class Client implements Runnable {
                 output.flush();
             }
 
-        } catch (IOException e) {
+        }catch (SocketException e){
+            Platform.runLater(() -> PopUpMessage.popUp("Connection lost. Please log in again."));
+            Platform.exit();
+            GUI.application.main(null);
+        }
+        catch (IOException e) {
             System.out.println("Connection failed to server. Please try again.");
             e.printStackTrace();
             Thread thread = (Thread) DataStore.getData().getObject("gui thread");

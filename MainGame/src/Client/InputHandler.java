@@ -56,6 +56,7 @@ public class InputHandler {
                 } else {
                     Gameboard gameboard = (Gameboard) DataStore.getData().getObject("gameboard");
                     String reply = gameboard.attempt(message);
+
                     if (reply==null) {
                         out.println("SYSTEM noattempt");
                         break;
@@ -63,7 +64,7 @@ public class InputHandler {
                     final String displayMessage;
 
 
-                    if (gameboard.endTurnCheck()) {
+                    if (!gameboard.endTurnCheck()) {
                         out.println("GAME END Final ship sunk. You have won good job!");
                         displayMessage = "Your final ship was sunk! Unlucky.";
                         Platform.runLater(() -> PopUpMessage.popUp(displayMessage));
@@ -75,6 +76,7 @@ public class InputHandler {
                         Platform.runLater(() -> ctrl.printReceivedMessage(displayMessage));
 
                         out.println("GAME REPLY " + reply);
+                        out.println("SYSTEM turnchange");
                     }
 
 
@@ -83,9 +85,11 @@ public class InputHandler {
 
             case "SYSTEM":
                 if (message.equals("yourturn")) {
+                    System.out.println(message);
                     ctrl = (MainGameController) DataStore.getData().getObject("main game");
                     ctrl.setTurn(true);
                 } else if (message.equals("theirturn")) {
+                    System.out.println(message);
                     ctrl = (MainGameController) DataStore.getData().getObject("main game");
                     ctrl.setTurn(false);
                 } else if (message.equals("nullattempt")) {

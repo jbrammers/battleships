@@ -70,15 +70,19 @@ public class Ship {
 
 
 	public boolean locationsFull() {
-		if (locations.size() == length) {
-			return true;
-		}
-		else return false;
+		return locations.size() == length;
 	}
 
 	public String attempt(String locationAttempt) {
 		for (String location : locations) {
-			if (locationAttempt.equals(location)) {
+
+			char[] chars = location.toCharArray();
+			StringBuffer loc = new StringBuffer();
+			loc.append(chars[0]);
+			loc.append(chars[2]);
+			if (chars[3] == '0') loc.append('0');
+
+			if (locationAttempt.equals(loc.toString())) {
 				if (counter == length-1) {
 					setAlive(false);
 					return "DESTROYED";

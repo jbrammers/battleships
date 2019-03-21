@@ -36,14 +36,17 @@ public class MessageHandler {
 
                 case "GAME":
                     player.getOpponent().getOut().println(in);
-                    player.getOut().println("SYSTEM theirturn");
-                    player.getOpponent().getOut().println("SYSTEM yourturn");
                     break;
 
                 case "ECHO":
                     break;
 
                 case "SYSTEM":
+                    if (message.equals("turnchange")) {
+                        player.getOut().println("SYSTEM yourturn");
+                        player.getOpponent().getOut().println("SYSTEM theirturn");
+                        System.out.println("Turn changes sent");
+                    }
                     if (message.equals("ready")) {
                         player.setReady(true);
                     } else if (message.equals("gameEnd")) {

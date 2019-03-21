@@ -440,7 +440,7 @@ public class MainGameController implements javafx.fxml.Initializable {
     @FXML
     private Button J10;
 
-    public static boolean turn;
+
 
     private ArrayList<Rectangle> initiateRectangleArrayList() {
         ArrayList<Rectangle> ownShipsRectangles = new ArrayList<>();
@@ -553,6 +553,7 @@ public class MainGameController implements javafx.fxml.Initializable {
     public static int messageCount = 0;
     public String incomingMessage;
     public static Gameboard gameboard = ShipPlacementController.gameboard;
+    public boolean turn;
 
     public void initialiseOwnShips(Gameboard gameboard) {
 
@@ -1111,6 +1112,6 @@ public class MainGameController implements javafx.fxml.Initializable {
     }
 
     public void setTurn(boolean turn) {
-        MainGameController.turn = turn;
+        this.turn = turn;
     }
 }
