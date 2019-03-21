@@ -1,29 +1,39 @@
 package Tests;
 
 
+import GUI.StandardUser;
 import Game.Gameboard;
 import Game.Ship;
 import org.junit.Before;
 import org.junit.Test;
+import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 
 public class GameTest {
 
-	
+    private StandardUser user1, user2, user3, user4;
 	private Gameboard expected;
 	private Ship ship1, ship2, ship3, ship4;
 	private ArrayList<String> locations;
 	private ArrayList<String> locationAttempt;
-
-	
+	private ArrayList<Ship> board = new ArrayList<>();
+	private TextField usernameField;
+	private PasswordField passwordField;
 	
 	@Before
 	public void setUp() {
+
+		user1 = new StandardUser("user01", "password");
+		user2 = new StandardUser("user02", "password");
+		user3 = new StandardUser("user03", "password");
+
+
+
 		ship1 = new Ship("1", 5);
 		ship2 = new Ship("2", 4);
 		ship3 = new Ship("3", 3);
@@ -41,7 +51,7 @@ public class GameTest {
 		locations.add("2");
 		locations.add("3");
 		locations.add("4");
-		locations.add("5");
+	    locations.add("5");
 	// locations.add("6");
 
         locationAttempt = new ArrayList<>();
@@ -49,7 +59,13 @@ public class GameTest {
         locationAttempt.add("2");
         locationAttempt.add("3");
         locationAttempt.add("4");
-        locationAttempt.add("5");
+        //locationAttempt.add("5");
+
+        board = new ArrayList<Ship>();
+        board.add(0, ship1);
+        board.add(1, ship2);
+        board.add(2, ship3);
+        board.add(3, ship4);
 
 
 	}
@@ -187,11 +203,85 @@ public class GameTest {
         assertEquals("HIT", ship1.attempt("3"));
         assertEquals("HIT", ship1.attempt("4"));
         assertEquals("DESTROYED", ship1.attempt("5"));
-
+		assertFalse(ship1.getAlive());
     }
 
 
+	@Test
+	public void setBoardTest()
+	{
+		Gameboard gameboard = new Gameboard();
 
+		gameboard.setBoard(board);
+
+		assertEquals(4, gameboard.getBoard().size());
+
+	}
+
+	@Test
+	public void endTurnCheckTest()
+	{
+		Gameboard gameboard = new Gameboard();
+		gameboard.setBoard(board);
+		ship1.setLocation(locations);
+
+		assertEquals("HIT", ship1.attempt("1"));
+		assertEquals(true, ship1.getAlive());
+
+	}
+
+
+	@Test
+	public void hitSameLocationTest()
+	{
+		Gameboard gameboard = new Gameboard();
+		ship1.setLocation(locations);
+
+		assertEquals("HIT", ship1.attempt("1"));
+		assertEquals("MISS", ship1.attempt("1"));
+		assertEquals("HIT", ship1.attempt("4"));
+		assertEquals("MISS", ship1.attempt("1"));
+		assertEquals("MISS", ship1.attempt("4"));
+		assertFalse(ship1.getAlive());
+
+	}
+
+	@Test
+	public void destroyShip2Test()
+	{
+		Gameboard gameboard = new Gameboard();
+		ship2.setLocation(locationAttempt);
+
+		assertEquals("HIT", ship2.attempt("1"));
+		assertEquals("HIT", ship2.attempt("2"));
+		assertEquals("HIT", ship2.attempt("3"));
+		assertEquals("DESTROYED", ship2.attempt("4"));
+		assertEquals("MISS", ship2.attempt("5"));
+		assertFalse(ship2.getAlive());
+	}
+
+	@Test
+	public void setUsernameTest()
+	{
+		assertEquals("user01", user1.getUsername());
+		assertEquals("user02", user2.getUsername());
+		assertEquals("user03", user3.getUsername());
+	}
+
+
+	@Test
+	public void setPasswordTest()
+	{
+		assertEquals("password", user1.getPassword());
+	}
+
+
+	/* @Test
+	public void handleLoginButtonActionTest()
+	{
+		assertEquals("Please enter a valid username", usernameField.getText());
+	}
+	*/
 
 
 }
