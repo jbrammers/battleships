@@ -74,8 +74,11 @@ public class Ship {
 	}
 
 	public String attempt(String locationAttempt) {
+
+
 		for (String location : locations) {
 
+			location = location.substring(0,4);
 			char[] chars = location.toCharArray();
 			StringBuffer loc = new StringBuffer();
 			for (char c : chars) {
