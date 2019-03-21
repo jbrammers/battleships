@@ -1205,6 +1205,33 @@ public class MainGameController implements javafx.fxml.Initializable {
 
     }
 
+    public void outgoingAttempt(String location, String result) {
+        char[] tempCh = location.toCharArray();
+
+        if (result.equals("HIT") || result.contains("DESTROYED")) {
+            for (Button button : buttonArray) {
+                if (button.getId().equals(location)) {
+                    if (tempCh.length == 2 && button.getId().contains("10")) {
+                    } else {
+                        button.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+                        button.setDisable(true);
+                    }
+                }
+            }
+        }
+        if (result.equals("MISS")) {
+            for (Button button : buttonArray) {
+                if (button.getId().equals(location)) {
+                    if (tempCh.length == 2 && button.getId().contains("10")) {
+                    } else {
+                        button.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+                        button.setDisable(true);
+                    }
+                }
+            }
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initiateRectangleArrayList();

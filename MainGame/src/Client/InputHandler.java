@@ -53,6 +53,11 @@ public class InputHandler {
                     Platform.runLater(() -> ctrl.printReceivedMessage(message.substring(5)));
                 } else if (message.startsWith("END")) {
                     Platform.runLater(() -> PopUpMessage.popUp(message.substring(4)));
+                } else if (message.startsWith("ATTEMPT_RESULT")) {
+                    String[] temp = message.split(" ");
+                    ctrl = (MainGameController) DataStore.getData().getObject("main game");
+                    Platform.runLater(() -> ctrl.outgoingAttempt(temp[1], temp[2]));
+
                 } else {
                     Gameboard gameboard = (Gameboard) DataStore.getData().getObject("gameboard");
                     String reply = gameboard.attempt(message);
@@ -75,6 +80,8 @@ public class InputHandler {
                         ctrl = (MainGameController) DataStore.getData().getObject("main game");
                         Platform.runLater(() -> ctrl.printReceivedMessage(displayMessage));
                         Platform.runLater(() -> ctrl.incomingAttempt(message, reply));
+                        Client client = (Client) DataStore.getData().getObject("client");
+                        client.send("GAME ATTEMPT_RESULT " + message + " " + reply);
                         out.println("GAME REPLY " + reply);
                         out.println("SYSTEM turnchange");
                     }
