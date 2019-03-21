@@ -68,13 +68,24 @@ public class InputHandler {
                     }
                     final String displayMessage;
 
-
-                    if (!gameboard.endTurnCheck()) {
-                        out.println("GAME END Final ship sunk. You have won good job!");
-                        displayMessage = "Your final ship was sunk! Unlucky.";
+                    if (gameboard.endTurnCheck()) {
+                        out.println("GAME END Final ship sunk. Congratulations, you've won!");
+                        displayMessage = "Your final ship was sunk! Better luck next time!.";
                         Platform.runLater(() -> PopUpMessage.popUp(displayMessage));
                         out.println("SYSTEM gameEnd");
-                    } else {
+                    }
+                    else if (reply.equals("DESTROYED")) {
+                        displayMessage = "Opponent fired at " + message + ": SHIP DESTROYED!";
+
+                        ctrl = (MainGameController) DataStore.getData().getObject("main game");
+                        Platform.runLater(() -> ctrl.printReceivedMessage(displayMessage));
+                        Platform.runLater(() -> ctrl.incomingAttempt(message, reply));
+                        Client client = (Client) DataStore.getData().getObject("client");
+                        client.send("GAME ATTEMPT_RESULT " + message + " " + reply);
+                        out.println("GAME REPLY YOU SUNK MY BATTLESHIP");
+                        out.println("SYSTEM turnchange");
+                    }
+                    else {
 
                         displayMessage = "Opponent fired at " + message + " and it was a " + reply.toLowerCase();
 

@@ -35,7 +35,7 @@ public class Gameboard {
 				return "HIT";
 			}
 			else if (ship.attempt(location).equals("DESTROYED")) {
-				return ship.getType() + " CLASS SHIP DESTROYED";
+				return "DESTROYED";
 			}
 			else result = "MISS";
 		}
@@ -56,10 +56,11 @@ public class Gameboard {
 	public boolean endTurnCheck() {
 		for (Ship ship :
 				board) {
-			if (!ship.getAlive()) {
+			if (ship.getAlive()) {
 				return false;
 			}
 		}
 		return true;
 	}
+
 }
