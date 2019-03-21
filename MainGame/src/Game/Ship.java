@@ -78,9 +78,9 @@ public class Ship {
 
 			char[] chars = location.toCharArray();
 			StringBuffer loc = new StringBuffer();
-			for (int i = 0; i < 4; i++) {
+			for (char c : chars) {
 				StringBuffer temp = new StringBuffer();
-				temp.append(chars[i]);
+				temp.append(c);
 				if (temp.toString().matches("[A-Z0-9]")) loc.append(temp);
 			}
 
