@@ -2,7 +2,6 @@ package Client;
 
 import GUI.DataStore;
 import GUI.LoginController;
-import GUI.PopUpMessage;
 import javafx.application.Platform;
 
 import java.io.BufferedReader;
@@ -19,7 +18,8 @@ public class Client implements Runnable {
     private BufferedReader input;
     private PrintWriter output;
 
-    public Client(){}
+    public Client() {
+    }
 
 
     public void start() {
@@ -41,7 +41,7 @@ public class Client implements Runnable {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-    }
+        }
     }
 
     public void ready() {
@@ -66,16 +66,10 @@ public class Client implements Runnable {
                 output.flush();
             }
 
-        }catch (SocketException e){
-            Platform.runLater(() -> PopUpMessage.popUp("Connection lost. Please log in again."));
+        } catch (SocketException e) {
             Platform.exit();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Connection failed to server. Please try again.");
-            e.printStackTrace();
-            Thread thread = (Thread) DataStore.getData().getObject("gui thread");
-            thread.interrupt();
-            return;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -105,7 +99,7 @@ public class Client implements Runnable {
                 loggedIn = true;
                 authFinished = true;
             } else if (in.equals("Connection established, authentication in progress.")) {
-                System.out.println(in);
+                Thread.yield();
             } else if (in.startsWith("AUTHFAIL")) {
 
                 int type;
@@ -128,7 +122,7 @@ public class Client implements Runnable {
     public boolean newUser(String username, String password) {
         output.println("newuser");
         output.println("LOGIN " + username);
-        output.println("LOGIN " +password);
+        output.println("LOGIN " + password);
 
         String response;
         boolean auth = false;
@@ -153,11 +147,18 @@ public class Client implements Runnable {
     /**
      * Method used to send a message to the server whenever required. Messages should be prefixed with
      * their type otherwise they will simply get ignored
+     *
      * @param out String to be sent to the server
      */
     public void send(String out) {
         output.println(out);
     }
 
-    public Socket getSocket() { return client; }
+    public void endConnection() {
+        try {
+            client.close();
+        } catch (IOException e) {
+            System.out.println("Socket already closed.");
+    }
+}
 }

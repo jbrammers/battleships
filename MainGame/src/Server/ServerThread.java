@@ -80,6 +80,7 @@ public class ServerThread implements Runnable {
 
     public void addPlayer(Player newPlayer) {
         waitingPlayers.add(newPlayer);
+        threadpool.execute(newPlayer);
     }
 
     /**

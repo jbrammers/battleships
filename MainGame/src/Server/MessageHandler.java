@@ -39,6 +39,12 @@ public class MessageHandler {
                     break;
 
                 case "ECHO":
+                    if (message == null) {
+                        System.out.println("System pinged by " + player.getUsername());
+                        player.getOut().println("ECHO REPLY");
+                    } else {
+                        System.out.println("Ping reply recieved at " + System.currentTimeMillis());
+                    }
                     break;
 
                 case "SYSTEM":

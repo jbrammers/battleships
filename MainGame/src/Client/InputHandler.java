@@ -35,7 +35,12 @@ public class InputHandler {
         }
         switch (identifier) {
             case "ECHO":
-                out.println("ECHO");
+                if (message == null) {
+                    System.out.println("Client pinged by server");
+                    out.println("ECHO REPLY");
+                } else {
+                    System.out.println("Ping reply recieved at " + System.currentTimeMillis());
+                }
                 break;
 
             case "CLIENT_CLOSE":

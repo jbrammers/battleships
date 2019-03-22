@@ -30,8 +30,8 @@ public class Player implements Runnable{
 
     public void run() {
         try {
-            String nextLine;
-            while ((nextLine = input.readLine()) != null) {
+            while (true) {
+                String nextLine = input.readLine();
                 MessageHandler.inputCheck(nextLine, this);
             }
         } catch (IOException e) {
@@ -61,7 +61,7 @@ public class Player implements Runnable{
         while (tries <= 3) {
             try {
                 out.println("ECHO");
-                if (input.readLine().equals("ECHO")) {
+                if (input.readLine().equals("ECHO REPLY")) {
                     break;
                 }
             } catch (Exception e) {

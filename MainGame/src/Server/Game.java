@@ -27,11 +27,9 @@ public class Game implements Runnable {
         if (player1 == null) {
             player1 = player;
             player1.setGame(this);
-            new Thread(player1).start();
         } else {
             player2 = player;
             player2.setGame(this);
-            new Thread(player2).start();
             player1.setOpponent(player2);
             player2.setOpponent(player1);
             gameFilled = true;
