@@ -23,7 +23,7 @@ public class MessageHandler {
                     stringBuffer.append(identifier);
                     stringBuffer.append(" ");
                     stringBuffer.append(player.getUsername());
-                    stringBuffer.append(" ");
+                    stringBuffer.append(": ");
                     stringBuffer.append(message);
 
                     player.getOut().println(stringBuffer);

@@ -69,6 +69,7 @@ public class Ship {
 	}
 
 
+
 	public boolean locationsFull() {
 		return locations.size() == length;
 	}
@@ -87,7 +88,6 @@ public class Ship {
 			for (char c : chars) {
 				StringBuffer temp = new StringBuffer();
 				temp.append(c);
-				System.out.println(c);
 				if (temp.toString().matches("[A-Z0-9]")) loc.append(temp);
 				System.out.println(loc);
 			}
