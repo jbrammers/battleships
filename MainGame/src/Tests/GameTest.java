@@ -1,9 +1,9 @@
 package Tests;
 
 
+import GUI.NewUserController;
 import Game.Gameboard;
 import Game.Ship;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,11 +20,14 @@ public class GameTest {
 	private ArrayList<String> locations;
 	private ArrayList<String> locationAttempt;
 	private ArrayList<Ship> board = new ArrayList<>();
-	private TextField usernameField;
-	private PasswordField passwordField;
+
+    private NewUserController user;
+	private ArrayList<TextField> usernameField;
 	
 	@Before
 	public void setUp() {
+
+
 		ship1 = new Ship("1", 5);
 		ship2 = new Ship("2", 4);
 		ship3 = new Ship("3", 3);
@@ -36,6 +39,10 @@ public class GameTest {
 		expected.addShip(ship3);
 		expected.addShip(ship4);
 
+
+        usernameField = new ArrayList<>();
+        usernameField.add(null);
+		user = new NewUserController();
 
 		locations = new ArrayList<>();
 		locations.add("1");
@@ -237,14 +244,20 @@ public class GameTest {
 	}
 
 
+    @Test
 
+    public void setPaneTest()
+    {
 
-	/* @Test
+    }
+
+	 @Test
 	public void handleLoginButtonActionTest()
 	{
-		assertEquals("Please enter a valid username", usernameField.getText());
+        user = new NewUserController();
+
+	 //   assertEquals("Please enter a username", usernameField.());
 	}
-	*/
 
 
 }
