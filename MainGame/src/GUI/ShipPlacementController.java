@@ -803,11 +803,60 @@ public class ShipPlacementController implements Initializable {
         return false;
     }
 
+    @FXML
+    private void handleUndoCurrentShipButtonAction(){
+        if (currentShip != null && !currentShip.locationsFull()) {
+            currentShip.setLocation(new ArrayList<>());
+            zeusButton1 = false;
+            zeusButton2 = false;
+            sledgehammerButton1 = false;
+            sledgehammerButton2 = false;
+            sledgehammerButton3 = false;
+            stellarButton1 = false;
+            stellarButton2 = false;
+            stellarButton3 = false;
+            stellarButton4 = false;
+            ajaxButton1 = false;
+            ajaxButton2 = false;
+            ajaxButton3 = false;
+            ajaxButton4 = false;
+            ajaxButton5 = false;
+            otherButtonActive = false;
+            for (Button button : currentShipButtonsPressed) {
+                button.setBackground(new Background(new BackgroundFill(Color.DODGERBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+                button.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+            }
+
+            if (currentShip.getType().equals("Zeus")) {
+                Zeus1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                Zeus2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+            } else if (currentShip.getType().equals("Sledgehammer")) {
+                Sledgehammer1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                Sledgehammer2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                Sledgehammer3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+            } else if (currentShip.getType().equals("Stellar")) {
+                Stellar1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                Stellar2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                Stellar3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                Stellar4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+            } else if (currentShip.getType().equals("Ajax")) {
+                Ajax1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                Ajax2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                Ajax3.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                Ajax4.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                Ajax5.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+            }
+        }
+    }
+
+    private ArrayList<Button> currentShipButtonsPressed = new ArrayList<>();
+
     private void gridButtonHelper(String location, Button button) {
         location += "_" + currentButtonNumber;
         if (!zeusButton1 && !zeusButton2 && !sledgehammerButton1 && !sledgehammerButton2 && !sledgehammerButton3 && !stellarButton1 && !stellarButton2 && !stellarButton3 && !stellarButton4 && !ajaxButton1 && !ajaxButton2 && !ajaxButton3 && !ajaxButton4 && !ajaxButton5) {
 
         } else if (validLocation(location, currentShip)) {
+            currentShipButtonsPressed.add(button);
             zeusButton1 = false;
             zeusButton2 = false;
             sledgehammerButton1 = false;
@@ -826,6 +875,7 @@ public class ShipPlacementController implements Initializable {
             otherButtonActive = false;
 
             if (currentShip.locationsFull()) {
+                currentShipButtonsPressed = new ArrayList<>();
                 gameboard.addShip(currentShip);
                 if (currentShip.getType().equals("Zeus")) {
                     zeusShipsRemaining--;

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -7,6 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ShipPlacementController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffbd4a" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
       <AnchorPane layoutX="83.0" layoutY="110.0" prefHeight="500.0" prefWidth="500.0">
          <children>
             <Button fx:id="A1" mnemonicParsing="false" onAction="#handleGridButtonPressA1" prefHeight="50.0" prefWidth="50.0" />
@@ -135,6 +138,7 @@
             <Label layoutX="66.0" layoutY="183.0" text="Sledgehammer class:" />
             <Label layoutX="66.0" layoutY="280.0" text="Stellar class:" />
             <Label layoutX="67.0" layoutY="385.0" text="Ajax class:" />
+            <Button fx:id="undoCurrentShipButton" layoutX="92.0" layoutY="487.0" mnemonicParsing="false" onAction="#handleUndoCurrentShipButtonAction" text="Undo current ship placement" />
          </children>
       </AnchorPane>
       <Label layoutX="533.0" layoutY="31.0" text="Ship Selection:">
