@@ -11,7 +11,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainGameController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9f8dbf" height="720.0" stroke="BLACK" strokeType="INSIDE" width="942.0" />
-      <AnchorPane layoutX="47.0" layoutY="160.0" prefHeight="400.0" prefWidth="400.0">
+      <AnchorPane layoutX="47.0" layoutY="126.0" prefHeight="400.0" prefWidth="400.0">
          <children>
             <Button fx:id="A1" mnemonicParsing="false" onAction="#handleGridButtonPressA1" prefHeight="40.0" prefWidth="40.0" />
             <Button fx:id="A2" layoutX="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressA2" prefHeight="40.0" prefWidth="40.0" />
@@ -115,12 +115,12 @@
             <Button fx:id="J10" layoutX="360.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressJ10" prefHeight="40.0" prefWidth="40.0" />
          </children>
       </AnchorPane>
-      <Label layoutX="164.0" layoutY="106.0" text="Enemy Ships">
+      <Label layoutX="164.0" layoutY="66.0" text="Enemy Ships">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="492.0" layoutY="160.0" prefHeight="400.0" prefWidth="400.0">
+      <AnchorPane layoutX="493.0" layoutY="126.0" prefHeight="400.0" prefWidth="400.0">
          <children>
             <Rectangle fx:id="ownShipsA1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
             <Rectangle fx:id="ownShipsA2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
@@ -224,7 +224,7 @@
             <Rectangle fx:id="ownShipsJ10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="360.0" layoutY="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
          </children>
       </AnchorPane>
-      <Label layoutX="622.0" layoutY="106.0" text="Your Ships">
+      <Label layoutX="623.0" layoutY="66.0" text="Your Ships">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>
@@ -251,10 +251,240 @@
             <Font size="27.0" />
          </font>
       </Label>
-      <Button fx:id="fireButton" layoutX="385.0" layoutY="640.0" mnemonicParsing="false" onAction="#handleFireButtonAction" prefHeight="60.0" prefWidth="214.0" text="FIRE!">
+      <Button fx:id="fireButton" layoutX="140.0" layoutY="567.0" mnemonicParsing="false" onAction="#handleFireButtonAction" prefHeight="60.0" prefWidth="214.0" text="FIRE!">
          <font>
             <Font size="28.0" />
          </font>
       </Button>
+      <Label layoutX="14.0" layoutY="14.0" text="Score: ">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <Label fx:id="scoreCounter" layoutX="94.0" layoutY="14.0" text="0">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="516.0" layoutY="552.0" prefHeight="149.0" prefWidth="347.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff88" height="151.0" stroke="BLACK" strokeType="INSIDE" width="354.0" />
+            <Label layoutX="3.0" layoutY="6.0" text="Key:" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" layoutX="31.0" layoutY="5.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+            <Label layoutX="57.0" layoutY="7.0" text="- Empty tile" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="31.0" layoutY="31.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+            <Label layoutX="57.0" layoutY="33.0" text="- Enemy attempt (Miss)" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="31.0" layoutY="61.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+            <Label layoutX="57.0" layoutY="62.0" text="- Enemy attempt (Hit)" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="LIME" height="20.0" layoutX="31.0" layoutY="91.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="20.0" layoutX="206.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="20.0" layoutX="206.0" layoutY="32.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#800080" height="20.0" layoutX="206.0" layoutY="61.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+            <Label layoutX="57.0" layoutY="93.0" text="- Zeus ship" />
+            <Label layoutX="233.0" layoutY="8.0" text="- Sledgehammer ship" />
+            <Label layoutX="233.0" layoutY="33.0" text="- Stellar ship" />
+            <Label layoutX="233.0" layoutY="62.0" text="- Ajax ship" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="31.0" layoutY="136.0" text="A">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="176.0" text="B">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="218.0" text="C">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="257.0" text="D">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="298.0" text="E">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="339.0" text="F">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="378.0" text="G">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="418.0" text="H">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="454.0" text="I">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="498.0" text="J">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="62.0" layoutY="106.0" text="1">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="104.0" layoutY="106.0" text="2">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="141.0" layoutY="106.0" text="3">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="184.0" layoutY="106.0" text="4">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="222.0" layoutY="106.0" text="5">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="263.0" layoutY="106.0" text="6">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="303.0" layoutY="106.0" text="7">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="343.0" layoutY="106.0" text="8">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="381.0" layoutY="106.0" text="9">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="419.0" layoutY="106.0" text="10">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="863.0" layoutY="106.0" text="10">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="825.0" layoutY="106.0" text="9">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="787.0" layoutY="106.0" text="8">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="747.0" layoutY="106.0" text="7">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="707.0" layoutY="106.0" text="6">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="666.0" layoutY="106.0" text="5">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="628.0" layoutY="106.0" text="4">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="585.0" layoutY="106.0" text="3">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="548.0" layoutY="106.0" text="2">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="506.0" layoutY="106.0" text="1">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="481.0" layoutY="497.0" text="J">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="481.0" layoutY="453.0" text="I">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="481.0" layoutY="417.0" text="H">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="481.0" layoutY="377.0" text="G">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="481.0" layoutY="338.0" text="F">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="481.0" layoutY="297.0" text="E">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="481.0" layoutY="256.0" text="D">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="481.0" layoutY="217.0" text="C">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="481.0" layoutY="175.0" text="B">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="481.0" layoutY="135.0" text="A">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

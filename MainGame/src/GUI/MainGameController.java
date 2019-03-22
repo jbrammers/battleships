@@ -31,6 +31,8 @@ public class MainGameController implements javafx.fxml.Initializable {
     @FXML
     Button sendButton;
     @FXML
+    Label scoreCounter;
+    @FXML
     Rectangle ownShipsA1;
     @FXML
     Rectangle ownShipsA2;
@@ -1229,6 +1231,16 @@ public class MainGameController implements javafx.fxml.Initializable {
                 if (button.getId().equals(location)) {
                     if (tempCh.length == 2 && button.getId().contains("10")) {
                     } else {
+                        if (result.equals("HIT")) {
+                            int currentScore = Integer.parseInt(scoreCounter.getText());
+                            currentScore += 100;
+                            scoreCounter.setText(String.valueOf(currentScore));
+                        }
+                        else if (result.contains("DESTROYED")) {
+                            int currentScore = Integer.parseInt(scoreCounter.getText());
+                            currentScore += 500;
+                            scoreCounter.setText(String.valueOf(currentScore));
+                        }
                         button.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
                         button.setDisable(true);
                     }
