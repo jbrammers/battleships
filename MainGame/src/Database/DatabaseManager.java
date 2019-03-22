@@ -3,13 +3,14 @@ package Database;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.ArrayList;
 
 
 public class DatabaseManager {
 
     private Connection connection;
 
-    DatabaseManager(){
+    DatabaseManager() {
         String url = "jdbc:postgresql://mod-msc-sw1.cs.bham.ac.uk/group40";
         String username = "group40";
         String password = "52bsgkbp1x";
@@ -35,19 +36,20 @@ public class DatabaseManager {
             return rows.next();
 
         } catch (SQLException e) {
-            System.out.println("Something went wrong");
+            System.out.println("Something went wrong checking username exists");
             return true;
         }
     }
+
 
     /**
      * Insert a new user record into the database
      */
     public boolean addNewUserRecord(String username, String password) {
-       if (doesUsernameExist(username)){
-           System.out.println("Username is taken");
-           return false;
-       }
+        if (doesUsernameExist(username)) {
+            System.out.println("Username is taken");
+            return false;
+        }
 
         String playerStatement = "INSERT INTO player (username, password, salt) VALUES (?,?,?);";
 
@@ -62,11 +64,11 @@ public class DatabaseManager {
             preparedPlayerStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-           System.out.println("Something went wrong");
-           return false;
+            System.out.println("Something went wrong adding new user record");
+            return false;
         }
-
     }
+
 
     /**
      * Checking the inputted username and passwords match those stored on the database to enable login
@@ -105,56 +107,71 @@ public class DatabaseManager {
                 return false;
             }
         } catch (SQLException e) {
-            System.out.println("Something went wrong");
+            System.out.println("Something went wrong logging in");
             return false;
         }
-
     }
 
 
-
-
-
-    //Create the table, populate with info
-
-
-
-
+    /**
+     * This updates the database's record to record the win/loss and reevaluate the winratio
+     */
     public void updateGameHistory(Boolean didUserWin, String username) {
-        //if didUserWin = true:
-        // Connect to database
-        //update PLAYERS
-        // set wins = wins + 1,
-        // winratio = (wins::float + 1)/(wins + 1 + losses)
-        // where username = ?
+        String update;
+        if (didUserWin) {
+            update = "UPDATE players " +
+                    "SET wins = wins + 1," +
+                    "winratio = (wins::float + 1)/(wins + 1 + losses) " +
+                    "WHERE username = ?";
+        } else {
+            update = "UPDATE players " +
+                    "SET losses = losses + 1, " +
+                    "winratio = (wins::float)/(wins + losses + 1) " +
+                    "WHERE username = ?";
+        }
 
-        //else:
-        //Connect to database
-        //update PLAYERS
-        //set losses = losses + 1,
-        //winratio = (wins::float + 1)/(wins + losses + 1)
-        //where username = ?
+        try {
+            PreparedStatement statement = connection.prepareStatement(update);
 
+            statement.setString(1, username);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Something went wrong updating game history");
+        }
     }
 
-    //public //string args?? calculateLeaderBoard() {
-    //connect to database
-    //query *
-    // username, winratio, sort winrtio, max 10
+    /**
+     * Query the database to create a list of the top 10 players
+     */
+    public ArrayList<PlayerData> calculateLeaderBoard() {
+        String query = "SELECT username, wins, losses, winratio " +
+                "FROM players " +
+                "ORDER BY winratio DESC " +
+                "LIMIT 10";
 
-   // return //string args???
-    //}
+        try {
+            PreparedStatement preparedQuery = connection.prepareStatement(query);
 
+            ResultSet top10 = preparedQuery.executeQuery();
+
+            ArrayList<PlayerData> results = new ArrayList<>();
+            while (top10.next()){
+                String username = top10.getString("username");
+                Integer wins = top10.getInt("wins");
+                Integer losses = top10.getInt("losses");
+                Float winratio = top10.getFloat("winratio");
+
+                PlayerData data = new PlayerData(username, wins, losses, winratio);
+
+                results.add(data);
+            }
+
+            return results;
+        } catch (SQLException e) {
+            System.out.println("Something went wrong calculating the leader board");
+
+            return null;
+        }
+    }
 }
-
-
-
-
-
-
-/* database login info from Piers:
-Host: mod-msc-sw1.cs.bham.ac.uk
-User: group name in lower case??
-Database: group40
-Password: 52bsgkbp1x
- */
