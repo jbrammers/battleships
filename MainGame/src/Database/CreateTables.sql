@@ -4,21 +4,10 @@ create table player
     constraint "Player_pkey"
       primary key,
   password varchar(32) not null,
+  salt --not sure what type this is??
   wins integer default 0 not null,
-  losses integer default 0 not null
+  losses integer default 0 not null,
+  winratio decimal default 0 not null,
+
+  -- SORT BY WINRATIO HIGH TO LOW - does it automatically resort??
 );
-
-
-create table messages
-(
-  sender varchar(16) not null
-    constraint messages_player_username_fk
-      references player,
-  recipient varchar(16)
-    constraint messages_player_username_fk_2
-      references player,
-  datetime timestamp,
-  content varchar(1024)
-);
-
-
