@@ -1,13 +1,18 @@
 package GUI;
 
+import Database.DatabaseManager;
+import Database.PlayerData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class LeaderBoardController implements javafx.fxml.Initializable {
+    private DatabaseManager db;
+    private ArrayList<PlayerData> leaderboard;
 
     @FXML
     TextField board;
@@ -22,7 +27,9 @@ public class LeaderBoardController implements javafx.fxml.Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //TODO fill out leaderboard
+        db = new DatabaseManager();
+        leaderboard = db.calculateLeaderBoard();
+        db = null;
     }
 }
 

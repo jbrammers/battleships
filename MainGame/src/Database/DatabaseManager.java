@@ -10,7 +10,7 @@ public class DatabaseManager {
 
     private Connection connection;
 
-    DatabaseManager() {
+    public DatabaseManager() {
         String url = "jdbc:postgresql://mod-msc-sw1.cs.bham.ac.uk/group40";
         String username = "group40";
         String password = "52bsgkbp1x";
@@ -72,8 +72,9 @@ public class DatabaseManager {
 
     /**
      * Checking the inputted username and passwords match those stored on the database to enable login
+     * @return 0 if passed, 1 if username fails, 2 if password fails, 3 if something else is wrong
      */
-    public Boolean login(String username, String password) {
+    public int login(String username, String password) {
         String query = "SELECT username, password, salt FROM players WHERE username = ?;";
 
         try {
@@ -90,25 +91,24 @@ public class DatabaseManager {
 
                 // Hash the new password with the original salt.
                 String hash = PasswordHandler.hashPassword(password, dbSalt.getBytes());
-                if (hash == null)
-                    return false;
+                if (hash == null) return 3;
 
                 boolean matches = hash.equals(dbHash);
 
                 if (matches) {
-                    return true;
+                    return 0;
                 } else {
                     System.out.println("Password not found");
-                    return false;
+                    return 2;
                 }
 
             } else {
                 System.out.println("Username not found");
-                return false;
+                return 1;
             }
         } catch (SQLException e) {
             System.out.println("Something went wrong logging in");
-            return false;
+            return 3;
         }
     }
 

@@ -1,5 +1,7 @@
 package Server;
 
+import Database.DatabaseManager;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -13,10 +15,12 @@ import java.net.SocketException;
 public class ConnectionHandler implements Runnable {
     private Socket clientSocket;
     private ServerThread serverThread;
+    private DatabaseManager db;
 
     public ConnectionHandler(Socket clientSocket, ServerThread serverThread) {
         this.clientSocket = clientSocket;
         this.serverThread = serverThread;
+        this.db = new DatabaseManager();
     }
 
 
@@ -74,6 +78,7 @@ public class ConnectionHandler implements Runnable {
 
             // Finally a new player is added to the server
             serverThread.addPlayer(new Player(username, clientSocket));
+            db = null;
         } catch (SocketException e) {
             System.out.println("Connection lost to port " + clientSocket.getPort());
         } catch (Exception e) {
@@ -86,11 +91,16 @@ public class ConnectionHandler implements Runnable {
      * @param password password of user to be check
      * @return true if the username and password match those stored in the database, false if not
      */
-    public int databaseCheck(String username, String password) {
-        return 0; // TODO Check user's details against database, true if a match is found
+    private int databaseCheck(String username, String password) {
+        return db.login(username,password); // TODO Check user's details against database, true if a match is found
     }
 
-    public boolean newUser(String username, String password) {
-        return true; // TODO New user added to the database, returns true if success
+    /**
+     * @param username username of the new user to be added
+     * @param password password for the new user
+     * @return true if successfully created, false if not
+     */
+    private boolean newUser(String username, String password) {
+        return db.addNewUserRecord(username,password);
     }
 }

@@ -1,5 +1,7 @@
 package Server;
 
+import Database.DatabaseManager;
+
 import java.io.IOException;
 
 public class MessageHandler {
@@ -58,6 +60,10 @@ public class MessageHandler {
                     } else if (message.equals("gameEnd")) {
                         try {
                             player.getGame().endGame();
+                            DatabaseManager db = new DatabaseManager();
+                            db.updateGameHistory(false, player.getUsername());
+                            db.updateGameHistory(true, player.getOpponent().getUsername());
+                            db = null;
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
