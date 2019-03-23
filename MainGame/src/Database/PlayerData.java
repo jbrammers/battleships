@@ -28,4 +28,9 @@ public class PlayerData {
     public Float getWinratio() {
         return winratio;
     }
+
+    @Override
+    public String toString() {
+        return String.format("|%-45s|%-18d|%-20d|%-19f|" , username, wins, losses, winratio);
+    }
 }
