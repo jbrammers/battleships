@@ -32,6 +32,7 @@ public class NewUserController implements Initializable {
     @FXML
     private Button backButton;
 
+
     public void handleBackButtonAction() {
         PaneNavigator.loadPane(PaneNavigator.LOGIN);
     }
@@ -63,7 +64,7 @@ public class NewUserController implements Initializable {
             return;
         }
         else if (passwordField.getText().length() > 32) {
-            PopUpMessage.errorMessage("Username must be 32 characters or less");
+            PopUpMessage.errorMessage("Password must be 32 characters or less");
             return;
         }
 
