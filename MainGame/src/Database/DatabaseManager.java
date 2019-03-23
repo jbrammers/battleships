@@ -122,12 +122,12 @@ public class DatabaseManager {
     public void updateGameHistory(Boolean didUserWin, String username) {
         String update;
         if (didUserWin) {
-            update = "UPDATE players " +
+            update = "UPDATE player " +
                     "SET wins = wins + 1," +
                     "winratio = (wins::float + 1)/(wins + 1 + losses) " +
                     "WHERE username = ?";
         } else {
-            update = "UPDATE players " +
+            update = "UPDATE player " +
                     "SET losses = losses + 1, " +
                     "winratio = (wins::float)/(wins + losses + 1) " +
                     "WHERE username = ?";
@@ -141,6 +141,7 @@ public class DatabaseManager {
             statement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Something went wrong updating game history");
+            e.printStackTrace();
         }
     }
 
@@ -148,8 +149,8 @@ public class DatabaseManager {
      * Query the database to create a list of the top 10 players
      */
     public ArrayList<PlayerData> calculateLeaderBoard() {
-        String query = "SELECT username, wins, losses, winratio " +
-                "FROM players " +
+        String query = "SELECT username, wins, losses, ROUND(winratio,2) AS winratio " +
+                "FROM player " +
                 "ORDER BY winratio DESC " +
                 "LIMIT 10";
 
@@ -173,7 +174,7 @@ public class DatabaseManager {
             return results;
         } catch (SQLException e) {
             System.out.println("Something went wrong calculating the leader board");
-
+            e.printStackTrace();
             return null;
         }
     }
