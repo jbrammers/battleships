@@ -6,6 +6,7 @@ import javax.crypto.spec.PBEKeySpec;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
+import java.util.ArrayList;
 
 /**
  * Class used to hash passwords for secure storage
@@ -48,18 +49,16 @@ public class PasswordHandler {
      * @return String[] where 0 = hashed password to be stored
      * and 1 is the salt to be stored
      */
-    public static String[] newPassword(String password) {
-        String[] output = new String[2];
+    public static ArrayList<Object> newPassword(String password) {
+        ArrayList<Object> output = new ArrayList<>();
 
         SecureRandom sr = new SecureRandom();
         byte[] bytes = new byte[16];
         sr.nextBytes(bytes);
 
-        output[0] = hashPassword(password, bytes);
 
-        String byteString = new String(bytes);
-        output[1] = byteString;
-
+        output.add(hashPassword(password, bytes));
+        output.add(bytes);
         return output;
     }
 }

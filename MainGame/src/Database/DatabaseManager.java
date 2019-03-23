@@ -19,6 +19,7 @@ public class DatabaseManager {
             this.connection = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
             System.out.println("Something went wrong connecting to the database");
+            e.printStackTrace();
         }
     }
 
@@ -53,18 +54,19 @@ public class DatabaseManager {
 
         String playerStatement = "INSERT INTO player (username, password, salt) VALUES (?,?,?);";
 
-        String[] pass1 = PasswordHandler.newPassword(password);
+        ArrayList<Object> pass = PasswordHandler.newPassword(password);
 
         try {
             PreparedStatement preparedPlayerStatement = connection.prepareStatement(playerStatement);
 
             preparedPlayerStatement.setString(1, username);
-            preparedPlayerStatement.setString(2, pass1[0]);
-            preparedPlayerStatement.setString(3, pass1[1]);
+            preparedPlayerStatement.setString(2, (String) pass.get(0));
+            preparedPlayerStatement.setBytes(3, (byte[]) pass.get(1));
             preparedPlayerStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
             System.out.println("Something went wrong adding new user record");
+            e.printStackTrace();
             return false;
         }
     }
@@ -75,7 +77,7 @@ public class DatabaseManager {
      * @return 0 if passed, 1 if username fails, 2 if password fails, 3 if something else is wrong
      */
     public int login(String username, String password) {
-        String query = "SELECT username, password, salt FROM players WHERE username = ?;";
+        String query = "SELECT username, password, salt FROM player WHERE username = ?;";
 
         try {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -87,10 +89,10 @@ public class DatabaseManager {
             if (players.next()) {
                 // Retrieve the hashed password and salt from the database.
                 String dbHash = players.getString(2);
-                String dbSalt = players.getString(3);
+                byte[] dbSalt = players.getBytes(3);
 
                 // Hash the new password with the original salt.
-                String hash = PasswordHandler.hashPassword(password, dbSalt.getBytes());
+                String hash = PasswordHandler.hashPassword(password, dbSalt);
                 if (hash == null) return 3;
 
                 boolean matches = hash.equals(dbHash);
@@ -108,6 +110,7 @@ public class DatabaseManager {
             }
         } catch (SQLException e) {
             System.out.println("Something went wrong logging in");
+            e.printStackTrace();
             return 3;
         }
     }
