@@ -22,7 +22,10 @@ public class LeaderBoardController implements javafx.fxml.Initializable {
     }
 
     private void occupyLeaderboard() {
-        //TODO access database and print relevant info in good format.
+        String data = "";
+        for (PlayerData playerData: leaderboard) {
+            board.setText((data+=playerData.toString()) + "\n");
+        }
     }
 
     @Override
@@ -30,6 +33,7 @@ public class LeaderBoardController implements javafx.fxml.Initializable {
         db = new DatabaseManager();
         leaderboard = db.calculateLeaderBoard();
         db = null;
+        occupyLeaderboard();
     }
 }
 

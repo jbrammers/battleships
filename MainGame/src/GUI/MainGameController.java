@@ -17,8 +17,6 @@ import java.util.ResourceBundle;
 
 
 public class MainGameController implements javafx.fxml.Initializable {
-    private static MainGameController controller;
-
 
     @FXML
     Button fireButton;
@@ -433,7 +431,123 @@ public class MainGameController implements javafx.fxml.Initializable {
     private Button J9;
     @FXML
     private Button J10;
+    @FXML
+    ChoiceBox weaponSelectionMenu;
 
+    private static MainGameController controller;
+    ArrayList<Button> buttonArray = new ArrayList<>();
+    ArrayList<Rectangle> ownShipsRectangles = new ArrayList<>();
+    public static ArrayList<String> messageLog = new ArrayList<>();
+    public static String message = "";
+    public static int messageCount = 0;
+    public String incomingMessage;
+    public static Gameboard gameboard = ShipPlacementController.gameboard;
+    public boolean turn;
+    private boolean targetLocated = false;
+    private Button currentlySelectedButton;
+    private String currentLocationAttempt;
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        buttonArray();
+        initialiseButtonLayout();
+        initiateRectangleArrayList();
+        initialiseOwnShips(gameboard);
+        controller = this;
+        DataStore.getData().addObjects("main game", controller);
+
+        Thread thread = Thread.currentThread();
+        DataStore.getData().addObjects("gui thread", thread);
+
+        DataStore.getData().addObjects("gameboard", gameboard);
+
+        setTurn(false);
+    }
+
+    public void setTurnLabel(String turn) {
+        if (turn.equals("yourturn")) {
+            turnLabel.setText("Your Turn");
+        }
+        else turnLabel.setText("Opponents Turn");
+    }
+
+    public void handleFireButtonAction(ActionEvent actionEvent) {
+        if (turn) {
+            Client client = (Client) DataStore.getData().getObject("client");
+            client.send("GAME " + currentLocationAttempt);
+        } else {
+            PopUpMessage.popUp("Please wait for your turn!");
+        }
+    }
+
+    public void incomingAttempt(String location, String result) {
+
+        char[] tempCh = location.toCharArray();
+
+        if (result.equals("HIT") || result.contains("DESTROYED")) {
+            for (Rectangle rect : ownShipsRectangles) {
+                if (rect.getId().contains(location)) {
+                    if (tempCh.length == 2 && rect.getId().contains("10")) {
+                    } else rect.setFill(Color.RED);
+                }
+            }
+        }
+        if (result.equals("MISS")) {
+            for (Rectangle rect : ownShipsRectangles) {
+                if (rect.getId().contains(location)) {
+                    if (tempCh.length == 2 && rect.getId().contains("10")) {
+                    } else rect.setFill(Color.WHITE);
+                }
+            }
+        }
+
+    }
+
+    public void outgoingAttempt(String location, String result) {
+        char[] tempCh = location.toCharArray();
+
+        if (result.equals("HIT") || result.contains("DESTROYED")) {
+            for (Button button : buttonArray) {
+                if (button.getId().equals(location)) {
+                    if (tempCh.length == 2 && button.getId().contains("10")) {
+                    } else {
+                        if (result.equals("HIT")) {
+                            int currentScore = Integer.parseInt(scoreCounter.getText());
+                            currentScore += 100;
+                            scoreCounter.setText(String.valueOf(currentScore));
+                        }
+                        else if (result.contains("DESTROYED")) {
+                            int currentScore = Integer.parseInt(scoreCounter.getText());
+                            currentScore += 500;
+                            scoreCounter.setText(String.valueOf(currentScore));
+                        }
+                        button.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+                        button.setDisable(true);
+                    }
+                }
+            }
+        }
+        if (result.equals("MISS")) {
+            for (Button button : buttonArray) {
+                if (button.getId().equals(location)) {
+                    if (tempCh.length == 2 && button.getId().contains("10")) {
+                    } else {
+                        button.setBackground(new Background(new BackgroundFill(Color.DODGERBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+                        button.setDisable(true);
+                    }
+                }
+            }
+        }
+    }
+
+    public static MainGameController getController() {
+        return controller;
+    }
+
+    public void setTurn(boolean turn) {
+        this.turn = turn;
+    }
 
     private void initiateRectangleArrayList() {
 
@@ -539,8 +653,78 @@ public class MainGameController implements javafx.fxml.Initializable {
         ownShipsRectangles.add(ownShipsJ10);
     }
 
-    ArrayList<Button> buttonArray = new ArrayList<>();
-    ArrayList<Rectangle> ownShipsRectangles = new ArrayList<>();
+    public  void initialiseButtonLayout() {
+        for (Button button : buttonArray) {
+            button.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+            button.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+        }
+    }
+
+    public void initialiseOwnShips(Gameboard gameboard) {
+
+        for (Ship ship : gameboard.getBoard()) {
+            ArrayList<String> rows = new ArrayList<>();
+            ArrayList<String> columns = new ArrayList<>();
+            for (String location : ship.getLocation()) {
+                String[] inter = location.split("_");
+                String[] rowsColumns = inter[0].split("!");
+                rows.add(rowsColumns[0]);
+                columns.add(rowsColumns[1]);
+            }
+            if (ship.getType().equals("Zeus")) {
+                for (Rectangle rect : ownShipsRectangles) {
+                    for (int i = 0; i < 2; i++) {
+                        if (rect.getId().contains(rows.get(i)) && rect.getId().contains(columns.get(i))) {
+                            if (columns.get(i).equals("1") && rect.getId().contains("10")) {
+
+                            } else {
+                                rect.setFill(Color.GREEN);
+                            }
+                        }
+                    }
+                }
+            }
+            if (ship.getType().equals("Sledgehammer")) {
+                for (Rectangle rect : ownShipsRectangles) {
+                    for (int i = 0; i < 3; i++) {
+                        if (rect.getId().contains(rows.get(i)) && rect.getId().contains(columns.get(i))) {
+                            if (columns.get(i).equals("1") && rect.getId().contains("10")) {
+
+                            } else {
+                                rect.setFill(Color.BLUE);
+                            }
+                        }
+                    }
+                }
+            }
+            if (ship.getType().equals("Stellar")) {
+                for (Rectangle rect : ownShipsRectangles) {
+                    for (int i = 0; i < 4; i++) {
+                        if (rect.getId().contains(rows.get(i)) && rect.getId().contains(columns.get(i))) {
+                            if (columns.get(i).equals("1") && rect.getId().contains("10")) {
+
+                            } else {
+                                rect.setFill(Color.YELLOW);
+                            }
+                        }
+                    }
+                }
+            }
+            if (ship.getType().equals("Ajax")) {
+                for (Rectangle rect : ownShipsRectangles) {
+                    for (int i = 0; i < 5; i++) {
+                        if (rect.getId().contains(rows.get(i)) && rect.getId().contains(columns.get(i))) {
+                            if (columns.get(i).equals("1") && rect.getId().contains("10")) {
+
+                            } else {
+                                rect.setFill(Color.PURPLE);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     private void buttonArray() {
         buttonArray.add(A1);
@@ -645,86 +829,6 @@ public class MainGameController implements javafx.fxml.Initializable {
         buttonArray.add(J10);
     }
 
-    public static ArrayList<String> messageLog = new ArrayList<>();
-    public static String message = "";
-    public static int messageCount = 0;
-    public String incomingMessage;
-    public static Gameboard gameboard = ShipPlacementController.gameboard;
-    public boolean turn;
-
-    public  void initialiseButtonLayout() {
-        for (Button button : buttonArray) {
-            button.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
-            button.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
-        }
-    }
-
-    public void initialiseOwnShips(Gameboard gameboard) {
-
-        for (Ship ship : gameboard.getBoard()) {
-            ArrayList<String> rows = new ArrayList<>();
-            ArrayList<String> columns = new ArrayList<>();
-            for (String location : ship.getLocation()) {
-                String[] inter = location.split("_");
-                String[] rowsColumns = inter[0].split("!");
-                rows.add(rowsColumns[0]);
-                columns.add(rowsColumns[1]);
-            }
-            if (ship.getType().equals("Zeus")) {
-                for (Rectangle rect : ownShipsRectangles) {
-                    for (int i = 0; i < 2; i++) {
-                        if (rect.getId().contains(rows.get(i)) && rect.getId().contains(columns.get(i))) {
-                            if (columns.get(i).equals("1") && rect.getId().contains("10")) {
-
-                            } else {
-                                rect.setFill(Color.GREEN);
-                            }
-                        }
-                    }
-                }
-            }
-            if (ship.getType().equals("Sledgehammer")) {
-                for (Rectangle rect : ownShipsRectangles) {
-                    for (int i = 0; i < 3; i++) {
-                        if (rect.getId().contains(rows.get(i)) && rect.getId().contains(columns.get(i))) {
-                            if (columns.get(i).equals("1") && rect.getId().contains("10")) {
-
-                            } else {
-                                rect.setFill(Color.BLUE);
-                            }
-                        }
-                    }
-                }
-            }
-            if (ship.getType().equals("Stellar")) {
-                for (Rectangle rect : ownShipsRectangles) {
-                    for (int i = 0; i < 4; i++) {
-                        if (rect.getId().contains(rows.get(i)) && rect.getId().contains(columns.get(i))) {
-                            if (columns.get(i).equals("1") && rect.getId().contains("10")) {
-
-                            } else {
-                                rect.setFill(Color.YELLOW);
-                            }
-                        }
-                    }
-                }
-            }
-            if (ship.getType().equals("Ajax")) {
-                for (Rectangle rect : ownShipsRectangles) {
-                    for (int i = 0; i < 5; i++) {
-                        if (rect.getId().contains(rows.get(i)) && rect.getId().contains(columns.get(i))) {
-                            if (columns.get(i).equals("1") && rect.getId().contains("10")) {
-
-                            } else {
-                                rect.setFill(Color.PURPLE);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     public void handleSendButtonAction() {
 
         message = messageField.getText();
@@ -763,9 +867,9 @@ public class MainGameController implements javafx.fxml.Initializable {
         return messageLog.get(messageCount);
     }
 
-    private boolean targetLocated = false;
-    private Button currentlySelectedButton;
-    private String currentLocationAttempt;
+    public void handleShopButtonAction() {
+        //TODO add pop up shop screen
+    }
 
     public void targetLocationAction(String location, Button button) {
         currentLocationAttempt = location;
@@ -1184,104 +1288,4 @@ public class MainGameController implements javafx.fxml.Initializable {
         targetLocationAction("J10", J10);
     }
 
-    public void setTurnLabel(String turn) {
-        if (turn.equals("yourturn")) {
-            turnLabel.setText("Your Turn");
-        }
-        else turnLabel.setText("Opponents Turn");
-    }
-
-    public void handleFireButtonAction(ActionEvent actionEvent) {
-        if (turn) {
-            Client client = (Client) DataStore.getData().getObject("client");
-            client.send("GAME " + currentLocationAttempt);
-        } else {
-            PopUpMessage.popUp("Please wait for your turn!");
-        }
-    }
-
-    public void incomingAttempt(String location, String result) {
-
-        char[] tempCh = location.toCharArray();
-
-        if (result.equals("HIT") || result.contains("DESTROYED")) {
-            for (Rectangle rect : ownShipsRectangles) {
-                if (rect.getId().contains(location)) {
-                    if (tempCh.length == 2 && rect.getId().contains("10")) {
-                    } else rect.setFill(Color.RED);
-                }
-            }
-        }
-        if (result.equals("MISS")) {
-            for (Rectangle rect : ownShipsRectangles) {
-                if (rect.getId().contains(location)) {
-                    if (tempCh.length == 2 && rect.getId().contains("10")) {
-                    } else rect.setFill(Color.WHITE);
-                }
-            }
-        }
-
-    }
-
-    public void outgoingAttempt(String location, String result) {
-        char[] tempCh = location.toCharArray();
-
-        if (result.equals("HIT") || result.contains("DESTROYED")) {
-            for (Button button : buttonArray) {
-                if (button.getId().equals(location)) {
-                    if (tempCh.length == 2 && button.getId().contains("10")) {
-                    } else {
-                        if (result.equals("HIT")) {
-                            int currentScore = Integer.parseInt(scoreCounter.getText());
-                            currentScore += 100;
-                            scoreCounter.setText(String.valueOf(currentScore));
-                        }
-                        else if (result.contains("DESTROYED")) {
-                            int currentScore = Integer.parseInt(scoreCounter.getText());
-                            currentScore += 500;
-                            scoreCounter.setText(String.valueOf(currentScore));
-                        }
-                        button.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
-                        button.setDisable(true);
-                    }
-                }
-            }
-        }
-        if (result.equals("MISS")) {
-            for (Button button : buttonArray) {
-                if (button.getId().equals(location)) {
-                    if (tempCh.length == 2 && button.getId().contains("10")) {
-                    } else {
-                        button.setBackground(new Background(new BackgroundFill(Color.DODGERBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-                        button.setDisable(true);
-                    }
-                }
-            }
-        }
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        buttonArray();
-        initialiseButtonLayout();
-        initiateRectangleArrayList();
-        initialiseOwnShips(gameboard);
-        controller = this;
-        DataStore.getData().addObjects("main game", controller);
-
-        Thread thread = Thread.currentThread();
-        DataStore.getData().addObjects("gui thread", thread);
-
-        DataStore.getData().addObjects("gameboard", gameboard);
-
-        setTurn(false);
-    }
-
-    public static MainGameController getController() {
-        return controller;
-    }
-
-    public void setTurn(boolean turn) {
-        this.turn = turn;
-    }
 }

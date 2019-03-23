@@ -19,46 +19,6 @@ import java.util.ResourceBundle;
 
 public class ShipPlacementController implements Initializable {
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        buttonsArray();
-        initialiseAllButtons();
-        gameboard = new Gameboard();
-    }
-
-    public static Gameboard gameboard;
-
-    private ArrayList<Ship> zeusShips = new ArrayList<>(Arrays.asList(new Ship("Zeus", 2), new Ship("Zeus", 2), new Ship("Zeus", 2), new Ship("Zeus", 2)));
-    private ArrayList<Ship> sledgehammerShips = new ArrayList<>(Arrays.asList(new Ship("Sledgehammer", 3), new Ship("Sledgehammer", 3), new Ship("Sledgehammer", 3)));
-    private ArrayList<Ship> stellarShips = new ArrayList<>(Arrays.asList(new Ship("Stellar", 4), new Ship("Stellar", 4)));
-    private ArrayList<Ship> ajaxShips = new ArrayList<>(Arrays.asList(new Ship("Ajax", 5)));
-
-
-    private boolean zeusButton1 = false;
-    private boolean zeusButton2 = false;
-    private boolean sledgehammerButton1 = false;
-    private boolean sledgehammerButton2 = false;
-    private boolean sledgehammerButton3 = false;
-    private boolean stellarButton1 = false;
-    private boolean stellarButton2 = false;
-    private boolean stellarButton3 = false;
-    private boolean stellarButton4 = false;
-    private boolean ajaxButton1 = false;
-    private boolean ajaxButton2 = false;
-    private boolean ajaxButton3 = false;
-    private boolean ajaxButton4 = false;
-    private boolean ajaxButton5 = false;
-
-    private boolean otherButtonActive = false;
-
-    private int currentButtonNumber;
-    private Ship currentShip;
-
-    private int zeusShipsRemaining = 4;
-    private int sledgehammerShipsRemaining = 3;
-    private int stellarShipsRemaining = 2;
-    private int ajaxShipsRemaining = 1;
-
     @FXML
     private Button Zeus1;
 
@@ -314,7 +274,45 @@ public class ShipPlacementController implements Initializable {
     @FXML
     private Button J10;
 
+    public static Gameboard gameboard;
+
+    private ArrayList<Ship> zeusShips = new ArrayList<>(Arrays.asList(new Ship("Zeus", 2), new Ship("Zeus", 2), new Ship("Zeus", 2), new Ship("Zeus", 2)));
+    private ArrayList<Ship> sledgehammerShips = new ArrayList<>(Arrays.asList(new Ship("Sledgehammer", 3), new Ship("Sledgehammer", 3), new Ship("Sledgehammer", 3)));
+    private ArrayList<Ship> stellarShips = new ArrayList<>(Arrays.asList(new Ship("Stellar", 4), new Ship("Stellar", 4)));
+    private ArrayList<Ship> ajaxShips = new ArrayList<>(Arrays.asList(new Ship("Ajax", 5)));
+
+    private boolean zeusButton1 = false;
+    private boolean zeusButton2 = false;
+    private boolean sledgehammerButton1 = false;
+    private boolean sledgehammerButton2 = false;
+    private boolean sledgehammerButton3 = false;
+    private boolean stellarButton1 = false;
+    private boolean stellarButton2 = false;
+    private boolean stellarButton3 = false;
+    private boolean stellarButton4 = false;
+    private boolean ajaxButton1 = false;
+    private boolean ajaxButton2 = false;
+    private boolean ajaxButton3 = false;
+    private boolean ajaxButton4 = false;
+    private boolean ajaxButton5 = false;
+    private boolean otherButtonActive = false;
+    private int currentButtonNumber;
+    private Ship currentShip;
+    private int zeusShipsRemaining = 4;
+    private int sledgehammerShipsRemaining = 3;
+    private int stellarShipsRemaining = 2;
+    private int ajaxShipsRemaining = 1;
     private ArrayList<Button> buttonArray = new ArrayList<>();
+    private ArrayList<Button> currentShipButtonsPressed = new ArrayList<>();
+    private final String[] rows = {"END", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "END"};
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        buttonsArray();
+        initialiseAllButtons();
+        gameboard = new Gameboard();
+    }
 
     private void buttonsArray() {
         buttonArray.add(A1);
@@ -432,6 +430,7 @@ public class ShipPlacementController implements Initializable {
         buttonArray.add(Ajax4);
         buttonArray.add(Ajax5);
     }
+
     private void initialiseAllButtons() {
         for (int i = 0; i < 100; i++) {
             buttonArray.get(i).setBackground(new Background(new BackgroundFill(Color.DODGERBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -849,8 +848,6 @@ public class ShipPlacementController implements Initializable {
         }
     }
 
-    private ArrayList<Button> currentShipButtonsPressed = new ArrayList<>();
-
     private void gridButtonHelper(String location, Button button) {
         location += "_" + currentButtonNumber;
         if (!zeusButton1 && !zeusButton2 && !sledgehammerButton1 && !sledgehammerButton2 && !sledgehammerButton3 && !stellarButton1 && !stellarButton2 && !stellarButton3 && !stellarButton4 && !ajaxButton1 && !ajaxButton2 && !ajaxButton3 && !ajaxButton4 && !ajaxButton5) {
@@ -927,7 +924,6 @@ public class ShipPlacementController implements Initializable {
 
         }
     }
-
 
     private boolean validLocation(String locationAttempt, Ship ship) {
 
@@ -1022,8 +1018,6 @@ public class ShipPlacementController implements Initializable {
         }
     }
 
-    private final String[] rows = {"END", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "END"};
-
     private String rowNavigator(String ch, int i) {
         int index = 0;
         for (String row : rows) {
@@ -1032,6 +1026,24 @@ public class ShipPlacementController implements Initializable {
             } else index++;
         }
         return rows[index + i];
+    }
+
+    public void handleButtonActionBack(ActionEvent actionEvent) {
+        PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
+    }
+
+    public void handleButtonActionContinue(ActionEvent actionEvent) {
+        //TODO send completed gameboard to server
+        // Client.send(gameboard.toString());
+
+        PaneNavigator.loadPane(PaneNavigator.MAINGAME);
+
+        Thread thread = (Thread) DataStore.getData().getObject("thread");
+        thread.start();
+
+        Client client = (Client) DataStore.getData().getObject("client");
+        client.send("SYSTEM ready");
+        System.out.println("Ready message sent");
     }
 
     public void handleGridButtonPressA1() {
@@ -1433,25 +1445,5 @@ public class ShipPlacementController implements Initializable {
     public void handleGridButtonPressJ10() {
         gridButtonHelper("J!10", J10);
     }
-
-
-    public void handleButtonActionBack(ActionEvent actionEvent) {
-        PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
-    }
-
-    public void handleButtonActionContinue(ActionEvent actionEvent) {
-        //TODO send completed gameboard to server
-        // Client.send(gameboard.toString());
-
-        PaneNavigator.loadPane(PaneNavigator.MAINGAME);
-
-        Thread thread = (Thread) DataStore.getData().getObject("thread");
-        thread.start();
-
-        Client client = (Client) DataStore.getData().getObject("client");
-        client.send("SYSTEM ready");
-        System.out.println("Ready message sent");
-    }
-
 
 }
