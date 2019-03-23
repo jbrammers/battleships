@@ -4,7 +4,7 @@ import Database.DatabaseManager;
 import Database.PlayerData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -15,17 +15,22 @@ public class LeaderBoardController implements javafx.fxml.Initializable {
     private ArrayList<PlayerData> leaderboard;
 
     @FXML
-    TextField board;
+    TextArea board;
 
     public void handleBackButtonAction(ActionEvent actionEvent) {
         PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
     }
 
     private void occupyLeaderboard() {
-        String data = "";
+        int counter = 1;
+        String data = String.format("|%5s Rank %5s|%16s Username %16s|%5s Wins %5s|%5s Losses %5s|%5s W/L Ratio %5s|\n", "", "", "", "", "", "", "", "", "", "");
         for (PlayerData playerData: leaderboard) {
-            board.setText((data+=playerData.toString()) + "\n");
+            data += "|-------------|----------------------------------|-------------|---------------|-------------------|\n";
+            data += ("|        " + counter + "         " + (playerData.toString()) + "\n");
+            counter++;
         }
+        data += "|-------------|----------------------------------|-------------|---------------|-------------------|\n";
+        board.setText(data);
     }
 
     @Override
