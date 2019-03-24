@@ -53,8 +53,7 @@ public class Server implements Runnable {
                     newGame(player1,player2);
             }
 
-            // Iterates over the game list and executes them
-            // TODO games might require threads to yield so one game doesn't have to run to completetion before the next
+            // Iterates over the game list and checks if they have finished
             for (int i = 0; i < gameInstances.size(); i++) {
                 Game g = gameInstances.get(i);
                 // Closes a game if its finished
@@ -132,13 +131,6 @@ public class Server implements Runnable {
             if (!running) {
                 // If server hasn't been started for any reason this triggers
                 System.out.println("Server is stopped");
-            } else {
-                // Thread should yield if no connection accepted
-                try {
-                    Thread.sleep(1000);
-                } catch (Exception a) {
-                    a.printStackTrace();
-                }
             }
         }
     }

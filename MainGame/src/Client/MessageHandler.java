@@ -12,12 +12,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class InputHandler {
+public class MessageHandler {
     Socket client;
     BufferedReader in;
     PrintWriter out;
 
-    public InputHandler(Socket client, BufferedReader in, PrintWriter out) {
+    public MessageHandler(Socket client, BufferedReader in, PrintWriter out) {
         this.client = client;
         this.out = out;
         this.in = in;

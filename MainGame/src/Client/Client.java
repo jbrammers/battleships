@@ -55,7 +55,7 @@ public class Client implements Runnable {
     public void run() {
         try {
 
-            InputHandler handler = new InputHandler(client, input, output);
+            MessageHandler handler = new MessageHandler(client, input, output);
 
             // Listens for inputs whilst open
             while (!client.isClosed()) {
