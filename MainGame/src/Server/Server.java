@@ -77,6 +77,10 @@ public class Server implements Runnable {
         gameInstances.add(newGame);
     }
 
+    /**
+     * Adds a new player to the waiting list and begins their listener
+     * @param newPlayer player to be added
+     */
     public void addPlayer(Player newPlayer) {
         waitingPlayers.add(newPlayer);
         threadpool.execute(newPlayer);
