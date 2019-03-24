@@ -1,7 +1,7 @@
 package Tests;
 
 import Client.Client;
-import Server.ServerThread;
+import Server.Server;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +9,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 
 public class ConnectionTest {
-    private ServerThread server;
+    private Server server;
     private Client player1;
     private Client player2;
     private Thread p1Thread;
@@ -17,7 +17,7 @@ public class ConnectionTest {
 
     @Before
     public void setUp() {
-        server = new ServerThread(3000);
+        server = new Server(3000);
         new Thread(server).start();
 
         player1 = new Client();

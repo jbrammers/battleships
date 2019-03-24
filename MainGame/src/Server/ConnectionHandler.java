@@ -14,10 +14,10 @@ import java.net.SocketException;
  */
 public class ConnectionHandler implements Runnable {
     private Socket clientSocket;
-    private ServerThread serverThread;
+    private Server serverThread;
     private DatabaseManager db;
 
-    public ConnectionHandler(Socket clientSocket, ServerThread serverThread) {
+    public ConnectionHandler(Socket clientSocket, Server serverThread) {
         this.clientSocket = clientSocket;
         this.serverThread = serverThread;
         this.db = new DatabaseManager();

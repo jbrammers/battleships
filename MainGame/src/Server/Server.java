@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class ServerThread implements Runnable {
+public class Server implements Runnable {
     private int port;
     private ServerSocket serverSocket;
     private boolean running = false;
@@ -17,7 +17,7 @@ public class ServerThread implements Runnable {
     private ArrayList<Player> waitingPlayers;
     private int idIterator = 1;
 
-    public ServerThread(int port) {
+    public Server(int port) {
         this.port = port;
         gameInstances = new ArrayList<>();
         waitingPlayers = new ArrayList<>();
