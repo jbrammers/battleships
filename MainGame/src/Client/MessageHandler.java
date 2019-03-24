@@ -8,14 +8,13 @@ import Game.Gameboard;
 import javafx.application.Platform;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 
 public class MessageHandler {
-    Socket client;
-    BufferedReader in;
-    PrintWriter out;
+    private Socket client;
+    private BufferedReader in;
+    private PrintWriter out;
 
     public MessageHandler(Socket client, BufferedReader in, PrintWriter out) {
         this.client = client;
@@ -23,7 +22,7 @@ public class MessageHandler {
         this.in = in;
     }
 
-    public void handle(String in) throws IOException {
+    public void handle(String in){
         String identifier;
         final String message;
         if (in.contains(" ")) {
@@ -108,18 +107,22 @@ public class MessageHandler {
                 break;
 
             case "SYSTEM":
-                if (message.equals("yourturn")) {
-                    System.out.println(message);
-                    ctrl = (MainGameController) DataStore.getData().getObject("main game");
-                    ctrl.setTurn(true);
-                    Platform.runLater(() ->ctrl.setTurnLabel(message));
-                } else if (message.equals("theirturn")) {
-                    System.out.println(message);
-                    ctrl = (MainGameController) DataStore.getData().getObject("main game");
-                    ctrl.setTurn(false);
-                    Platform.runLater(() ->ctrl.setTurnLabel(message));
-                } else if (message.equals("nullattempt")) {
-                    Platform.runLater(() -> PopUpMessage.errorMessage("Something went wrong when firing at this co-ordinate. Please try again."));
+                switch (message) {
+                    case "yourturn":
+                        System.out.println(message);
+                        ctrl = (MainGameController) DataStore.getData().getObject("main game");
+                        ctrl.setTurn(true);
+                        Platform.runLater(() -> ctrl.setTurnLabel(message));
+                        break;
+                    case "theirturn":
+                        System.out.println(message);
+                        ctrl = (MainGameController) DataStore.getData().getObject("main game");
+                        ctrl.setTurn(false);
+                        Platform.runLater(() -> ctrl.setTurnLabel(message));
+                        break;
+                    case "nullattempt":
+                        Platform.runLater(() -> PopUpMessage.errorMessage("Something went wrong when firing at this co-ordinate. Please try again."));
+                        break;
                 }
                 break;
 

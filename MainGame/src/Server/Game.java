@@ -78,7 +78,7 @@ public class Game implements Runnable {
     /**
      * Starts the game by sending a message to each player that they are now in a game
      */
-    public void gameStart() {
+    private void gameStart() {
         System.out.printf("Game ID %d started!\n", gameID);
         for (Player player: playerList) {
             System.out.println(player.toString());

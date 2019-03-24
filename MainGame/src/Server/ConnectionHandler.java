@@ -14,12 +14,12 @@ import java.net.SocketException;
  */
 public class ConnectionHandler implements Runnable {
     private Socket clientSocket;
-    private Server serverThread;
+    private Server server;
     private DatabaseManager db;
 
-    public ConnectionHandler(Socket clientSocket, Server serverThread) {
+    public ConnectionHandler(Socket clientSocket, Server server) {
         this.clientSocket = clientSocket;
-        this.serverThread = serverThread;
+        this.server = server;
         this.db = new DatabaseManager();
     }
 
@@ -77,7 +77,7 @@ public class ConnectionHandler implements Runnable {
             }
 
             // Finally a new player is added to the server
-            serverThread.addPlayer(new Player(username, clientSocket));
+            server.addPlayer(new Player(username, clientSocket));
             db = null;
         } catch (SocketException e) {
             System.out.println("Connection lost to port " + clientSocket.getPort());
@@ -89,10 +89,10 @@ public class ConnectionHandler implements Runnable {
     /**
      * @param username username of user to be checked
      * @param password password of user to be check
-     * @return true if the username and password match those stored in the database, false if not
+     * @return 0 if passed, 1 if username fails, 2 if password fails, 3 if something else is wrong
      */
     private int databaseCheck(String username, String password) {
-        return db.login(username,password); // TODO Check user's details against database, true if a match is found
+        return db.login(username,password);
     }
 
     /**
