@@ -6,9 +6,7 @@ public class Gameboard {
 
 	private ArrayList<Ship> board = new ArrayList<>();
 
-	public Gameboard() {
-
-	}
+	public Gameboard() {}
 
 	public void setBoard(ArrayList<Ship> board) {
 		this.board = board;
@@ -26,6 +24,11 @@ public class Gameboard {
 		board.remove(ship);
 	}
 
+	/**
+	 * Checks the attempts made at all the ships in the gameboard
+	 * @param location location of the shot being fired in the format ROW!COLUMN
+	 * @return HIT, MISS or DESTROYED depending on the result
+	 */
 	public String attempt(String location) {
 
 		String result = "";

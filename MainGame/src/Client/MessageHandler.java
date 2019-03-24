@@ -22,6 +22,11 @@ public class MessageHandler {
         this.in = in;
     }
 
+    /**
+     * Given an input this method will determine the type of message being recieved and
+     * perform the appropriate response.
+     * @param in the string to be processed
+     */
     public void handle(String in){
         String identifier;
         final String message;

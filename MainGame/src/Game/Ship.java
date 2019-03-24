@@ -74,6 +74,11 @@ public class Ship {
 		return locations.size() == length;
 	}
 
+	/**
+	 * Checks the attempts made at all the ships in the gameboard
+	 * @param locationAttempt location of the shot being fired in the format ROW!COLUMN
+	 * @return HIT, MISS or DESTROYED depending on the result
+	 */
 	public String attempt(String locationAttempt) {
 
 
@@ -86,12 +91,13 @@ public class Ship {
 			StringBuffer loc = new StringBuffer();
 
 			for (char c : chars) {
-				StringBuffer temp = new StringBuffer();
+				StringBuilder temp = new StringBuilder();
 				temp.append(c);
 				if (temp.toString().matches("[A-Z0-9]")) loc.append(temp);
 				System.out.println(loc);
 			}
 
+			// Uses a counter to determine if the ship has been destroyed
 			if (locationAttempt.equals(loc.toString())) {
 				if (counter == length-1) {
 					setAlive(false);
