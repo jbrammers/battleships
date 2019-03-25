@@ -55,6 +55,10 @@ public class Player implements Runnable{
         this.game = game;
     }
 
+    /**
+     * Sends an echo to the client and expects a reply - used to check the player is still connected
+     * @return true if connected
+     */
     public boolean isSocketConnected() {
 
         int tries = 1;

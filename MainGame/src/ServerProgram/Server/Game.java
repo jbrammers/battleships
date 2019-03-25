@@ -37,9 +37,6 @@ public class Game implements Runnable {
     }
 
 
-    /**
-     * Runs the game itself
-     */
     public void run() {
         try{
             // Loops through the game until a winner is found

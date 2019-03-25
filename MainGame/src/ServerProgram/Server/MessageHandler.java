@@ -5,6 +5,11 @@ import ServerProgram.Database.DatabaseManager;
 import java.io.IOException;
 
 public class MessageHandler {
+    /**
+     * Checks the message being handled
+     * @param in String to be checked
+     * @param player Reference to the player for whom the input is being checked
+     */
     public static void inputCheck(String in, Player player) {
         if (in == null) {
         } else {
