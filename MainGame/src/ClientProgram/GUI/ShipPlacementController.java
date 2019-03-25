@@ -1033,6 +1033,10 @@ public class ShipPlacementController implements Initializable {
     }
 
     public void handleButtonActionContinue(ActionEvent actionEvent) {
+        if (!gridFull()) {
+            PopUpMessage.errorMessage("Please place all of your ships on the board before continuing.");
+            return;
+        }
 
         PaneNavigator.loadPane(PaneNavigator.MAINGAME);
 
@@ -1041,8 +1045,10 @@ public class ShipPlacementController implements Initializable {
 
         Client client = (Client) DataStore.getData().getObject("client");
         client.send("SYSTEM ready");
+    }
 
-        // TODO Make sure there is a check in this method that all the ships have been placed!
+    private boolean gridFull() {
+        return gameboard.getBoard().size() == 10;
     }
 
     public void handleGridButtonPressA1() {
