@@ -1033,8 +1033,6 @@ public class ShipPlacementController implements Initializable {
     }
 
     public void handleButtonActionContinue(ActionEvent actionEvent) {
-        //TODO send completed gameboard to server
-        // ClientProgram.Client.send(gameboard.toString());
 
         PaneNavigator.loadPane(PaneNavigator.MAINGAME);
 
@@ -1043,7 +1041,8 @@ public class ShipPlacementController implements Initializable {
 
         Client client = (Client) DataStore.getData().getObject("client");
         client.send("SYSTEM ready");
-        System.out.println("Ready message sent");
+
+        // TODO Make sure there is a check in this method that all the ships have been placed!
     }
 
     public void handleGridButtonPressA1() {
