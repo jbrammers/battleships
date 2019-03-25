@@ -1,7 +1,7 @@
 package Tests;
 
-import Client.Client;
-import Server.Server;
+import ClientProgram.Client.Client;
+import ServerProgram.Server.Server;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

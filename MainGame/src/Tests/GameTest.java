@@ -1,9 +1,9 @@
 package Tests;
 
 
-import GUI.NewUserController;
-import Game.Gameboard;
-import Game.Ship;
+import ClientProgram.GUI.NewUserController;
+import ClientProgram.Game.Gameboard;
+import ClientProgram.Game.Ship;
 import javafx.scene.control.TextField;
 import org.junit.Before;
 import org.junit.Test;
