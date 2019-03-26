@@ -1,5 +1,7 @@
 package ServerProgram.Server;
 
+import ServerProgram.Database.DatabaseManager;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -10,6 +12,7 @@ import java.util.concurrent.Executors;
 public class Server implements Runnable {
     private int port;
     private ServerSocket serverSocket;
+    private DatabaseManager db;
     private boolean running = false;
     private Thread currentThread;
     private ExecutorService threadpool = Executors.newCachedThreadPool();
@@ -104,7 +107,10 @@ public class Server implements Runnable {
             this.serverSocket = new ServerSocket(this.port);
             serverSocket.setSoTimeout(1000);
             running = true;
-            System.out.printf("ServerProgram.Server started on port %d \n", port);
+            System.out.printf("Server started on port %d \n", port);
+
+            // Setup database manager
+            db = new DatabaseManager();
         } catch (IOException e) {
             System.out.println("Problem starting server on port: " + this.port);
         }
@@ -137,5 +143,9 @@ public class Server implements Runnable {
                 System.out.println("ServerProgram.Server is stopped");
             }
         }
+    }
+
+    public DatabaseManager getDb() {
+        return db;
     }
 }
