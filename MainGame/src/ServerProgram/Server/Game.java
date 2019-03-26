@@ -76,7 +76,7 @@ public class Game implements Runnable {
      * Starts the game by sending a message to each player that they are now in a game
      */
     private void gameStart() {
-        System.out.printf("ClientProgram.Game ID %d started!\n", gameID);
+        System.out.printf("Game ID %d started!\n", gameID);
         for (Player player: playerList) {
             System.out.println(player.toString());
             player.getOut().println(("MESSAGE Welcome to a BattleShips match between " + playerList.get(0).getUsername() +

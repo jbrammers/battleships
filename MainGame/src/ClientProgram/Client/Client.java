@@ -103,16 +103,20 @@ public class Client implements Runnable {
             } else if (in.startsWith("AUTHFAIL")) {
 
                 int type;
-                if (in.substring(8).matches("USER")) {
+                if (in.substring(9).matches("USER")) {
                     type = 1;
-                } else if (in.substring(8).matches("PASS")) {
+                } else if (in.substring(9).matches("PASS")) {
                     type = 2;
                 } else {
                     type = 3;
                 }
-                LoginController ctrl = (LoginController) DataStore.getData().getObject("login");
-                ctrl.requestNewDetails(username, type);
-                authFinished = true;
+                try {
+                    LoginController ctrl = (LoginController) DataStore.getData().getObject("login");
+                    ctrl.requestNewDetails(username, type);
+                    authFinished = true;
+                } catch (NullPointerException e) {
+                    authFinished = true;
+                }
             }
         }
 
@@ -154,11 +158,17 @@ public class Client implements Runnable {
         output.println(out);
     }
 
+    public Socket getClient() {
+        return client;
+    }
+
     public void endConnection() {
         try {
             client.close();
         } catch (IOException e) {
             System.out.println("Socket already closed.");
     }
+
+
 }
 }

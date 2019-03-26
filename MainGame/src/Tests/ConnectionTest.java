@@ -6,7 +6,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.net.ConnectException;
+import java.net.Socket;
+
+import static org.junit.Assert.*;
 
 public class ConnectionTest {
     private Server server;
@@ -14,6 +19,7 @@ public class ConnectionTest {
     private Client player2;
     private Thread p1Thread;
     private Thread p2Thread;
+    private ByteArrayOutputStream sout;
 
     @Before
     public void setUp() {
@@ -30,26 +36,98 @@ public class ConnectionTest {
     @After
     public void tearDown() {
         server.stopServer();
+        System.setOut(System.out);
+    }
+
+    @Test (expected = ConnectException.class)
+    public void serverStart() throws Exception {
+        try {
+            Socket testSocket = new Socket("localhost", 80);
+            testSocket.getOutputStream().write("test".getBytes());
+        } catch (Exception e) {
+            throw e;
+        } finally {
+
+
+            Server newServer = new Server(80);
+            new Thread(newServer).start();
+
+
+            Socket testSocket = new Socket("localhost", 80);
+            testSocket.getOutputStream().write("test".getBytes());
+
+            newServer.stopServer();
+        }
+    }
+
+
+    @Test
+    public void userFailTest() {
+        player1.start();
+
+        // Here to make sure the System.out is rerouted to the PrintStream properly
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Null Pointer Exception printed below is expected.");
+
+        sout = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(sout));
+
+        assertFalse(player1.logIn("badusername", "password"));
+
+        String expected = "Username not found\r\n";
+
+        assertEquals(expected, sout.toString());
+
+        player1.endConnection();
+    }
+
+    @Test
+    public void passFailTest() {
+        player1.start();
+
+        // Here to make sure the System.out is rerouted to the PrintStream properly
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Null Pointer Exception printed below is expected.");
+
+        sout = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(sout));
+
+        assertFalse(player1.logIn("admin", "badpass"));
+
+        String expected = "Password not found\r\n";
+
+        assertEquals(expected, sout.toString());
+
+        player1.endConnection();
     }
 
     @Test
     public void connectionTest() {
         player1.start();
-        p1Thread.start();
-        // assertFalse(player1.logIn("badusername", "wrongpassword")); // TODO this will work once database is connected
         assertTrue(player1.logIn("player1", "password"));
+        // assertEquals();
         player1.endConnection();
     }
 
     @Test
     public void twoPlayerCheck() {
         player1.start();
-        player1.logIn("player1", "password");
+        assertTrue(player1.logIn("player1", "password"));
         p1Thread.start();
 
 
         player2.start();
-        player2.logIn("player2", "password");
+        assertTrue(player2.logIn("player2", "password"));
         p2Thread.start();
 
         player1.send("ECHO");
@@ -62,11 +140,11 @@ public class ConnectionTest {
     @Test
     public void gameStartTest() {
         player1.start();
-        player1.logIn("player1", "password");
+        assertTrue(player1.logIn("player1", "password"));
         p1Thread.start();
 
         player2.start();
-        player2.logIn("player2", "password");
+        assertTrue(player2.logIn("player2", "password"));
         p2Thread.start();
 
 

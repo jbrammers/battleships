@@ -31,7 +31,7 @@ public class ConnectionHandler implements Runnable {
     public void run() {
         try {
             // Confirms connection on the server side
-            System.out.println("Connection received from " + clientSocket.getPort());
+            System.out.println("Connection received from " + clientSocket.getInetAddress());
 
 
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);

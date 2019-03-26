@@ -140,7 +140,7 @@ public class Server implements Runnable {
         } catch (IOException e) {
             if (!running) {
                 // If server hasn't been started for any reason this triggers
-                System.out.println("ServerProgram.Server is stopped");
+                System.out.println("Server is stopped");
             }
         }
     }
