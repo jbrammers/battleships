@@ -11,6 +11,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class InputHandler {
     Socket client;
@@ -62,7 +63,6 @@ public class InputHandler {
                     String[] temp = message.split(" ");
                     ctrl = (MainGameController) DataStore.getData().getObject("main game");
                     Platform.runLater(() -> ctrl.outgoingAttempt(temp[1], temp[2]));
-
                 } else {
                     Gameboard gameboard = (Gameboard) DataStore.getData().getObject("gameboard");
                     String reply = gameboard.attempt(message);

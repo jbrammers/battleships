@@ -59,6 +59,7 @@ public class Ship {
 		return locations;
 	}
 
+
 	public int locationCount() {
 		int counter = 0;
 		for (String location : locations) {
@@ -75,7 +76,6 @@ public class Ship {
 	}
 
 	public String attempt(String locationAttempt) {
-
 
 		for (String location : locations) {
 			String[] split = location.split("_");
@@ -104,6 +104,7 @@ public class Ship {
 		}
 		return "MISS";
 	}
+
 
 }
 

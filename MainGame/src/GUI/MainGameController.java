@@ -3,16 +3,23 @@ package GUI;
 import Client.Client;
 import Game.Gameboard;
 import Game.Ship;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 
@@ -432,7 +439,7 @@ public class MainGameController implements javafx.fxml.Initializable {
     @FXML
     private Button J10;
     @FXML
-    ChoiceBox weaponSelectionMenu;
+    public ComboBox weaponSelectMenu;
 
     private static MainGameController controller;
     ArrayList<Button> buttonArray = new ArrayList<>();
@@ -446,7 +453,12 @@ public class MainGameController implements javafx.fxml.Initializable {
     private boolean targetLocated = false;
     private Button currentlySelectedButton;
     private String currentLocationAttempt;
-
+    public static int rowBombardmentCounter = 0;
+    public static int nukeCounter = 0;
+    public static int columnBombardmentCounter = 0;
+    private static int score = 0;
+    private String weaponSelected = "DEFAULT SHOT";
+    private ArrayList<String> locationsSelected = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -454,30 +466,66 @@ public class MainGameController implements javafx.fxml.Initializable {
         initialiseButtonLayout();
         initiateRectangleArrayList();
         initialiseOwnShips(gameboard);
+        initialiseWeaponSelectMenu();
+        weaponSelectMenu.getSelectionModel().select(0);
         controller = this;
         DataStore.getData().addObjects("main game", controller);
-
         Thread thread = Thread.currentThread();
         DataStore.getData().addObjects("gui thread", thread);
-
         DataStore.getData().addObjects("gameboard", gameboard);
-
         setTurn(false);
     }
 
     public void setTurnLabel(String turn) {
         if (turn.equals("yourturn")) {
             turnLabel.setText("Your Turn");
-        }
-        else turnLabel.setText("Opponents Turn");
+        } else turnLabel.setText("Opponents Turn");
     }
 
     public void handleFireButtonAction(ActionEvent actionEvent) {
         if (turn) {
-            Client client = (Client) DataStore.getData().getObject("client");
-            client.send("GAME " + currentLocationAttempt);
-        } else {
-            PopUpMessage.popUp("Please wait for your turn!");
+            if (weaponSelected.equals("DEFAULT SHOT")) {
+                Client client = (Client) DataStore.getData().getObject("client");
+                client.send("GAME " + currentLocationAttempt);
+            } else if (weaponSelected.equals("ROW BOMBARDMENT")) {
+                if (rowBombardmentCounter <= 0) {
+                    PopUpMessage.popUp("You don't have any row bombardments!");
+                } else {
+                    rowBombardmentCounter--;
+                    updateShopOptions();
+                    weaponSelectMenu.getSelectionModel().select(0);
+                    Client client = (Client) DataStore.getData().getObject("client");
+                    for (String location : locationsSelected) {
+                        client.send("GAME " + location);
+                    }
+                }
+            } else if (weaponSelected.equals("NUKE")) {
+                if (nukeCounter <= 0) {
+                    PopUpMessage.popUp("You don't have any nukes!");
+                } else {
+                    nukeCounter--;
+                    updateShopOptions();
+                    weaponSelectMenu.getSelectionModel().select(0);
+                    Client client = (Client) DataStore.getData().getObject("client");
+                    for (String location : locationsSelected) {
+                        client.send("GAME " + location);
+                    }
+                }
+            } else if (weaponSelected.equals("COLUMN BOMBARDMENT")) {
+                if (columnBombardmentCounter <= 0) {
+                    PopUpMessage.popUp("You don't have any column bombardments!");
+                } else {
+                    columnBombardmentCounter--;
+                    updateShopOptions();
+                    weaponSelectMenu.getSelectionModel().select(0);
+                    Client client = (Client) DataStore.getData().getObject("client");
+                    for (String location : locationsSelected) {
+                        client.send("GAME " + location);
+                    }
+                }
+            } else {
+                PopUpMessage.popUp("Please wait for your turn!");
+            }
         }
     }
 
@@ -513,14 +561,11 @@ public class MainGameController implements javafx.fxml.Initializable {
                     if (tempCh.length == 2 && button.getId().contains("10")) {
                     } else {
                         if (result.equals("HIT")) {
-                            int currentScore = Integer.parseInt(scoreCounter.getText());
-                            currentScore += 100;
-                            scoreCounter.setText(String.valueOf(currentScore));
-                        }
-                        else if (result.contains("DESTROYED")) {
-                            int currentScore = Integer.parseInt(scoreCounter.getText());
-                            currentScore += 500;
-                            scoreCounter.setText(String.valueOf(currentScore));
+                            score += 100;
+                            scoreCounter.setText(String.valueOf(score));
+                        } else if (result.contains("DESTROYED")) {
+                            score += 500;
+                            scoreCounter.setText(String.valueOf(score));
                         }
                         button.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
                         button.setDisable(true);
@@ -653,7 +698,7 @@ public class MainGameController implements javafx.fxml.Initializable {
         ownShipsRectangles.add(ownShipsJ10);
     }
 
-    public  void initialiseButtonLayout() {
+    public void initialiseButtonLayout() {
         for (Button button : buttonArray) {
             button.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
             button.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
@@ -868,24 +913,203 @@ public class MainGameController implements javafx.fxml.Initializable {
     }
 
     public void handleShopButtonAction() {
-        //TODO add pop up shop screen
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxmlSheets/ShopScreen.fxml"));
+        Scene shopScene;
+        try {
+            shopScene = new Scene(loader.load());
+        } catch (IOException ex) {
+            // TODO: handle error
+            return;
+        }
+
+        Stage inputStage = new Stage();
+        inputStage.setScene(shopScene);
+        inputStage.showAndWait();
     }
 
     public void targetLocationAction(String location, Button button) {
-        currentLocationAttempt = location;
-        if (!targetLocated) {
-            targetLocated = true;
-            currentlySelectedButton = button;
-            button.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
-        } else if (currentlySelectedButton.getBackground().equals(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY))) || currentlySelectedButton.getBackground().equals(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)))){
-            currentlySelectedButton = button;
-            button.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+        locationsSelected = new ArrayList<>();
+        if (weaponSelected.equals("DEFAULT SHOT")) {
+            currentLocationAttempt = location;
+            if (!targetLocated) {
+                targetLocated = true;
+                currentlySelectedButton = button;
+                button.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+            } else if (currentlySelectedButton.getBackground().equals(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY))) || currentlySelectedButton.getBackground().equals(new Background(new BackgroundFill(Color.DODGERBLUE, CornerRadii.EMPTY, Insets.EMPTY)))) {
+                currentlySelectedButton = button;
+                button.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+            } else {
+                currentlySelectedButton.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                currentlySelectedButton = button;
+                button.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+            }
+        } else if (weaponSelected.equals("ROW BOMBARDMENT")) {
+            int indexOfButton = buttonArray.indexOf(button);
+            if (buttonArray.get(indexOfButton + 1).isDisabled() || buttonArray.get(indexOfButton + 2).isDisabled() || buttonArray.get(indexOfButton + 3).isDisabled()) {
+            }
+            if (location.contains("8") || location.contains("9") || location.contains("10")) {
+            } else {
+                String row = location.substring(0, 1);
+                String column = location.substring(1, 2);
+                String oneRightOfLocation = row + (Integer.valueOf(column) + 1);
+                String twoRightOfLocation = row + (Integer.valueOf(column) + 2);
+                String threeRightOfLocation = row + (Integer.valueOf(column) + 3);
+                locationsSelected.add(location);
+                locationsSelected.add(oneRightOfLocation);
+                locationsSelected.add(twoRightOfLocation);
+                locationsSelected.add(threeRightOfLocation);
+                if (!targetLocated) {
+                    targetLocated = true;
+                    currentlySelectedButton = button;
+                    button.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 1).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 2).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 3).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                } else if (currentlySelectedButton.getBackground().equals(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY))) || currentlySelectedButton.getBackground().equals(new Background(new BackgroundFill(Color.DODGERBLUE, CornerRadii.EMPTY, Insets.EMPTY)))) {
+                    currentlySelectedButton = button;
+                    button.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 1).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 2).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 3).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                } else {
+                    int indexOfCurrentlySelectedButton = buttonArray.indexOf(currentlySelectedButton);
+                    currentlySelectedButton.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfCurrentlySelectedButton + 1).setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfCurrentlySelectedButton + 2).setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfCurrentlySelectedButton + 3).setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    currentlySelectedButton = button;
+                    button.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 1).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 2).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 3).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                }
+            }
+        } else if (weaponSelected.equals("COLUMN BOMBARDMENT")) {
+            int indexOfButton = buttonArray.indexOf(button);
+            if (buttonArray.get(indexOfButton + 1).isDisabled() || buttonArray.get(indexOfButton + 2).isDisabled() || buttonArray.get(indexOfButton + 3).isDisabled()) {
+            }
+            if (location.contains("H") || location.contains("I") || location.contains("J")) {
+            } else {
+                String row = location.substring(0, 1);
+                String column = location.substring(1, 2);
+                String oneBelowOfLocation = rows[Arrays.asList(rows).indexOf(row) + 1] + column;
+                String twoBelowOfLocation = rows[Arrays.asList(rows).indexOf(row) + 2] + column;
+                String threeBelowOfLocation = rows[Arrays.asList(rows).indexOf(row) + 3] + column;
+                locationsSelected.add(location);
+                locationsSelected.add(oneBelowOfLocation);
+                locationsSelected.add(twoBelowOfLocation);
+                locationsSelected.add(threeBelowOfLocation);
+                if (!targetLocated) {
+                    targetLocated = true;
+                    currentlySelectedButton = button;
+                    button.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 10).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 20).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 30).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                } else if (currentlySelectedButton.getBackground().equals(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY))) || currentlySelectedButton.getBackground().equals(new Background(new BackgroundFill(Color.DODGERBLUE, CornerRadii.EMPTY, Insets.EMPTY)))) {
+                    currentlySelectedButton = button;
+                    button.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 10).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 20).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 30).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                } else {
+                    int indexOfCurrentlySelectedButton = buttonArray.indexOf(currentlySelectedButton);
+                    currentlySelectedButton.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfCurrentlySelectedButton + 10).setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfCurrentlySelectedButton + 20).setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfCurrentlySelectedButton + 30).setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    currentlySelectedButton = button;
+                    button.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 10).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 20).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 30).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                }
+            }
+        } else if (weaponSelected.equals("NUKE")) {
+            int indexOfButton = buttonArray.indexOf(button);
+            if (buttonArray.get(indexOfButton + 1).isDisabled() || buttonArray.get(indexOfButton + 10).isDisabled() || buttonArray.get(indexOfButton + 11).isDisabled()) {
+            } else if (location.contains("J") || location.contains("10")) {
+            } else {
+                String row = location.substring(0, 1);
+                String column = location.substring(1, 2);
+                String rightOfLocation = row + (Integer.valueOf(column) + 1);
+                String belowLocation = rows[Arrays.asList(rows).indexOf(row) + 1] + column;
+                String diagonalOfLocation = rows[Arrays.asList(rows).indexOf(row) + 1] + (Integer.valueOf(column) + 1);
+                locationsSelected.add(location);
+                locationsSelected.add(rightOfLocation);
+                locationsSelected.add(belowLocation);
+                locationsSelected.add(diagonalOfLocation);
+                if (!targetLocated) {
+                    targetLocated = true;
+                    currentlySelectedButton = button;
+                    button.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 1).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 10).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 11).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                } else if (currentlySelectedButton.getBackground().equals(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY))) || currentlySelectedButton.getBackground().equals(new Background(new BackgroundFill(Color.DODGERBLUE, CornerRadii.EMPTY, Insets.EMPTY)))) {
+                    currentlySelectedButton = button;
+                    button.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 1).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 10).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 11).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                } else {
+                    int indexOfCurrentlySelectedButton = buttonArray.indexOf(currentlySelectedButton);
+                    currentlySelectedButton.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfCurrentlySelectedButton + 1).setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfCurrentlySelectedButton + 10).setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfCurrentlySelectedButton + 11).setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                    currentlySelectedButton = button;
+                    button.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 1).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 10).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                    buttonArray.get(indexOfButton + 11).setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+                }
+            }
         }
-        else {
-            currentlySelectedButton.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
-            currentlySelectedButton = button;
-            button.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+
+    }
+
+    private final String[] rows = {"END", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "END"};
+
+    public static int getScore() {
+        return score;
+    }
+
+    public static void setScore(int score) {
+        MainGameController.score = score;
+    }
+
+    private void initialiseWeaponSelectMenu() {
+        weaponSelectMenu.getItems().setAll("Default Cannon", nukeCounter + "x Nuke", rowBombardmentCounter + "x Row Bombardment", columnBombardmentCounter + "x Column Bombardment");
+        weaponSelectMenu.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> selected, String oldWeapon, String newWeapon) {
+                removeAllTargetedTiles();
+                if (newWeapon.contains("Nuke")) {
+                    weaponSelected = "NUKE";
+                } else if (newWeapon.contains("Row Bombardment")) {
+                    weaponSelected = "ROW BOMBARDMENT";
+                } else if (newWeapon.contains("Column Bombardment")) {
+                    weaponSelected = "COLUMN BOMBARDMENT";
+                } else weaponSelected = "DEFAULT SHOT";
+            }
+        });
+    }
+
+    private void removeAllTargetedTiles() {
+        for (Button button : buttonArray) {
+            if (!button.isDisabled()) {
+                button.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+            }
         }
+    }
+
+    public void updateShopOptions() {
+        weaponSelectMenu.getItems().setAll("Default Cannon", nukeCounter + "x Nuke", rowBombardmentCounter + "x Row Bombardment", columnBombardmentCounter + "x Column Bombardment");
+    }
+
+    public void updateScoreCounter() {
+        scoreCounter.setText(String.valueOf(score));
     }
 
     public void handleGridButtonPressA1() {

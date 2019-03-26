@@ -9,496 +9,498 @@
 <?import javafx.collections.FXCollections?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainGameController">
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9f8dbf" height="720.0" stroke="BLACK" strokeType="INSIDE" width="942.0" />
-      <AnchorPane layoutX="47.0" layoutY="126.0" prefHeight="400.0" prefWidth="400.0">
-         <children>
-            <Button fx:id="A1" mnemonicParsing="false" onAction="#handleGridButtonPressA1" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="A2" layoutX="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressA2" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="A3" layoutX="80.0" mnemonicParsing="false" onAction="#handleGridButtonPressA3" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="A4" layoutX="120.0" mnemonicParsing="false" onAction="#handleGridButtonPressA4" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="A5" layoutX="160.0" mnemonicParsing="false" onAction="#handleGridButtonPressA5" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="A6" layoutX="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressA6" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="A7" layoutX="240.0" mnemonicParsing="false" onAction="#handleGridButtonPressA7" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="A8" layoutX="280.0" mnemonicParsing="false" onAction="#handleGridButtonPressA8" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="A9" layoutX="320.0" mnemonicParsing="false" onAction="#handleGridButtonPressA9" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="A10" layoutX="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressA10" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="B1" layoutY="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressB1" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="B2" layoutX="40.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressB2" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="B3" layoutX="80.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressB3" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="B4" layoutX="120.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressB4" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="B5" layoutX="160.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressB5" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="B6" layoutX="200.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressB6" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="B7" layoutX="240.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressB7" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="B8" layoutX="280.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressB8" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="B9" layoutX="320.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressB9" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="B10" layoutX="360.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressB10" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="C1" layoutY="80.0" mnemonicParsing="false" onAction="#handleGridButtonPressC1" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="C2" layoutX="40.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleGridButtonPressC2" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="C3" layoutX="80.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleGridButtonPressC3" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="C4" layoutX="120.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleGridButtonPressC4" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="C5" layoutX="160.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleGridButtonPressC5" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="C6" layoutX="200.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleGridButtonPressC6" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="C7" layoutX="240.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleGridButtonPressC7" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="C8" layoutX="280.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleGridButtonPressC8" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="C9" layoutX="320.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleGridButtonPressC9" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="C10" layoutX="360.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleGridButtonPressC10" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="D1" layoutY="120.0" mnemonicParsing="false" onAction="#handleGridButtonPressD1" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="D2" layoutX="40.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleGridButtonPressD2" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="D3" layoutX="80.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleGridButtonPressD3" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="D4" layoutX="120.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleGridButtonPressD4" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="D5" layoutX="160.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleGridButtonPressD5" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="D6" layoutX="200.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleGridButtonPressD6" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="D7" layoutX="240.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleGridButtonPressD7" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="D8" layoutX="280.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleGridButtonPressD8" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="D9" layoutX="320.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleGridButtonPressD9" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="D10" layoutX="360.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleGridButtonPressD10" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="E1" layoutY="160.0" mnemonicParsing="false" onAction="#handleGridButtonPressE1" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="E2" layoutX="40.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleGridButtonPressE2" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="E3" layoutX="80.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleGridButtonPressE3" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="E4" layoutX="120.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleGridButtonPressE4" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="E5" layoutX="160.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleGridButtonPressE5" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="E6" layoutX="200.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleGridButtonPressE6" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="E7" layoutX="240.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleGridButtonPressE7" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="E8" layoutX="280.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleGridButtonPressE8" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="E9" layoutX="320.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleGridButtonPressE9" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="E10" layoutX="360.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleGridButtonPressE10" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="F1" layoutY="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressF1" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="F2" layoutX="40.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressF2" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="F3" layoutX="80.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressF3" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="F4" layoutX="120.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressF4" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="F5" layoutX="160.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressF5" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="F6" layoutX="200.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressF6" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="F7" layoutX="240.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressF7" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="F8" layoutX="280.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressF8" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="F9" layoutX="320.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressF9" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="F10" layoutX="360.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressF10" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="G1" layoutY="240.0" mnemonicParsing="false" onAction="#handleGridButtonPressG1" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="G2" layoutX="40.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleGridButtonPressG2" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="G3" layoutX="80.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleGridButtonPressG3" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="G4" layoutX="120.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleGridButtonPressG4" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="G5" layoutX="160.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleGridButtonPressG5" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="G6" layoutX="200.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleGridButtonPressG6" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="G7" layoutX="240.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleGridButtonPressG7" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="G8" layoutX="280.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleGridButtonPressG8" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="G9" layoutX="320.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleGridButtonPressG9" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="G10" layoutX="360.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleGridButtonPressG10" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="H1" layoutY="280.0" mnemonicParsing="false" onAction="#handleGridButtonPressH1" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="H2" layoutX="40.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleGridButtonPressH2" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="H3" layoutX="80.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleGridButtonPressH3" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="H4" layoutX="120.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleGridButtonPressH4" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="H5" layoutX="160.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleGridButtonPressH5" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="H6" layoutX="200.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleGridButtonPressH6" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="H7" layoutX="240.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleGridButtonPressH7" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="H8" layoutX="280.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleGridButtonPressH8" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="H9" layoutX="320.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleGridButtonPressH9" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="H10" layoutX="360.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleGridButtonPressH10" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="I1" layoutY="320.0" mnemonicParsing="false" onAction="#handleGridButtonPressI1" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="I2" layoutX="40.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleGridButtonPressI2" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="I3" layoutX="80.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleGridButtonPressI3" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="I4" layoutX="120.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleGridButtonPressI4" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="I5" layoutX="160.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleGridButtonPressI5" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="I6" layoutX="200.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleGridButtonPressI6" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="I7" layoutX="240.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleGridButtonPressI7" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="I8" layoutX="280.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleGridButtonPressI8" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="I9" layoutX="320.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleGridButtonPressI9" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="I10" layoutX="360.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleGridButtonPressI10" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="J1" layoutY="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressJ1" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="J2" layoutX="40.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressJ2" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="J3" layoutX="80.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressJ3" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="J4" layoutX="120.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressJ4" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="J5" layoutX="160.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressJ5" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="J6" layoutX="200.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressJ6" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="J7" layoutX="240.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressJ7" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="J8" layoutX="280.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressJ8" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="J9" layoutX="320.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressJ9" prefHeight="40.0" prefWidth="40.0" />
-            <Button fx:id="J10" layoutX="360.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressJ10" prefHeight="40.0" prefWidth="40.0" />
-         </children>
-      </AnchorPane>
-      <Label layoutX="164.0" layoutY="66.0" text="Enemy Ships">
-         <font>
-            <Font name="System Bold" size="28.0" />
-         </font>
-      </Label>
-      <AnchorPane layoutX="493.0" layoutY="126.0" prefHeight="400.0" prefWidth="400.0">
-         <children>
-            <Rectangle fx:id="ownShipsA1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsA2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsA3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="80.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsA4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="120.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsA5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="160.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsA6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="200.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsA7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="240.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsA8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="280.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsA9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="320.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsA10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsB1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsB2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="40.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsB3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="80.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsB4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="120.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsB5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="160.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsB6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="200.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsB7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="240.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsB8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="280.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsB9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="320.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsB10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="360.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsC1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsC2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="40.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsC3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="80.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsC4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="120.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsC5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="160.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsC6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="200.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsC7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="240.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsC8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="280.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsC9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="320.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsC10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="360.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsD1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsD2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="40.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsD3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="80.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsD4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="120.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsD5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="160.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsD6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="200.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsD7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="240.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsD8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="280.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsD9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="320.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsD10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="360.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsE1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsE2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="40.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsE3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="80.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsE4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="120.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsE5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="160.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsE6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="200.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsE7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="240.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsE8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="280.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsE9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="320.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsE10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="360.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsF1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsF2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="40.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsF3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="80.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsF4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="120.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsF5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="160.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsF6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="200.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsF7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="240.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsF8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="280.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsF9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="320.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsF10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="360.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsG1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsG2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="40.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsG3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="80.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsG4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="120.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsG5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="160.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsG6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="200.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsG7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="240.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsG8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="280.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsG9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="320.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsG10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="360.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsH1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsH2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="40.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsH3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="80.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsH4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="120.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsH5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="160.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsH6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="200.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsH7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="240.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsH8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="280.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsH9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="320.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsH10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="360.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsI1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsI2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="40.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsI3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="80.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsI4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="120.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsI5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="160.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsI6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="200.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsI7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="240.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsI8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="280.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsI9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="320.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsI10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="360.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsJ1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutY="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsJ2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="40.0" layoutY="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsJ3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="80.0" layoutY="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsJ4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="120.0" layoutY="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsJ5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="160.0" layoutY="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsJ6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="200.0" layoutY="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsJ7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="240.0" layoutY="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsJ8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="280.0" layoutY="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsJ9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="320.0" layoutY="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="ownShipsJ10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="360.0" layoutY="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-         </children>
-      </AnchorPane>
-      <Label layoutX="623.0" layoutY="66.0" text="Your Ships">
-         <font>
-            <Font name="System Bold" size="28.0" />
-         </font>
-      </Label>
-      <AnchorPane layoutX="939.0" layoutY="-7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="733.0" prefWidth="341.0">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8e9fae" height="720.0" layoutX="3.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" width="341.0" />
-            <TextField fx:id="messageField" layoutX="22.0" layoutY="661.0" prefHeight="47.0" prefWidth="232.0" />
-            <Button fx:id="sendButton" layoutX="270.0" layoutY="661.0" mnemonicParsing="false" onAction="#handleSendButtonAction" prefHeight="47.0" prefWidth="50.0" text="Send">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Button>
-            <Label layoutX="151.0" layoutY="14.0" text="Chat">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Label>
-            <TextArea fx:id="messagesDisplay" editable="false" layoutX="22.0" layoutY="50.0" prefHeight="596.0" prefWidth="298.0" />
-         </children>
-      </AnchorPane>
-      <Label fx:id="turnLabel" layoutX="35.0" layoutY="650.0" text="Your Turn">
-         <font>
-            <Font size="27.0" />
-         </font>
-      </Label>
-      <Button fx:id="fireButton" layoutX="140.0" layoutY="567.0" mnemonicParsing="false" onAction="#handleFireButtonAction" prefHeight="60.0" prefWidth="214.0" text="FIRE!">
-         <font>
-            <Font size="28.0" />
-         </font>
-      </Button>
-      <Label layoutX="14.0" layoutY="14.0" text="Score: ">
-         <font>
-            <Font size="27.0" />
-         </font>
-      </Label>
-      <Label fx:id="scoreCounter" layoutX="94.0" layoutY="14.0" text="0">
-         <font>
-            <Font size="27.0" />
-         </font>
-      </Label>
-      <AnchorPane layoutX="516.0" layoutY="563.0" prefHeight="128.0" prefWidth="354.0">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff88" height="128.0" stroke="BLACK" strokeType="INSIDE" width="354.0" />
-            <Label layoutX="3.0" layoutY="6.0" text="Key:">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" layoutX="31.0" layoutY="5.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-            <Label layoutX="57.0" layoutY="7.0" text="- Empty tile" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="31.0" layoutY="31.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-            <Label layoutX="57.0" layoutY="33.0" text="- Enemy attempt (Miss)" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="31.0" layoutY="61.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-            <Label layoutX="57.0" layoutY="62.0" text="- Enemy attempt (Hit)" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="LIME" height="20.0" layoutX="31.0" layoutY="91.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="20.0" layoutX="206.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="20.0" layoutX="206.0" layoutY="32.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#800080" height="20.0" layoutX="206.0" layoutY="61.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-            <Label layoutX="57.0" layoutY="93.0" text="- Zeus ship" />
-            <Label layoutX="233.0" layoutY="8.0" text="- Sledgehammer ship" />
-            <Label layoutX="233.0" layoutY="33.0" text="- Stellar ship" />
-            <Label layoutX="233.0" layoutY="62.0" text="- Ajax ship" />
-         </children>
-      </AnchorPane>
-      <Label layoutX="31.0" layoutY="136.0" text="A">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="31.0" layoutY="176.0" text="B">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="31.0" layoutY="218.0" text="C">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="31.0" layoutY="257.0" text="D">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="31.0" layoutY="298.0" text="E">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="31.0" layoutY="339.0" text="F">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="31.0" layoutY="378.0" text="G">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="31.0" layoutY="418.0" text="H">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="31.0" layoutY="454.0" text="I">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="31.0" layoutY="498.0" text="J">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="62.0" layoutY="106.0" text="1">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="104.0" layoutY="106.0" text="2">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="141.0" layoutY="106.0" text="3">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="184.0" layoutY="106.0" text="4">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="222.0" layoutY="106.0" text="5">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="263.0" layoutY="106.0" text="6">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="303.0" layoutY="106.0" text="7">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="343.0" layoutY="106.0" text="8">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="381.0" layoutY="106.0" text="9">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="419.0" layoutY="106.0" text="10">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="863.0" layoutY="106.0" text="10">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="825.0" layoutY="106.0" text="9">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="787.0" layoutY="106.0" text="8">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="747.0" layoutY="106.0" text="7">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="707.0" layoutY="106.0" text="6">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="666.0" layoutY="106.0" text="5">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="628.0" layoutY="106.0" text="4">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="585.0" layoutY="106.0" text="3">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="548.0" layoutY="106.0" text="2">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="506.0" layoutY="106.0" text="1">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="481.0" layoutY="497.0" text="J">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="481.0" layoutY="453.0" text="I">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="481.0" layoutY="417.0" text="H">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="481.0" layoutY="377.0" text="G">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="481.0" layoutY="338.0" text="F">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="481.0" layoutY="297.0" text="E">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="481.0" layoutY="256.0" text="D">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="481.0" layoutY="217.0" text="C">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="481.0" layoutY="175.0" text="B">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="481.0" layoutY="135.0" text="A">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="354.0" layoutY="18.0" text="Weapon:">
-         <font>
-            <Font name="System Bold" size="22.0" />
-         </font>
-      </Label>
-      <ChoiceBox fx:id="weaponSelectionMenu" layoutX="453.0" layoutY="21.0" prefWidth="150.0" />
-
-      <Button layoutX="851.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleShopButtonAction" text="Shop">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Button>
+   <children>
+         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9f8dbf" height="720.0" stroke="BLACK" strokeType="INSIDE" width="942.0" />
+         <AnchorPane layoutX="47.0" layoutY="126.0" prefHeight="400.0" prefWidth="400.0">
+            <children>
+               <Button fx:id="A1" mnemonicParsing="false" onAction="#handleGridButtonPressA1" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="A2" layoutX="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressA2" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="A3" layoutX="80.0" mnemonicParsing="false" onAction="#handleGridButtonPressA3" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="A4" layoutX="120.0" mnemonicParsing="false" onAction="#handleGridButtonPressA4" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="A5" layoutX="160.0" mnemonicParsing="false" onAction="#handleGridButtonPressA5" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="A6" layoutX="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressA6" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="A7" layoutX="240.0" mnemonicParsing="false" onAction="#handleGridButtonPressA7" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="A8" layoutX="280.0" mnemonicParsing="false" onAction="#handleGridButtonPressA8" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="A9" layoutX="320.0" mnemonicParsing="false" onAction="#handleGridButtonPressA9" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="A10" layoutX="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressA10" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="B1" layoutY="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressB1" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="B2" layoutX="40.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressB2" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="B3" layoutX="80.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressB3" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="B4" layoutX="120.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressB4" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="B5" layoutX="160.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressB5" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="B6" layoutX="200.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressB6" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="B7" layoutX="240.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressB7" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="B8" layoutX="280.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressB8" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="B9" layoutX="320.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressB9" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="B10" layoutX="360.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleGridButtonPressB10" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="C1" layoutY="80.0" mnemonicParsing="false" onAction="#handleGridButtonPressC1" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="C2" layoutX="40.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleGridButtonPressC2" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="C3" layoutX="80.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleGridButtonPressC3" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="C4" layoutX="120.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleGridButtonPressC4" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="C5" layoutX="160.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleGridButtonPressC5" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="C6" layoutX="200.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleGridButtonPressC6" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="C7" layoutX="240.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleGridButtonPressC7" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="C8" layoutX="280.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleGridButtonPressC8" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="C9" layoutX="320.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleGridButtonPressC9" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="C10" layoutX="360.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleGridButtonPressC10" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="D1" layoutY="120.0" mnemonicParsing="false" onAction="#handleGridButtonPressD1" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="D2" layoutX="40.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleGridButtonPressD2" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="D3" layoutX="80.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleGridButtonPressD3" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="D4" layoutX="120.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleGridButtonPressD4" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="D5" layoutX="160.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleGridButtonPressD5" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="D6" layoutX="200.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleGridButtonPressD6" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="D7" layoutX="240.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleGridButtonPressD7" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="D8" layoutX="280.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleGridButtonPressD8" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="D9" layoutX="320.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleGridButtonPressD9" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="D10" layoutX="360.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleGridButtonPressD10" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="E1" layoutY="160.0" mnemonicParsing="false" onAction="#handleGridButtonPressE1" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="E2" layoutX="40.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleGridButtonPressE2" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="E3" layoutX="80.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleGridButtonPressE3" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="E4" layoutX="120.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleGridButtonPressE4" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="E5" layoutX="160.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleGridButtonPressE5" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="E6" layoutX="200.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleGridButtonPressE6" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="E7" layoutX="240.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleGridButtonPressE7" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="E8" layoutX="280.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleGridButtonPressE8" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="E9" layoutX="320.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleGridButtonPressE9" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="E10" layoutX="360.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleGridButtonPressE10" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="F1" layoutY="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressF1" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="F2" layoutX="40.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressF2" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="F3" layoutX="80.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressF3" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="F4" layoutX="120.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressF4" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="F5" layoutX="160.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressF5" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="F6" layoutX="200.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressF6" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="F7" layoutX="240.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressF7" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="F8" layoutX="280.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressF8" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="F9" layoutX="320.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressF9" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="F10" layoutX="360.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleGridButtonPressF10" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="G1" layoutY="240.0" mnemonicParsing="false" onAction="#handleGridButtonPressG1" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="G2" layoutX="40.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleGridButtonPressG2" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="G3" layoutX="80.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleGridButtonPressG3" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="G4" layoutX="120.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleGridButtonPressG4" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="G5" layoutX="160.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleGridButtonPressG5" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="G6" layoutX="200.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleGridButtonPressG6" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="G7" layoutX="240.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleGridButtonPressG7" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="G8" layoutX="280.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleGridButtonPressG8" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="G9" layoutX="320.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleGridButtonPressG9" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="G10" layoutX="360.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleGridButtonPressG10" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="H1" layoutY="280.0" mnemonicParsing="false" onAction="#handleGridButtonPressH1" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="H2" layoutX="40.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleGridButtonPressH2" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="H3" layoutX="80.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleGridButtonPressH3" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="H4" layoutX="120.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleGridButtonPressH4" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="H5" layoutX="160.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleGridButtonPressH5" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="H6" layoutX="200.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleGridButtonPressH6" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="H7" layoutX="240.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleGridButtonPressH7" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="H8" layoutX="280.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleGridButtonPressH8" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="H9" layoutX="320.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleGridButtonPressH9" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="H10" layoutX="360.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleGridButtonPressH10" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="I1" layoutY="320.0" mnemonicParsing="false" onAction="#handleGridButtonPressI1" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="I2" layoutX="40.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleGridButtonPressI2" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="I3" layoutX="80.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleGridButtonPressI3" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="I4" layoutX="120.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleGridButtonPressI4" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="I5" layoutX="160.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleGridButtonPressI5" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="I6" layoutX="200.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleGridButtonPressI6" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="I7" layoutX="240.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleGridButtonPressI7" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="I8" layoutX="280.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleGridButtonPressI8" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="I9" layoutX="320.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleGridButtonPressI9" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="I10" layoutX="360.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleGridButtonPressI10" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="J1" layoutY="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressJ1" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="J2" layoutX="40.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressJ2" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="J3" layoutX="80.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressJ3" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="J4" layoutX="120.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressJ4" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="J5" layoutX="160.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressJ5" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="J6" layoutX="200.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressJ6" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="J7" layoutX="240.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressJ7" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="J8" layoutX="280.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressJ8" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="J9" layoutX="320.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressJ9" prefHeight="40.0" prefWidth="40.0" />
+               <Button fx:id="J10" layoutX="360.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleGridButtonPressJ10" prefHeight="40.0" prefWidth="40.0" />
+            </children>
+         </AnchorPane>
+         <Label layoutX="164.0" layoutY="66.0" text="Enemy Ships">
+            <font>
+               <Font name="System Bold" size="28.0" />
+            </font>
+         </Label>
+         <AnchorPane layoutX="493.0" layoutY="126.0" prefHeight="400.0" prefWidth="400.0">
+            <children>
+               <Rectangle fx:id="ownShipsA1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsA2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsA3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="80.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsA4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="120.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsA5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="160.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsA6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="200.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsA7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="240.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsA8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="280.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsA9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="320.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsA10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsB1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsB2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="40.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsB3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="80.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsB4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="120.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsB5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="160.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsB6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="200.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsB7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="240.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsB8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="280.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsB9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="320.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsB10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="360.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsC1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsC2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="40.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsC3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="80.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsC4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="120.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsC5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="160.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsC6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="200.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsC7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="240.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsC8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="280.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsC9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="320.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsC10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="360.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsD1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsD2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="40.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsD3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="80.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsD4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="120.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsD5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="160.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsD6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="200.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsD7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="240.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsD8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="280.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsD9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="320.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsD10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="360.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsE1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsE2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="40.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsE3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="80.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsE4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="120.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsE5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="160.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsE6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="200.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsE7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="240.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsE8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="280.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsE9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="320.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsE10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="360.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsF1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsF2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="40.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsF3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="80.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsF4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="120.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsF5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="160.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsF6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="200.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsF7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="240.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsF8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="280.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsF9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="320.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsF10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="360.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsG1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsG2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="40.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsG3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="80.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsG4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="120.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsG5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="160.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsG6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="200.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsG7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="240.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsG8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="280.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsG9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="320.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsG10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="360.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsH1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsH2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="40.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsH3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="80.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsH4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="120.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsH5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="160.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsH6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="200.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsH7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="240.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsH8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="280.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsH9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="320.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsH10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="360.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsI1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsI2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="40.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsI3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="80.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsI4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="120.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsI5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="160.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsI6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="200.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsI7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="240.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsI8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="280.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsI9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="320.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsI10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="360.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsJ1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutY="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsJ2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="40.0" layoutY="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsJ3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="80.0" layoutY="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsJ4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="120.0" layoutY="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsJ5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="160.0" layoutY="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsJ6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="200.0" layoutY="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsJ7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="240.0" layoutY="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsJ8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="280.0" layoutY="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsJ9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="320.0" layoutY="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+               <Rectangle fx:id="ownShipsJ10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="360.0" layoutY="360.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            </children>
+         </AnchorPane>
+         <Label layoutX="623.0" layoutY="66.0" text="Your Ships">
+            <font>
+               <Font name="System Bold" size="28.0" />
+            </font>
+         </Label>
+         <AnchorPane layoutX="939.0" layoutY="-7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="733.0" prefWidth="341.0">
+            <children>
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8e9fae" height="720.0" layoutX="3.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" width="341.0" />
+               <TextField fx:id="messageField" layoutX="22.0" layoutY="661.0" prefHeight="47.0" prefWidth="232.0" />
+               <Button fx:id="sendButton" layoutX="270.0" layoutY="661.0" mnemonicParsing="false" onAction="#handleSendButtonAction" prefHeight="47.0" prefWidth="50.0" text="Send">
+                  <font>
+                     <Font size="13.0" />
+                  </font>
+               </Button>
+               <Label layoutX="151.0" layoutY="14.0" text="Chat">
+                  <font>
+                     <Font name="System Bold" size="20.0" />
+                  </font>
+               </Label>
+               <TextArea fx:id="messagesDisplay" editable="false" layoutX="22.0" layoutY="50.0" prefHeight="596.0" prefWidth="298.0" />
+            </children>
+         </AnchorPane>
+         <Label fx:id="turnLabel" layoutX="35.0" layoutY="650.0" text="Your Turn">
+            <font>
+               <Font size="27.0" />
+            </font>
+         </Label>
+         <Button fx:id="fireButton" layoutX="140.0" layoutY="567.0" mnemonicParsing="false" onAction="#handleFireButtonAction" prefHeight="60.0" prefWidth="214.0" text="FIRE!">
+            <font>
+               <Font size="28.0" />
+            </font>
+         </Button>
+         <Label layoutX="14.0" layoutY="14.0" text="Score: ">
+            <font>
+               <Font size="27.0" />
+            </font>
+         </Label>
+         <Label fx:id="scoreCounter" layoutX="94.0" layoutY="14.0" text="0">
+            <font>
+               <Font size="27.0" />
+            </font>
+         </Label>
+         <AnchorPane layoutX="516.0" layoutY="563.0" prefHeight="128.0" prefWidth="354.0">
+            <children>
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff88" height="128.0" stroke="BLACK" strokeType="INSIDE" width="354.0" />
+               <Label layoutX="3.0" layoutY="6.0" text="Key:">
+                  <font>
+                     <Font name="System Bold" size="12.0" />
+                  </font>
+               </Label>
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" layoutX="31.0" layoutY="5.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+               <Label layoutX="57.0" layoutY="7.0" text="- Empty tile" />
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="31.0" layoutY="31.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+               <Label layoutX="57.0" layoutY="33.0" text="- Enemy attempt (Miss)" />
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="31.0" layoutY="61.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+               <Label layoutX="57.0" layoutY="62.0" text="- Enemy attempt (Hit)" />
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="LIME" height="20.0" layoutX="31.0" layoutY="91.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="20.0" layoutX="206.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="20.0" layoutX="206.0" layoutY="32.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#800080" height="20.0" layoutX="206.0" layoutY="61.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+               <Label layoutX="57.0" layoutY="93.0" text="- Zeus ship" />
+               <Label layoutX="233.0" layoutY="8.0" text="- Sledgehammer ship" />
+               <Label layoutX="233.0" layoutY="33.0" text="- Stellar ship" />
+               <Label layoutX="233.0" layoutY="62.0" text="- Ajax ship" />
+            </children>
+         </AnchorPane>
+         <Label layoutX="31.0" layoutY="136.0" text="A">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="31.0" layoutY="176.0" text="B">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="31.0" layoutY="218.0" text="C">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="31.0" layoutY="257.0" text="D">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="31.0" layoutY="298.0" text="E">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="31.0" layoutY="339.0" text="F">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="31.0" layoutY="378.0" text="G">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="31.0" layoutY="418.0" text="H">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="31.0" layoutY="454.0" text="I">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="31.0" layoutY="498.0" text="J">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="62.0" layoutY="106.0" text="1">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="104.0" layoutY="106.0" text="2">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="141.0" layoutY="106.0" text="3">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="184.0" layoutY="106.0" text="4">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="222.0" layoutY="106.0" text="5">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="263.0" layoutY="106.0" text="6">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="303.0" layoutY="106.0" text="7">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="343.0" layoutY="106.0" text="8">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="381.0" layoutY="106.0" text="9">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="419.0" layoutY="106.0" text="10">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="863.0" layoutY="106.0" text="10">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="825.0" layoutY="106.0" text="9">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="787.0" layoutY="106.0" text="8">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="747.0" layoutY="106.0" text="7">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="707.0" layoutY="106.0" text="6">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="666.0" layoutY="106.0" text="5">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="628.0" layoutY="106.0" text="4">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="585.0" layoutY="106.0" text="3">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="548.0" layoutY="106.0" text="2">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="506.0" layoutY="106.0" text="1">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="481.0" layoutY="497.0" text="J">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="481.0" layoutY="453.0" text="I">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="481.0" layoutY="417.0" text="H">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="481.0" layoutY="377.0" text="G">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="481.0" layoutY="338.0" text="F">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="481.0" layoutY="297.0" text="E">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="481.0" layoutY="256.0" text="D">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="481.0" layoutY="217.0" text="C">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="481.0" layoutY="175.0" text="B">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="481.0" layoutY="135.0" text="A">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="354.0" layoutY="18.0" text="Weapon:">
+            <font>
+               <Font name="System Bold" size="22.0" />
+            </font>
+         </Label>
+   
+         <Button layoutX="851.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleShopButtonAction" text="Shop">
+            <font>
+               <Font name="System Bold" size="16.0" />
+            </font>
+         </Button>
+      <ComboBox fx:id="weaponSelectMenu" layoutX="455.0" layoutY="22.0" prefWidth="150.0" promptText="Select Weapon!" />
+   </children>
 </AnchorPane>

@@ -40,7 +40,7 @@ public class application extends Application {
         MainController mainController = loader.getController();
         PaneNavigator.setMainController(mainController);
 
-        //adds the startup page onto the stackpane (therefore to be shown first)
+        //adds the login page onto the stackpane (therefore to be shown first)
         PaneNavigator.loadPane(PaneNavigator.LOGIN);
 
         return mainPane;
