@@ -3,9 +3,6 @@ package ClientProgram.GUI;
 import ClientProgram.Client.Client;
 import ClientProgram.Game.Gameboard;
 import ClientProgram.Game.Ship;
-import Client.Client;
-import Game.Gameboard;
-import Game.Ship;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -916,7 +913,7 @@ public class MainGameController implements javafx.fxml.Initializable {
     }
 
     public void handleShopButtonAction() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/fxmlSheets/ShopScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ClientProgram/GUI/fxmlSheets/ShopScreen.fxml"));
         Scene shopScene;
         try {
             shopScene = new Scene(loader.load());
