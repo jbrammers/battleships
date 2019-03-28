@@ -2,9 +2,7 @@ package Tests;
 
 import ClientProgram.Client.Client;
 import ServerProgram.Server.Server;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -14,17 +12,26 @@ import java.net.Socket;
 import static org.junit.Assert.*;
 
 public class ConnectionTest {
-    private Server server;
+    private static Server server;
     private Client player1;
     private Client player2;
     private Thread p1Thread;
     private Thread p2Thread;
     private ByteArrayOutputStream sout;
 
-    @Before
-    public void setUp() {
+    @BeforeClass
+    public static void oneTimeSetUp() {
         server = new Server(3000);
         new Thread(server).start();
+    }
+
+    @AfterClass
+    public static void oneTimeTearDown() {
+        server.stopServer();
+    }
+
+    @Before
+    public void setUp() {
 
         player1 = new Client();
         player2 = new Client();
@@ -35,7 +42,6 @@ public class ConnectionTest {
 
     @After
     public void tearDown() {
-        server.stopServer();
         System.setOut(System.out);
     }
 
@@ -49,11 +55,11 @@ public class ConnectionTest {
         } finally {
 
 
-            Server newServer = new Server(80);
+            Server newServer = new Server(8000);
             new Thread(newServer).start();
 
 
-            Socket testSocket = new Socket("localhost", 80);
+            Socket testSocket = new Socket("localhost", 8000);
             testSocket.getOutputStream().write("test".getBytes());
 
             newServer.stopServer();
@@ -79,9 +85,9 @@ public class ConnectionTest {
 
         assertFalse(player1.logIn("badusername", "password"));
 
-        String expected = "Username not found\r\n";
+        String expected = "Username not found";
 
-        assertEquals(expected, sout.toString());
+        assertTrue(sout.toString().startsWith(expected));
 
         player1.endConnection();
     }
@@ -104,9 +110,9 @@ public class ConnectionTest {
 
         assertFalse(player1.logIn("admin", "badpass"));
 
-        String expected = "Password not found\r\n";
+        String expected = "Password not found";
 
-        assertEquals(expected, sout.toString());
+        assertTrue(sout.toString().startsWith(expected));
 
         player1.endConnection();
     }
@@ -141,12 +147,9 @@ public class ConnectionTest {
     public void gameStartTest() {
         player1.start();
         assertTrue(player1.logIn("player1", "password"));
-        p1Thread.start();
 
         player2.start();
         assertTrue(player2.logIn("player2", "password"));
-        p2Thread.start();
-
 
         player1.ready();
         player2.ready();
