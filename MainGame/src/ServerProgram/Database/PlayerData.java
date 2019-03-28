@@ -31,6 +31,6 @@ public class PlayerData {
 
     @Override
     public String toString() {
-        return String.format("|%-45s|%-18d|%-20d|%-19f|" , username, wins, losses, winratio);
+        return String.format("%s!%d!%d!%f" , username, wins, losses, winratio);
     }
 }

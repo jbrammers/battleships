@@ -14,6 +14,9 @@ public class ShopScreenController {
             Platform.runLater(() -> ctrl.updateScoreCounter());
             Platform.runLater(() -> ctrl.updateShopOptions());
         }
+        else {
+            PopUpMessage.popUp("Insufficient points!");
+        }
     }
 
     public void handleNukeButtonAction(ActionEvent actionEvent) {
@@ -24,6 +27,9 @@ public class ShopScreenController {
             Platform.runLater(() -> ctrl.updateScoreCounter());
             Platform.runLater(() -> ctrl.updateShopOptions());
         }
+        else {
+            PopUpMessage.popUp("Insufficient points!");
+        }
     }
 
     public void handleColumnBombardmentButtonAction(ActionEvent actionEvent) {
@@ -33,6 +39,9 @@ public class ShopScreenController {
             MainGameController ctrl = (MainGameController) DataStore.getData().getObject("main game");
             Platform.runLater(() -> ctrl.updateScoreCounter());
             Platform.runLater(() -> ctrl.updateShopOptions());
+        }
+        else {
+            PopUpMessage.popUp("Insufficient points!");
         }
     }
 }
