@@ -483,7 +483,7 @@ public class MainGameController implements javafx.fxml.Initializable {
     }
 
     public void handleFireButtonAction(ActionEvent actionEvent) {
-        if (turn) {
+        if (turn && !currentLocationAttempt.equals("") || turn && !locationsSelected.isEmpty()) {
             if (weaponSelected.equals("DEFAULT SHOT")) {
                 Client client = (Client) DataStore.getData().getObject("client");
                 client.send("GAME " + currentLocationAttempt);
@@ -526,6 +526,9 @@ public class MainGameController implements javafx.fxml.Initializable {
             } else {
                 PopUpMessage.popUp("Please wait for your turn!");
             }
+            removeAllTargetedTiles();
+            currentLocationAttempt = "";
+            locationsSelected = new ArrayList<>();
         }
     }
 
@@ -923,6 +926,7 @@ public class MainGameController implements javafx.fxml.Initializable {
         }
 
         Stage inputStage = new Stage();
+        inputStage.setTitle("Shop");
         inputStage.setScene(shopScene);
         inputStage.showAndWait();
     }
@@ -945,10 +949,11 @@ public class MainGameController implements javafx.fxml.Initializable {
             }
         } else if (weaponSelected.equals("ROW BOMBARDMENT")) {
             int indexOfButton = buttonArray.indexOf(button);
-            if (buttonArray.get(indexOfButton + 1).isDisabled() || buttonArray.get(indexOfButton + 2).isDisabled() || buttonArray.get(indexOfButton + 3).isDisabled()) {
-            }
             if (location.contains("8") || location.contains("9") || location.contains("10")) {
-            } else {
+            }
+            else if (buttonArray.get(indexOfButton + 1).isDisabled() || buttonArray.get(indexOfButton + 2).isDisabled() || buttonArray.get(indexOfButton + 3).isDisabled()) {
+            }
+            else {
                 String row = location.substring(0, 1);
                 String column = location.substring(1, 2);
                 String oneRightOfLocation = row + (Integer.valueOf(column) + 1);
@@ -986,10 +991,11 @@ public class MainGameController implements javafx.fxml.Initializable {
             }
         } else if (weaponSelected.equals("COLUMN BOMBARDMENT")) {
             int indexOfButton = buttonArray.indexOf(button);
-            if (buttonArray.get(indexOfButton + 1).isDisabled() || buttonArray.get(indexOfButton + 2).isDisabled() || buttonArray.get(indexOfButton + 3).isDisabled()) {
-            }
             if (location.contains("H") || location.contains("I") || location.contains("J")) {
-            } else {
+            }
+            else if (buttonArray.get(indexOfButton + 10).isDisabled() || buttonArray.get(indexOfButton + 20).isDisabled() || buttonArray.get(indexOfButton + 30).isDisabled()) {
+            }
+             else {
                 String row = location.substring(0, 1);
                 String column = location.substring(1);
                 String oneBelowOfLocation = rows[Arrays.asList(rows).indexOf(row) + 1] + column;
@@ -1081,6 +1087,7 @@ public class MainGameController implements javafx.fxml.Initializable {
 
     private void initialiseWeaponSelectMenu() {
         weaponSelectMenu.getItems().setAll("Default Cannon", nukeCounter + "x Nuke", rowBombardmentCounter + "x Row Bombardment", columnBombardmentCounter + "x Column Bombardment");
+       try {
         weaponSelectMenu.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> selected, String oldWeapon, String newWeapon) {
@@ -1094,6 +1101,10 @@ public class MainGameController implements javafx.fxml.Initializable {
                 } else weaponSelected = "DEFAULT SHOT";
             }
         });
+    }
+    catch (NullPointerException e) {
+
+       }
     }
 
     private void removeAllTargetedTiles() {

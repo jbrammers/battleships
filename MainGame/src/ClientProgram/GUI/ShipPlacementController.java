@@ -1033,10 +1033,12 @@ public class ShipPlacementController implements Initializable {
     }
 
     public void handleButtonActionContinue(ActionEvent actionEvent) {
+/*
         if (!gridFull()) {
             PopUpMessage.errorMessage("Please place all of your ships on the board before continuing.");
             return;
         }
+*/
 
         PaneNavigator.loadPane(PaneNavigator.MAINGAME);
 
