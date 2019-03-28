@@ -78,15 +78,18 @@ public class ConnectionTest {
             e.printStackTrace();
         }
 
+        // Null Pointer Exception is thrown after the connection ends at the end of this test
         System.out.println("Null Pointer Exception printed below is expected.");
 
         sout = new ByteArrayOutputStream();
         System.setOut(new PrintStream(sout));
 
+        // Checks to see if the login method returns false for an incorrect login
         assertFalse(player1.logIn("badusername", "password"));
 
         String expected = "Username not found";
 
+        // Ensures the login fails to username mismatch
         assertTrue(sout.toString().startsWith(expected));
 
         player1.endConnection();
@@ -103,15 +106,18 @@ public class ConnectionTest {
             e.printStackTrace();
         }
 
+        // Null Pointer Exception is thrown after the connection ends at the end of this test
         System.out.println("Null Pointer Exception printed below is expected.");
 
         sout = new ByteArrayOutputStream();
         System.setOut(new PrintStream(sout));
 
+        // Checks to see if the login method returns false for an incorrect login
         assertFalse(player1.logIn("admin", "badpass"));
 
         String expected = "Password not found";
 
+        // Ensures the login fails based on password mismatch
         assertTrue(sout.toString().startsWith(expected));
 
         player1.endConnection();
@@ -120,13 +126,14 @@ public class ConnectionTest {
     @Test
     public void connectionTest() {
         player1.start();
+        // Tests for a successful login
         assertTrue(player1.logIn("player1", "password"));
-        // assertEquals();
         player1.endConnection();
     }
 
     @Test
     public void twoPlayerCheck() {
+        // Following code logs in 2 players and checks the connection is active by echoing the server
         player1.start();
         assertTrue(player1.logIn("player1", "password"));
         p1Thread.start();
@@ -151,6 +158,7 @@ public class ConnectionTest {
         player2.start();
         assertTrue(player2.logIn("player2", "password"));
 
+        // Both of these throw exceptions if they fail so no exceptions are a pass
         player1.ready();
         player2.ready();
 
