@@ -11,63 +11,72 @@
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="400.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff9068" height="600.0" stroke="BLACK" strokeType="INSIDE" width="400.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8e9fae" height="600.0" stroke="BLACK" strokeType="INSIDE" width="400.0" />
             <Label layoutX="164.0" layoutY="14.0" text="Shop">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
             </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#73ff81" height="142.0" layoutX="29.0" layoutY="69.0" stroke="BLACK" strokeType="INSIDE" width="343.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#73ff81" height="142.0" layoutX="29.0" layoutY="247.0" stroke="BLACK" strokeType="INSIDE" width="343.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#73ff81" height="142.0" layoutX="29.0" layoutY="425.0" stroke="BLACK" strokeType="INSIDE" width="343.0" />
-            <Label layoutX="35.0" layoutY="69.0" text="Column Bombardment:">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#123f68" height="142.0" layoutX="29.0" layoutY="69.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" width="343.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#123f68" height="142.0" layoutX="29.0" layoutY="247.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" width="343.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#123f68" height="142.0" layoutX="29.0" layoutY="425.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" width="343.0" />
+            <Label layoutX="35.0" layoutY="69.0" text="Column Bombardment:" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="35.0" layoutY="247.0" text="Nuke:">
+            <Label layoutX="35.0" layoutY="247.0" text="Nuke:" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="35.0" layoutY="425.0" text="Row Bombardment:">
+            <Label layoutX="35.0" layoutY="425.0" text="Row Bombardment:" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Button layoutX="323.0" layoutY="176.0" mnemonicParsing="false" onAction="#handleColumnBombardmentButtonAction" text="Buy" />
-            <Button layoutX="323.0" layoutY="354.0" mnemonicParsing="false" onAction="#handleNukeButtonAction" text="Buy" />
-            <Button layoutX="323.0" layoutY="533.0" mnemonicParsing="false" onAction="#handleRowBombardmentButtonAction" text="Buy" />
-            <Label layoutX="35.0" layoutY="180.0" text="Cost: 800">
+            <Button layoutX="323.0" layoutY="176.0" mnemonicParsing="false" onAction="#handleColumnBombardmentButtonAction" text="Buy">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button layoutX="323.0" layoutY="354.0" mnemonicParsing="false" onAction="#handleNukeButtonAction" text="Buy">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button layoutX="323.0" layoutY="533.0" mnemonicParsing="false" onAction="#handleRowBombardmentButtonAction" text="Buy">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Label layoutX="254.0" layoutY="180.0" text="Cost: 800" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="35.0" layoutY="358.0" text="Cost: 800">
+            <Label layoutX="254.0" layoutY="358.0" text="Cost: 800" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="35.0" layoutY="537.0" text="Cost: 800">
+            <Label layoutX="253.0" layoutY="537.0" text="Cost: 800" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="289.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="289.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="289.0" layoutY="140.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="289.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="279.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="299.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="279.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="299.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-            <TextArea editable="false" layoutX="78.0" layoutY="118.0" prefHeight="45.0" prefWidth="172.0" style="-: #73ff81;" text="Allows a line attack as the pattern shows in one turn!" wrapText="true" />
-            <TextArea editable="false" layoutX="78.0" layoutY="298.0" prefHeight="45.0" prefWidth="172.0" style="-: #73ff81;" text="Allows an area attack as the pattern shows in one turn!" wrapText="true" />
-            <TextArea editable="false" layoutX="78.0" layoutY="475.0" prefHeight="43.0" prefWidth="172.0" style="-: #73ff81;" text="Allows a line attack as the pattern shows in one turn!" wrapText="true" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="260.0" layoutY="487.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="280.0" layoutY="487.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="319.0" layoutY="487.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="299.0" layoutY="487.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="67.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="67.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="67.0" layoutY="140.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="67.0" layoutY="160.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="57.0" layoutY="298.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="77.0" layoutY="298.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="57.0" layoutY="318.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="77.0" layoutY="318.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="38.0" layoutY="486.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="58.0" layoutY="486.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="97.0" layoutY="486.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="77.0" layoutY="486.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+            <Label layoutX="118.0" layoutY="115.0" prefHeight="50.0" prefWidth="194.0" text="Allows a line attack as the pattern shows in one turn!" textFill="WHITE" wrapText="true" />
+            <Label layoutX="129.0" layoutY="293.0" prefHeight="50.0" prefWidth="194.0" text="Allows an area attack as the pattern shows in one turn!" textFill="WHITE" wrapText="true" />
+            <Label layoutX="129.0" layoutY="471.0" prefHeight="50.0" prefWidth="194.0" text="Allows a line attack as the pattern shows in one turn!" textFill="WHITE" wrapText="true" />
          </children></AnchorPane>
   </content>
 </ScrollPane>
