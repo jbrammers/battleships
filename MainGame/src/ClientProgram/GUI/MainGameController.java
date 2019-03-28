@@ -991,7 +991,7 @@ public class MainGameController implements javafx.fxml.Initializable {
             if (location.contains("H") || location.contains("I") || location.contains("J")) {
             } else {
                 String row = location.substring(0, 1);
-                String column = location.substring(1, 2);
+                String column = location.substring(1);
                 String oneBelowOfLocation = rows[Arrays.asList(rows).indexOf(row) + 1] + column;
                 String twoBelowOfLocation = rows[Arrays.asList(rows).indexOf(row) + 2] + column;
                 String threeBelowOfLocation = rows[Arrays.asList(rows).indexOf(row) + 3] + column;

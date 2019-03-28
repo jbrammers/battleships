@@ -243,7 +243,7 @@
                      <Font name="System Bold" size="20.0" />
                   </font>
                </Label>
-               <TextArea fx:id="messagesDisplay" editable="false" layoutX="22.0" layoutY="50.0" prefHeight="596.0" prefWidth="298.0" />
+               <TextArea fx:id="messagesDisplay" editable="false" layoutX="22.0" layoutY="50.0" prefHeight="596.0" prefWidth="298.0" wrapText="true" />
             </children>
          </AnchorPane>
          <Label fx:id="turnLabel" layoutX="35.0" layoutY="650.0" text="Your Turn" textFill="WHITE">
