@@ -80,15 +80,9 @@ public class Player implements Runnable{
         return is;
     }
 
-    public OutputStream getOs() {
-        return os;
-    }
-
     public PrintWriter getOut() {
         return out;
     }
-
-    public BufferedReader getInput() { return input; }
 
     public void setOpponent(Player opponent) {
         this.opponent = opponent;

@@ -20,7 +20,7 @@ public class ConnectionHandler implements Runnable {
     public ConnectionHandler(Socket clientSocket, Server server) {
         this.clientSocket = clientSocket;
         this.server = server;
-        this.db = new DatabaseManager();
+        this.db = server.getDb();
     }
 
 
@@ -31,7 +31,7 @@ public class ConnectionHandler implements Runnable {
     public void run() {
         try {
             // Confirms connection on the server side
-            System.out.println("Connection received from " + clientSocket.getPort());
+            System.out.println("Connection received from " + clientSocket.getInetAddress());
 
 
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -78,7 +78,6 @@ public class ConnectionHandler implements Runnable {
 
             // Finally a new player is added to the server
             server.addPlayer(new Player(username, clientSocket));
-            db = null;
         } catch (SocketException e) {
             System.out.println("Connection lost to port " + clientSocket.getPort());
         } catch (Exception e) {
