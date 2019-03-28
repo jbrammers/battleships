@@ -483,7 +483,7 @@ public class MainGameController implements javafx.fxml.Initializable {
     }
 
     public void handleFireButtonAction(ActionEvent actionEvent) {
-        if (turn) {
+        if (turn && locationsSelected.size()!=0 || turn && !currentLocationAttempt.equals("")) {
             if (weaponSelected.equals("DEFAULT SHOT")) {
                 Client client = (Client) DataStore.getData().getObject("client");
                 client.send("GAME " + currentLocationAttempt);
@@ -526,6 +526,9 @@ public class MainGameController implements javafx.fxml.Initializable {
             } else {
                 PopUpMessage.popUp("Please wait for your turn!");
             }
+            currentLocationAttempt = "";
+            locationsSelected = new ArrayList<>();
+            removeAllTargetedTiles();
         }
     }
 
@@ -947,7 +950,7 @@ public class MainGameController implements javafx.fxml.Initializable {
             int indexOfButton = buttonArray.indexOf(button);
             if (buttonArray.get(indexOfButton + 1).isDisabled() || buttonArray.get(indexOfButton + 2).isDisabled() || buttonArray.get(indexOfButton + 3).isDisabled()) {
             }
-            if (location.contains("8") || location.contains("9") || location.contains("10")) {
+            else if (location.contains("8") || location.contains("9") || location.contains("10")) {
             } else {
                 String row = location.substring(0, 1);
                 String column = location.substring(1, 2);
@@ -986,9 +989,9 @@ public class MainGameController implements javafx.fxml.Initializable {
             }
         } else if (weaponSelected.equals("COLUMN BOMBARDMENT")) {
             int indexOfButton = buttonArray.indexOf(button);
-            if (buttonArray.get(indexOfButton + 1).isDisabled() || buttonArray.get(indexOfButton + 2).isDisabled() || buttonArray.get(indexOfButton + 3).isDisabled()) {
+            if (buttonArray.get(indexOfButton + 10).isDisabled() || buttonArray.get(indexOfButton + 20).isDisabled() || buttonArray.get(indexOfButton + 30).isDisabled()) {
             }
-            if (location.contains("H") || location.contains("I") || location.contains("J")) {
+            else if (location.contains("H") || location.contains("I") || location.contains("J")) {
             } else {
                 String row = location.substring(0, 1);
                 String column = location.substring(1);

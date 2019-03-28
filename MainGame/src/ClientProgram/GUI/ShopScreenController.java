@@ -35,7 +35,7 @@ public class ShopScreenController {
     public void handleColumnBombardmentButtonAction(ActionEvent actionEvent) {
         if (MainGameController.getScore() >= 1000) {
             MainGameController.columnBombardmentCounter++;
-            MainGameController.setScore(MainGameController.getScore()-1000);
+            MainGameController.setScore(MainGameController.getScore()-800);
             MainGameController ctrl = (MainGameController) DataStore.getData().getObject("main game");
             Platform.runLater(() -> ctrl.updateScoreCounter());
             Platform.runLater(() -> ctrl.updateShopOptions());

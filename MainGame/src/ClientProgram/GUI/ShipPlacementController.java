@@ -443,7 +443,9 @@ public class ShipPlacementController implements Initializable {
     }
 
     public void handleButtonActionZeus1(ActionEvent actionEvent) {
-        if (zeusShipsRemaining != 0 && zeusButton1 == false && otherButtonActive == false && shipButtonSelectHelper((zeusShips.get(zeusShips.size() - zeusShipsRemaining)), 1)) {
+        if (currentShip!=null && !currentShip.getType().equals("Zeus")) {
+
+        } else if (zeusShipsRemaining != 0 && zeusButton1 == false && otherButtonActive == false && shipButtonSelectHelper((zeusShips.get(zeusShips.size() - zeusShipsRemaining)), 1)) {
             zeusButton1 = true;
             zeusButton2 = false;
             sledgehammerButton1 = false;
@@ -466,7 +468,9 @@ public class ShipPlacementController implements Initializable {
     }
 
     public void handleButtonActionZeus2(ActionEvent actionEvent) {
-        if (zeusShipsRemaining != 0 && zeusButton2 == false && otherButtonActive == false && shipButtonSelectHelper((zeusShips.get(zeusShips.size() - zeusShipsRemaining)), 2)) {
+        if (currentShip!=null && !currentShip.getType().equals("Zeus")) {
+
+        } else if (zeusShipsRemaining != 0 && zeusButton2 == false && otherButtonActive == false && shipButtonSelectHelper((zeusShips.get(zeusShips.size() - zeusShipsRemaining)), 2)) {
             zeusButton1 = false;
             zeusButton2 = true;
             sledgehammerButton1 = false;
@@ -489,7 +493,9 @@ public class ShipPlacementController implements Initializable {
     }
 
     public void handleButtonActionSledgehammer1(ActionEvent actionEvent) {
-        if (sledgehammerShipsRemaining != 0 && sledgehammerButton1 == false && otherButtonActive == false && shipButtonSelectHelper((sledgehammerShips.get(sledgehammerShips.size() - sledgehammerShipsRemaining)), 1)) {
+        if (currentShip!=null && !currentShip.getType().equals("Sledgehammer")) {
+
+        } else if (sledgehammerShipsRemaining != 0 && sledgehammerButton1 == false && otherButtonActive == false && shipButtonSelectHelper((sledgehammerShips.get(sledgehammerShips.size() - sledgehammerShipsRemaining)), 1)) {
             zeusButton1 = false;
             zeusButton2 = false;
             sledgehammerButton1 = true;
@@ -512,7 +518,9 @@ public class ShipPlacementController implements Initializable {
     }
 
     public void handleButtonActionSledgehammer2(ActionEvent actionEvent) {
-        if (sledgehammerShipsRemaining != 0 && sledgehammerButton2 == false && otherButtonActive == false && shipButtonSelectHelper((sledgehammerShips.get(sledgehammerShips.size() - sledgehammerShipsRemaining)), 2)) {
+        if (currentShip!=null && !currentShip.getType().equals("Sledgehammer")) {
+
+        } else if (sledgehammerShipsRemaining != 0 && sledgehammerButton2 == false && otherButtonActive == false && shipButtonSelectHelper((sledgehammerShips.get(sledgehammerShips.size() - sledgehammerShipsRemaining)), 2)) {
             zeusButton1 = false;
             zeusButton2 = false;
             sledgehammerButton1 = false;
@@ -535,7 +543,9 @@ public class ShipPlacementController implements Initializable {
     }
 
     public void handleButtonActionSledgehammer3(ActionEvent actionEvent) {
-        if (sledgehammerShipsRemaining != 0 && sledgehammerButton3 == false && otherButtonActive == false && shipButtonSelectHelper((sledgehammerShips.get(sledgehammerShips.size() - sledgehammerShipsRemaining)), 3)) {
+        if (currentShip!=null && !currentShip.getType().equals("Sledgehammer")) {
+
+        } else if (sledgehammerShipsRemaining != 0 && sledgehammerButton3 == false && otherButtonActive == false && shipButtonSelectHelper((sledgehammerShips.get(sledgehammerShips.size() - sledgehammerShipsRemaining)), 3)) {
             zeusButton1 = false;
             zeusButton2 = false;
             sledgehammerButton1 = false;
@@ -558,7 +568,9 @@ public class ShipPlacementController implements Initializable {
     }
 
     public void handleButtonActionStellar1(ActionEvent actionEvent) {
-        if (stellarShipsRemaining != 0 && stellarButton1 == false && otherButtonActive == false && shipButtonSelectHelper((stellarShips.get(stellarShips.size() - stellarShipsRemaining)), 1)) {
+        if (currentShip!=null && !currentShip.getType().equals("Stellar")) {
+
+        } else if (stellarShipsRemaining != 0 && stellarButton1 == false && otherButtonActive == false && shipButtonSelectHelper((stellarShips.get(stellarShips.size() - stellarShipsRemaining)), 1)) {
             zeusButton1 = false;
             zeusButton2 = false;
             sledgehammerButton1 = false;
@@ -581,7 +593,9 @@ public class ShipPlacementController implements Initializable {
     }
 
     public void handleButtonActionStellar2(ActionEvent actionEvent) {
-        if (stellarShipsRemaining != 0 && stellarButton2 == false && otherButtonActive == false && shipButtonSelectHelper((stellarShips.get(stellarShips.size() - stellarShipsRemaining)), 2)) {
+        if (currentShip!=null && !currentShip.getType().equals("Stellar")) {
+
+        } else if (stellarShipsRemaining != 0 && stellarButton2 == false && otherButtonActive == false && shipButtonSelectHelper((stellarShips.get(stellarShips.size() - stellarShipsRemaining)), 2)) {
             zeusButton1 = false;
             zeusButton2 = false;
             sledgehammerButton1 = false;
@@ -604,7 +618,9 @@ public class ShipPlacementController implements Initializable {
     }
 
     public void handleButtonActionStellar3(ActionEvent actionEvent) {
-        if (stellarShipsRemaining != 0 && stellarButton3 == false && otherButtonActive == false && shipButtonSelectHelper((stellarShips.get(stellarShips.size() - stellarShipsRemaining)), 3)) {
+        if (currentShip!=null && !currentShip.getType().equals("Stellar")) {
+
+        } else if (stellarShipsRemaining != 0 && stellarButton3 == false && otherButtonActive == false && shipButtonSelectHelper((stellarShips.get(stellarShips.size() - stellarShipsRemaining)), 3)) {
             zeusButton1 = false;
             zeusButton2 = false;
             sledgehammerButton1 = false;
@@ -627,7 +643,9 @@ public class ShipPlacementController implements Initializable {
     }
 
     public void handleButtonActionStellar4(ActionEvent actionEvent) {
-        if (stellarShipsRemaining != 0 && stellarButton4 == false && otherButtonActive == false && shipButtonSelectHelper((stellarShips.get(stellarShips.size() - stellarShipsRemaining)), 4)) {
+        if (currentShip!=null && !currentShip.getType().equals("Stellar")) {
+
+        } else if (stellarShipsRemaining != 0 && stellarButton4 == false && otherButtonActive == false && shipButtonSelectHelper((stellarShips.get(stellarShips.size() - stellarShipsRemaining)), 4)) {
             zeusButton1 = false;
             zeusButton2 = false;
             sledgehammerButton1 = false;
@@ -650,7 +668,9 @@ public class ShipPlacementController implements Initializable {
     }
 
     public void handleButtonActionAjax1(ActionEvent actionEvent) {
-        if (ajaxShipsRemaining != 0 && ajaxButton1 == false && otherButtonActive == false && shipButtonSelectHelper((ajaxShips.get(ajaxShips.size() - ajaxShipsRemaining)), 1)) {
+        if (currentShip!=null && !currentShip.getType().equals("Ajax")) {
+
+        } else if (ajaxShipsRemaining != 0 && ajaxButton1 == false && otherButtonActive == false && shipButtonSelectHelper((ajaxShips.get(ajaxShips.size() - ajaxShipsRemaining)), 1)) {
             zeusButton1 = false;
             zeusButton2 = false;
             sledgehammerButton1 = false;
@@ -673,7 +693,9 @@ public class ShipPlacementController implements Initializable {
     }
 
     public void handleButtonActionAjax2(ActionEvent actionEvent) {
-        if (ajaxShipsRemaining != 0 && ajaxButton2 == false && otherButtonActive == false && shipButtonSelectHelper((ajaxShips.get(ajaxShips.size() - ajaxShipsRemaining)), 2)) {
+        if (currentShip!=null && !currentShip.getType().equals("Ajax")) {
+
+        } else if (ajaxShipsRemaining != 0 && ajaxButton2 == false && otherButtonActive == false && shipButtonSelectHelper((ajaxShips.get(ajaxShips.size() - ajaxShipsRemaining)), 2)) {
             zeusButton1 = false;
             zeusButton2 = false;
             sledgehammerButton1 = false;
@@ -696,7 +718,9 @@ public class ShipPlacementController implements Initializable {
     }
 
     public void handleButtonActionAjax3(ActionEvent actionEvent) {
-        if (ajaxShipsRemaining != 0 && ajaxButton3 == false && otherButtonActive == false && shipButtonSelectHelper((ajaxShips.get(ajaxShips.size() - ajaxShipsRemaining)), 3)) {
+        if (currentShip!=null && !currentShip.getType().equals("Ajax")) {
+
+        } else if (ajaxShipsRemaining != 0 && ajaxButton3 == false && otherButtonActive == false && shipButtonSelectHelper((ajaxShips.get(ajaxShips.size() - ajaxShipsRemaining)), 3)) {
             zeusButton1 = false;
             zeusButton2 = false;
             sledgehammerButton1 = false;
@@ -719,7 +743,9 @@ public class ShipPlacementController implements Initializable {
     }
 
     public void handleButtonActionAjax4(ActionEvent actionEvent) {
-        if (ajaxShipsRemaining != 0 && ajaxButton4 == false && otherButtonActive == false && shipButtonSelectHelper((ajaxShips.get(ajaxShips.size() - ajaxShipsRemaining)), 4)) {
+        if (currentShip!=null && !currentShip.getType().equals("Ajax")) {
+
+        } else if (ajaxShipsRemaining != 0 && ajaxButton4 == false && otherButtonActive == false && shipButtonSelectHelper((ajaxShips.get(ajaxShips.size() - ajaxShipsRemaining)), 4)) {
             zeusButton1 = false;
             zeusButton2 = false;
             sledgehammerButton1 = false;
@@ -742,7 +768,9 @@ public class ShipPlacementController implements Initializable {
     }
 
     public void handleButtonActionAjax5(ActionEvent actionEvent) {
-        if (ajaxShipsRemaining != 0 && ajaxButton5 == false && otherButtonActive == false && shipButtonSelectHelper((ajaxShips.get(ajaxShips.size() - ajaxShipsRemaining)), 5)) {
+        if (currentShip!=null && !currentShip.getType().equals("Ajax")) {
+
+        } else if (ajaxShipsRemaining != 0 && ajaxButton5 == false && otherButtonActive == false && shipButtonSelectHelper((ajaxShips.get(ajaxShips.size() - ajaxShipsRemaining)), 5)) {
             zeusButton1 = false;
             zeusButton2 = false;
             sledgehammerButton1 = false;
@@ -803,7 +831,7 @@ public class ShipPlacementController implements Initializable {
     }
 
     @FXML
-    private void handleUndoCurrentShipButtonAction(){
+    private void handleUndoCurrentShipButtonAction() {
         if (currentShip != null && !currentShip.locationsFull()) {
             currentShip.setLocation(new ArrayList<>());
             zeusButton1 = false;
@@ -878,6 +906,7 @@ public class ShipPlacementController implements Initializable {
                     zeusShipsRemaining--;
                     zeusShips.remove(currentShip);
                     ZeusLabel.setText(zeusShipsRemaining + "X");
+                    currentShip = null;
                     button.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
                     Zeus1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
                     Zeus2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -885,6 +914,7 @@ public class ShipPlacementController implements Initializable {
                     sledgehammerShipsRemaining--;
                     sledgehammerShips.remove(currentShip);
                     SledgehammerLabel.setText(sledgehammerShipsRemaining + "X");
+                    currentShip = null;
                     button.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
                     Sledgehammer1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
                     Sledgehammer2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -893,6 +923,7 @@ public class ShipPlacementController implements Initializable {
                     stellarShipsRemaining--;
                     stellarShips.remove(currentShip);
                     StellarLabel.setText(stellarShipsRemaining + "X");
+                    currentShip = null;
                     button.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
                     Stellar1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
                     Stellar2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -902,6 +933,7 @@ public class ShipPlacementController implements Initializable {
                     ajaxShipsRemaining--;
                     ajaxShips.remove(currentShip);
                     AjaxLabel.setText(ajaxShipsRemaining + "X");
+                    currentShip = null;
                     button.setBackground(new Background(new BackgroundFill(Color.PURPLE, CornerRadii.EMPTY, Insets.EMPTY)));
                     Ajax1.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
                     Ajax2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -1033,10 +1065,10 @@ public class ShipPlacementController implements Initializable {
     }
 
     public void handleButtonActionContinue(ActionEvent actionEvent) {
-        if (!gridFull()) {
+        /*if (!gridFull()) {
             PopUpMessage.errorMessage("Please place all of your ships on the board before continuing.");
             return;
-        }
+        }*/
 
         PaneNavigator.loadPane(PaneNavigator.MAINGAME);
 
