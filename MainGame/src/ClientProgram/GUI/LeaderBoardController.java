@@ -10,7 +10,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
+/**
+ * @author Oliver Grubb
+ * This class controls the leaderboard GUI
+ *
+ */
 public class LeaderBoardController implements javafx.fxml.Initializable {
     private ArrayList<PlayerData> leaderboard;
     private ArrayList<Label> labelArrayList = new ArrayList<>();
@@ -96,10 +100,17 @@ public class LeaderBoardController implements javafx.fxml.Initializable {
     @FXML
     Label Label40;
 
+    /**
+     * handles click on back button
+     * @param actionEvent
+     */
     public void handleBackButtonAction(ActionEvent actionEvent) {
         PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
     }
 
+    /**
+     * initilises all labels into an array list
+     */
     private void initiliseLabelArray() {
         labelArrayList.add(Label1);
         labelArrayList.add(Label2);
@@ -144,6 +155,9 @@ public class LeaderBoardController implements javafx.fxml.Initializable {
 
     }
 
+    /**
+     * occupys leaderboard with current top 10 players
+     */
     private void occupyLeaderboard() {
         int counter = 0;
         for (PlayerData data : leaderboard) {
@@ -155,6 +169,11 @@ public class LeaderBoardController implements javafx.fxml.Initializable {
         }
     }
 
+    /**
+     * initilises the leaderboard
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         leaderboard = new ArrayList<>();

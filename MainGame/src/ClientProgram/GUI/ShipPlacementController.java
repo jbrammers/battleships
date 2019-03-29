@@ -16,7 +16,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
-
+/**
+ * @author Oliver Grubb
+ * This class controls all the elements seen on the ship placement screen.
+ *
+ */
 public class ShipPlacementController implements Initializable {
 
     @FXML
@@ -306,7 +310,11 @@ public class ShipPlacementController implements Initializable {
     private ArrayList<Button> currentShipButtonsPressed = new ArrayList<>();
     private final String[] rows = {"END", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "END"};
 
-
+    /**
+     * initialises pane
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         buttonsArray();
@@ -314,6 +322,9 @@ public class ShipPlacementController implements Initializable {
         gameboard = new Gameboard();
     }
 
+    /**
+     * adds all buttons into array list
+     */
     private void buttonsArray() {
         buttonArray.add(A1);
         buttonArray.add(A2);
@@ -431,6 +442,9 @@ public class ShipPlacementController implements Initializable {
         buttonArray.add(Ajax5);
     }
 
+    /**
+     * sets all buttons to correct colour
+     */
     private void initialiseAllButtons() {
         for (int i = 0; i < 100; i++) {
             buttonArray.get(i).setBackground(new Background(new BackgroundFill(Color.DODGERBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -442,6 +456,10 @@ public class ShipPlacementController implements Initializable {
         }
     }
 
+    /**
+     * handles ship selection button click
+     * @param actionEvent
+     */
     public void handleButtonActionZeus1(ActionEvent actionEvent) {
         if (currentShip!=null && !currentShip.getType().equals("Zeus")) {
 
@@ -466,7 +484,10 @@ public class ShipPlacementController implements Initializable {
             Zeus1.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
-
+    /**
+     * handles ship selection button click
+     * @param actionEvent
+     */
     public void handleButtonActionZeus2(ActionEvent actionEvent) {
         if (currentShip!=null && !currentShip.getType().equals("Zeus")) {
 
@@ -491,7 +512,10 @@ public class ShipPlacementController implements Initializable {
             Zeus2.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
-
+    /**
+     * handles ship selection button click
+     * @param actionEvent
+     */
     public void handleButtonActionSledgehammer1(ActionEvent actionEvent) {
         if (currentShip!=null && !currentShip.getType().equals("Sledgehammer")) {
 
@@ -516,7 +540,10 @@ public class ShipPlacementController implements Initializable {
             Sledgehammer1.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
-
+    /**
+     * handles ship selection button click
+     * @param actionEvent
+     */
     public void handleButtonActionSledgehammer2(ActionEvent actionEvent) {
         if (currentShip!=null && !currentShip.getType().equals("Sledgehammer")) {
 
@@ -541,7 +568,10 @@ public class ShipPlacementController implements Initializable {
             Sledgehammer2.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
-
+    /**
+     * handles ship selection button click
+     * @param actionEvent
+     */
     public void handleButtonActionSledgehammer3(ActionEvent actionEvent) {
         if (currentShip!=null && !currentShip.getType().equals("Sledgehammer")) {
 
@@ -566,7 +596,10 @@ public class ShipPlacementController implements Initializable {
             Sledgehammer3.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
-
+    /**
+     * handles ship selection button click
+     * @param actionEvent
+     */
     public void handleButtonActionStellar1(ActionEvent actionEvent) {
         if (currentShip!=null && !currentShip.getType().equals("Stellar")) {
 
@@ -591,7 +624,10 @@ public class ShipPlacementController implements Initializable {
             Stellar1.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
-
+    /**
+     * handles ship selection button click
+     * @param actionEvent
+     */
     public void handleButtonActionStellar2(ActionEvent actionEvent) {
         if (currentShip!=null && !currentShip.getType().equals("Stellar")) {
 
@@ -616,7 +652,10 @@ public class ShipPlacementController implements Initializable {
             Stellar2.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
-
+    /**
+     * handles ship selection button click
+     * @param actionEvent
+     */
     public void handleButtonActionStellar3(ActionEvent actionEvent) {
         if (currentShip!=null && !currentShip.getType().equals("Stellar")) {
 
@@ -641,7 +680,10 @@ public class ShipPlacementController implements Initializable {
             Stellar3.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
-
+    /**
+     * handles ship selection button click
+     * @param actionEvent
+     */
     public void handleButtonActionStellar4(ActionEvent actionEvent) {
         if (currentShip!=null && !currentShip.getType().equals("Stellar")) {
 
@@ -666,7 +708,10 @@ public class ShipPlacementController implements Initializable {
             Stellar4.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
-
+    /**
+     * handles ship selection button click
+     * @param actionEvent
+     */
     public void handleButtonActionAjax1(ActionEvent actionEvent) {
         if (currentShip!=null && !currentShip.getType().equals("Ajax")) {
 
@@ -691,7 +736,10 @@ public class ShipPlacementController implements Initializable {
             Ajax1.setBackground(new Background(new BackgroundFill(Color.PURPLE, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
-
+    /**
+     * handles ship selection button click
+     * @param actionEvent
+     */
     public void handleButtonActionAjax2(ActionEvent actionEvent) {
         if (currentShip!=null && !currentShip.getType().equals("Ajax")) {
 
@@ -716,7 +764,10 @@ public class ShipPlacementController implements Initializable {
             Ajax2.setBackground(new Background(new BackgroundFill(Color.PURPLE, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
-
+    /**
+     * handles ship selection button click
+     * @param actionEvent
+     */
     public void handleButtonActionAjax3(ActionEvent actionEvent) {
         if (currentShip!=null && !currentShip.getType().equals("Ajax")) {
 
@@ -741,7 +792,10 @@ public class ShipPlacementController implements Initializable {
             Ajax3.setBackground(new Background(new BackgroundFill(Color.PURPLE, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
-
+    /**
+     * handles ship selection button click
+     * @param actionEvent
+     */
     public void handleButtonActionAjax4(ActionEvent actionEvent) {
         if (currentShip!=null && !currentShip.getType().equals("Ajax")) {
 
@@ -766,7 +820,10 @@ public class ShipPlacementController implements Initializable {
             Ajax4.setBackground(new Background(new BackgroundFill(Color.PURPLE, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
-
+    /**
+     * handles ship selection button click
+     * @param actionEvent
+     */
     public void handleButtonActionAjax5(ActionEvent actionEvent) {
         if (currentShip!=null && !currentShip.getType().equals("Ajax")) {
 
@@ -791,6 +848,13 @@ public class ShipPlacementController implements Initializable {
             Ajax5.setBackground(new Background(new BackgroundFill(Color.PURPLE, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
+
+    /**
+     * helper method for checking valid ship button selections
+     * @param ship
+     * @param buttonNumber
+     * @return
+     */
 
     private boolean shipButtonSelectHelper(Ship ship, int buttonNumber) {
         if (ship.getLocation().isEmpty()) {
@@ -830,6 +894,9 @@ public class ShipPlacementController implements Initializable {
         return false;
     }
 
+    /**
+     * handles click on undo button
+     */
     @FXML
     private void handleUndoCurrentShipButtonAction() {
         if (currentShip != null && !currentShip.locationsFull()) {
@@ -876,6 +943,11 @@ public class ShipPlacementController implements Initializable {
         }
     }
 
+    /**
+     * helper method for button grid selection
+     * @param location
+     * @param button
+     */
     private void gridButtonHelper(String location, Button button) {
         location += "_" + currentButtonNumber;
         if (!zeusButton1 && !zeusButton2 && !sledgehammerButton1 && !sledgehammerButton2 && !sledgehammerButton3 && !stellarButton1 && !stellarButton2 && !stellarButton3 && !stellarButton4 && !ajaxButton1 && !ajaxButton2 && !ajaxButton3 && !ajaxButton4 && !ajaxButton5) {
@@ -957,6 +1029,12 @@ public class ShipPlacementController implements Initializable {
         }
     }
 
+    /**
+     * method for valid ship placements
+     * @param locationAttempt
+     * @param ship
+     * @return
+     */
     private boolean validLocation(String locationAttempt, Ship ship) {
 
         for (Ship ships : gameboard.getBoard()) {
@@ -1050,6 +1128,12 @@ public class ShipPlacementController implements Initializable {
         }
     }
 
+    /**
+     * row navigator helper
+     * @param ch
+     * @param i
+     * @return
+     */
     private String rowNavigator(String ch, int i) {
         int index = 0;
         for (String row : rows) {
@@ -1060,10 +1144,18 @@ public class ShipPlacementController implements Initializable {
         return rows[index + i];
     }
 
+    /**
+     * handles click on back button
+     * @param actionEvent
+     */
     public void handleButtonActionBack(ActionEvent actionEvent) {
         PaneNavigator.loadPane(PaneNavigator.STARTSCREEN);
     }
 
+    /**
+     * handles click on continue button.
+     * @param actionEvent
+     */
     public void handleButtonActionContinue(ActionEvent actionEvent) {
         /*if (!gridFull()) {
             PopUpMessage.errorMessage("Please place all of your ships on the board before continuing.");
@@ -1079,6 +1171,10 @@ public class ShipPlacementController implements Initializable {
         client.send("SYSTEM ready");
     }
 
+    /**
+     * checks if grid is full
+     * @return
+     */
     private boolean gridFull() {
         return gameboard.getBoard().size() == 10;
     }

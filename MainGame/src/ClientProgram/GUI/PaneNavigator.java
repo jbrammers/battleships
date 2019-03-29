@@ -21,10 +21,18 @@ public class PaneNavigator {
 
     private static MainController mainController;
 
+    /**
+     * Sets main controller
+     * @param mainController
+     */
     public static void setMainController(MainController mainController) {
         PaneNavigator.mainController = mainController;
     }
 
+    /**
+     * loads pane onto top of stack
+     * @param fxml
+     */
     public static void loadPane(String fxml) {
         try {
             mainController.setPane(FXMLLoader.load(PaneNavigator.class.getResource(fxml)));
@@ -34,6 +42,10 @@ public class PaneNavigator {
         }
     }
 
+    /**
+     * getter for controller
+     * @return
+     */
     public static MainController getController(){
         return mainController;
     }

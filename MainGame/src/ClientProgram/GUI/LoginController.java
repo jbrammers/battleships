@@ -29,6 +29,9 @@ public class LoginController implements Initializable {
     @FXML
     private Button newUserButton;
 
+    /**
+     * handles click on login button
+     */
     public void handleLoginButtonAction() {
 
         if (usernameField.getText().isEmpty()) {
@@ -61,10 +64,18 @@ public class LoginController implements Initializable {
 
     }
 
+    /**
+     * handle click on new user button
+     */
     public void handleNewUserButtonAction() {
         PaneNavigator.loadPane(PaneNavigator.NEWUSER);
     }
 
+    /**
+     * requests new details
+     * @param username
+     * @param type
+     */
     public void requestNewDetails (String username, int type) {
         String message;
         if (type == 1) {
@@ -78,6 +89,11 @@ public class LoginController implements Initializable {
         PopUpMessage.errorMessage(message);
     }
 
+    /**
+     * initilises pane
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Client client = new Client();

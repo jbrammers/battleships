@@ -32,11 +32,16 @@ public class NewUserController implements Initializable {
     @FXML
     private Button backButton;
 
-
+    /**
+     * handles click on back button
+     */
     public void handleBackButtonAction() {
         PaneNavigator.loadPane(PaneNavigator.LOGIN);
     }
 
+    /**
+     * handles click on create account button
+     */
     public void handleCreateAccountButtonAction() {
 
         if (usernameField.getText().isEmpty()) {
@@ -82,6 +87,11 @@ public class NewUserController implements Initializable {
 
     }
 
+    /**
+     * initilises pane
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {    }
 }

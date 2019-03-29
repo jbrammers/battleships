@@ -15,10 +15,15 @@ public class StartScreenController {
     @FXML
     private Button startButton;
 
+    /**
+     * handles click on leaderboards button
+     */
     public void handleLeaderboardsButtonAction() {
         PaneNavigator.loadPane(PaneNavigator.LEADERBOARD);
     }
-
+    /**
+     * handles click on start button
+     */
     public void handleStartButtonAction() {
         PaneNavigator.loadPane(PaneNavigator.SHIPPLACEMENT);
     }

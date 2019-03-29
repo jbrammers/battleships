@@ -15,7 +15,10 @@ import java.io.IOException;
  */
 public class application extends Application {
 
-
+    /**
+     * starts application
+     * @param stage
+     */
     @Override
     public void start(Stage stage) {
 
@@ -31,6 +34,11 @@ public class application extends Application {
 
     }
 
+    /**
+     * loads panes onto main stackpane
+     * @return
+     * @throws IOException
+     */
     private Pane loadMainPane() throws IOException {
         FXMLLoader loader = new FXMLLoader();
 
@@ -46,6 +54,11 @@ public class application extends Application {
         return mainPane;
     }
 
+    /**
+     * creates scene
+     * @param pane
+     * @return
+     */
     private Scene createScene(Pane pane) {
         Scene scene = new Scene(pane);
 
@@ -54,6 +67,10 @@ public class application extends Application {
         return scene;
     }
 
+    /**
+     * launches application
+     * @param args
+     */
     public static void main(String[] args) {
         launch(args);
 
