@@ -20,7 +20,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="720.0" layoutX="50.0" stroke="BLACK" strokeType="INSIDE" width="11.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="720.0" layoutX="1255.0" stroke="BLACK" strokeType="INSIDE" width="11.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="720.0" layoutX="9.0" stroke="BLACK" strokeType="INSIDE" width="11.0" />
-        <Button fx:id="leaderboardsButton" alignment="CENTER" layoutX="786.0" layoutY="476.0" mnemonicParsing="false" onAction="#handleLeaderboardsButtonAction" prefHeight="63.0" prefWidth="167.0" style="-fx-background-color: #F5F5F5;" text="Leaderboards">
+        <Button fx:id="leaderboardsButton" alignment="CENTER" layoutX="776.0" layoutY="476.0" mnemonicParsing="false" onAction="#handleLeaderboardsButtonAction" prefHeight="63.0" prefWidth="187.0" style="-fx-background-color: #F5F5F5;" text="Leaderboards">
             <font>
                 <Font name="System Bold" size="20.0" />
             </font></Button>

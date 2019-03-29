@@ -233,7 +233,7 @@
             <children>
                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8e9fae" height="720.0" layoutX="3.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" width="341.0" />
                <TextField fx:id="messageField" layoutX="22.0" layoutY="661.0" prefHeight="47.0" prefWidth="232.0" />
-               <Button fx:id="sendButton" layoutX="270.0" layoutY="661.0" mnemonicParsing="false" onAction="#handleSendButtonAction" prefHeight="47.0" prefWidth="50.0" text="Send">
+               <Button fx:id="sendButton" layoutX="260.0" layoutY="661.0" mnemonicParsing="false" onAction="#handleSendButtonAction" prefHeight="47.0" prefWidth="60.0" text="Send">
                   <font>
                      <Font name="System Bold" size="13.0" />
                   </font>
@@ -268,7 +268,7 @@
          </Label>
          <AnchorPane layoutX="516.0" layoutY="563.0" prefHeight="128.0" prefWidth="354.0">
             <children>
-               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#123f68" height="128.0" stroke="WHITE" strokeType="INSIDE" width="361.0" />
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#123f68" height="128.0" stroke="WHITE" strokeType="INSIDE" width="391.0" />
                <Label layoutX="3.0" layoutY="6.0" text="Key:" textFill="WHITE">
                   <font>
                      <Font name="System Bold" size="12.0" />
@@ -290,22 +290,22 @@
                   <Font name="System Bold" size="12.0" />
                </font></Label>
                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="LIME" height="20.0" layoutX="31.0" layoutY="91.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="20.0" layoutX="206.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="20.0" layoutX="206.0" layoutY="32.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#800080" height="20.0" layoutX="206.0" layoutY="61.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="20.0" layoutX="216.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="20.0" layoutX="216.0" layoutY="32.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#800080" height="20.0" layoutX="216.0" layoutY="61.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
                <Label layoutX="57.0" layoutY="93.0" text="- Zeus ship" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-               <Label layoutX="233.0" layoutY="8.0" text="- Sledgehammer ship" textFill="WHITE">
+               <Label layoutX="243.0" layoutY="8.0" text="- Sledgehammer ship" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-               <Label layoutX="233.0" layoutY="33.0" text="- Stellar ship" textFill="WHITE">
+               <Label layoutX="243.0" layoutY="33.0" text="- Stellar ship" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-               <Label layoutX="233.0" layoutY="62.0" text="- Ajax ship" textFill="WHITE">
+               <Label layoutX="243.0" layoutY="62.0" text="- Ajax ship" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
