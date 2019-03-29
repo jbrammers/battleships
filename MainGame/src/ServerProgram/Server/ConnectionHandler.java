@@ -77,7 +77,7 @@ public class ConnectionHandler implements Runnable {
             }
 
             // Finally a new player is added to the server
-            server.addPlayer(new Player(username, clientSocket));
+            server.addPlayer(new Player(username, clientSocket, server));
         } catch (SocketException e) {
             System.out.println("Connection lost to port " + clientSocket.getPort());
         } catch (Exception e) {

@@ -22,7 +22,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
-
+/**
+ * @author Oliver Grubb
+ * This class controls all the elements on the main game screen.
+ *
+ */
 public class MainGameController implements javafx.fxml.Initializable {
 
     @FXML
@@ -442,24 +446,28 @@ public class MainGameController implements javafx.fxml.Initializable {
     public ComboBox weaponSelectMenu;
 
     private static MainGameController controller;
-    ArrayList<Button> buttonArray = new ArrayList<>();
-    ArrayList<Rectangle> ownShipsRectangles = new ArrayList<>();
-    public static ArrayList<String> messageLog = new ArrayList<>();
-    public static String message = "";
-    public static int messageCount = 0;
-    public String incomingMessage;
-    public static Gameboard gameboard = ShipPlacementController.gameboard;
-    public boolean turn;
+    private ArrayList<Button> buttonArray = new ArrayList<>();
+    private ArrayList<Rectangle> ownShipsRectangles = new ArrayList<>();
+    private static ArrayList<String> messageLog = new ArrayList<>();
+    private static String message = "";
+    private static int messageCount = 0;
+    private static Gameboard gameboard = ShipPlacementController.gameboard;
+    private boolean turn;
     private boolean targetLocated = false;
     private Button currentlySelectedButton;
     private String currentLocationAttempt;
-    public static int rowBombardmentCounter = 0;
-    public static int nukeCounter = 0;
-    public static int columnBombardmentCounter = 0;
+    static int rowBombardmentCounter = 0;
+    static int nukeCounter = 0;
+    static int columnBombardmentCounter = 0;
     private static int score = 0;
     private String weaponSelected = "DEFAULT SHOT";
     private ArrayList<String> locationsSelected = new ArrayList<>();
 
+    /**
+     * Initialises the screen before use
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         buttonArray();
@@ -476,14 +484,22 @@ public class MainGameController implements javafx.fxml.Initializable {
         setTurn(false);
     }
 
+    /**
+     * Sets turn label
+     * @param turn
+     */
     public void setTurnLabel(String turn) {
         if (turn.equals("yourturn")) {
             turnLabel.setText("Your Turn");
         } else turnLabel.setText("Opponents Turn");
     }
 
+    /**
+     * handles clicking the fire button
+     * @param actionEvent
+     */
     public void handleFireButtonAction(ActionEvent actionEvent) {
-        if (turn && !currentLocationAttempt.equals("") || turn && !locationsSelected.isEmpty()) {
+        if (turn && locationsSelected.size()!=0 || turn && !currentLocationAttempt.equals("")) {
             if (weaponSelected.equals("DEFAULT SHOT")) {
                 Client client = (Client) DataStore.getData().getObject("client");
                 client.send("GAME " + currentLocationAttempt);
@@ -526,12 +542,17 @@ public class MainGameController implements javafx.fxml.Initializable {
             } else {
                 PopUpMessage.popUp("Please wait for your turn!");
             }
-            removeAllTargetedTiles();
             currentLocationAttempt = "";
             locationsSelected = new ArrayList<>();
+            removeAllTargetedTiles();
         }
     }
 
+    /**
+     * handles an incoming attempt
+     * @param location
+     * @param result
+     */
     public void incomingAttempt(String location, String result) {
 
         char[] tempCh = location.toCharArray();
@@ -555,6 +576,11 @@ public class MainGameController implements javafx.fxml.Initializable {
 
     }
 
+    /**
+     * handles an outgoing attempt
+     * @param location
+     * @param result
+     */
     public void outgoingAttempt(String location, String result) {
         char[] tempCh = location.toCharArray();
 
@@ -589,14 +615,25 @@ public class MainGameController implements javafx.fxml.Initializable {
         }
     }
 
+    /**
+     * getter for the controller
+     * @return
+     */
     public static MainGameController getController() {
         return controller;
     }
 
+    /**\
+     * setter for the turn.
+     * @param turn
+     */
     public void setTurn(boolean turn) {
         this.turn = turn;
     }
 
+    /**
+     * adds all rectangles into an arraylist.
+     */
     private void initiateRectangleArrayList() {
 
         ownShipsRectangles.add(ownShipsA1);
@@ -701,14 +738,21 @@ public class MainGameController implements javafx.fxml.Initializable {
         ownShipsRectangles.add(ownShipsJ10);
     }
 
-    public void initialiseButtonLayout() {
+    /**
+     * makes all buttons grey and have black outline.
+     */
+    private void initialiseButtonLayout() {
         for (Button button : buttonArray) {
             button.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
             button.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
         }
     }
 
-    public void initialiseOwnShips(Gameboard gameboard) {
+    /**
+     * adds all own ships from placement onto own ship board.
+     * @param gameboard
+     */
+    private void initialiseOwnShips(Gameboard gameboard) {
 
         for (Ship ship : gameboard.getBoard()) {
             ArrayList<String> rows = new ArrayList<>();
@@ -774,6 +818,9 @@ public class MainGameController implements javafx.fxml.Initializable {
         }
     }
 
+    /**
+     * adds all the buttons into an array list.
+     */
     private void buttonArray() {
         buttonArray.add(A1);
         buttonArray.add(A2);
@@ -877,13 +924,15 @@ public class MainGameController implements javafx.fxml.Initializable {
         buttonArray.add(J10);
     }
 
+    /**
+     * handles the messenger send button.
+     */
     public void handleSendButtonAction() {
 
         message = messageField.getText();
         messageLog.add(message);
         message = "";
-        String previousMessages = messagesDisplay.getText();
-        // messagesDisplay.setText(previousMessages + messageLog.get(messageCount) + "\n");
+
         messageField.setText("");
 
 
@@ -894,8 +943,11 @@ public class MainGameController implements javafx.fxml.Initializable {
 
     }
 
+    /**
+     * prints recieved messages into chat box.
+     * @param incomingMessage
+     */
     public void printReceivedMessage(String incomingMessage) {
-        this.incomingMessage = "\n" + incomingMessage;
 
         messageLog.add(incomingMessage);
         message = "";
@@ -911,10 +963,17 @@ public class MainGameController implements javafx.fxml.Initializable {
 
     }
 
+    /**
+     * getter for most recently sent message.
+     * @return
+     */
     public static String getMostRecentMessage() {
         return messageLog.get(messageCount);
     }
 
+    /**
+     * handles click on the shop button
+     */
     public void handleShopButtonAction() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ClientProgram/GUI/fxmlSheets/ShopScreen.fxml"));
         Scene shopScene;
@@ -926,12 +985,16 @@ public class MainGameController implements javafx.fxml.Initializable {
         }
 
         Stage inputStage = new Stage();
-        inputStage.setTitle("Shop");
         inputStage.setScene(shopScene);
         inputStage.showAndWait();
     }
 
-    public void targetLocationAction(String location, Button button) {
+    /**
+     * handles target location.
+     * @param location
+     * @param button
+     */
+    private void targetLocationAction(String location, Button button) {
         locationsSelected = new ArrayList<>();
         if (weaponSelected.equals("DEFAULT SHOT")) {
             currentLocationAttempt = location;
@@ -949,11 +1012,10 @@ public class MainGameController implements javafx.fxml.Initializable {
             }
         } else if (weaponSelected.equals("ROW BOMBARDMENT")) {
             int indexOfButton = buttonArray.indexOf(button);
-            if (location.contains("8") || location.contains("9") || location.contains("10")) {
+            if (buttonArray.get(indexOfButton + 1).isDisabled() || buttonArray.get(indexOfButton + 2).isDisabled() || buttonArray.get(indexOfButton + 3).isDisabled()) {
             }
-            else if (buttonArray.get(indexOfButton + 1).isDisabled() || buttonArray.get(indexOfButton + 2).isDisabled() || buttonArray.get(indexOfButton + 3).isDisabled()) {
-            }
-            else {
+            else if (location.contains("8") || location.contains("9") || location.contains("10")) {
+            } else {
                 String row = location.substring(0, 1);
                 String column = location.substring(1, 2);
                 String oneRightOfLocation = row + (Integer.valueOf(column) + 1);
@@ -991,11 +1053,10 @@ public class MainGameController implements javafx.fxml.Initializable {
             }
         } else if (weaponSelected.equals("COLUMN BOMBARDMENT")) {
             int indexOfButton = buttonArray.indexOf(button);
-            if (location.contains("H") || location.contains("I") || location.contains("J")) {
+            if (buttonArray.get(indexOfButton + 10).isDisabled() || buttonArray.get(indexOfButton + 20).isDisabled() || buttonArray.get(indexOfButton + 30).isDisabled()) {
             }
-            else if (buttonArray.get(indexOfButton + 10).isDisabled() || buttonArray.get(indexOfButton + 20).isDisabled() || buttonArray.get(indexOfButton + 30).isDisabled()) {
-            }
-             else {
+            else if (location.contains("H") || location.contains("I") || location.contains("J")) {
+            } else {
                 String row = location.substring(0, 1);
                 String column = location.substring(1);
                 String oneBelowOfLocation = rows[Arrays.asList(rows).indexOf(row) + 1] + column;
@@ -1077,36 +1138,45 @@ public class MainGameController implements javafx.fxml.Initializable {
 
     private final String[] rows = {"END", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "END"};
 
-    public static int getScore() {
+    /**
+     * getter for score
+     * @return
+     */
+    static int getScore() {
         return score;
     }
 
-    public static void setScore(int score) {
+    /**
+     * setter for score
+     * @param score
+     */
+    static void setScore(int score) {
         MainGameController.score = score;
     }
 
+    /**
+     * initialises the weapon select dropdown menu
+     */
     private void initialiseWeaponSelectMenu() {
         weaponSelectMenu.getItems().setAll("Default Cannon", nukeCounter + "x Nuke", rowBombardmentCounter + "x Row Bombardment", columnBombardmentCounter + "x Column Bombardment");
-       try {
         weaponSelectMenu.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> selected, String oldWeapon, String newWeapon) {
                 removeAllTargetedTiles();
-                if (newWeapon.contains("Nuke")) {
+                if (newWeapon!=null && newWeapon.contains("Nuke")) {
                     weaponSelected = "NUKE";
-                } else if (newWeapon.contains("Row Bombardment")) {
+                } else if (newWeapon!=null && newWeapon.contains("Row Bombardment")) {
                     weaponSelected = "ROW BOMBARDMENT";
-                } else if (newWeapon.contains("Column Bombardment")) {
+                } else if (newWeapon!=null && newWeapon.contains("Column Bombardment")) {
                     weaponSelected = "COLUMN BOMBARDMENT";
                 } else weaponSelected = "DEFAULT SHOT";
             }
         });
     }
-    catch (NullPointerException e) {
 
-       }
-    }
-
+    /**
+     * removes all selections off the grid
+     */
     private void removeAllTargetedTiles() {
         for (Button button : buttonArray) {
             if (!button.isDisabled()) {
@@ -1115,10 +1185,16 @@ public class MainGameController implements javafx.fxml.Initializable {
         }
     }
 
-    public void updateShopOptions() {
+    /**
+     * updates the amount of weapons the player owns
+     */
+    void updateShopOptions() {
         weaponSelectMenu.getItems().setAll("Default Cannon", nukeCounter + "x Nuke", rowBombardmentCounter + "x Row Bombardment", columnBombardmentCounter + "x Column Bombardment");
     }
 
+    /**
+     * updates score counter
+     */
     public void updateScoreCounter() {
         scoreCounter.setText(String.valueOf(score));
     }

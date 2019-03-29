@@ -73,7 +73,7 @@ public class Server implements Runnable {
      * @param player1 new player to be added
      * @param player2 2nd player to be added
      */
-    public void newGame(Player player1, Player player2) {
+    private void newGame(Player player1, Player player2) {
         Game newGame = new Game(player1, idIterator++);
         newGame.addPlayer(player2);
         createThread(newGame);
@@ -84,7 +84,7 @@ public class Server implements Runnable {
      * Adds a new player to the waiting list and begins their listener
      * @param newPlayer player to be added
      */
-    public void addPlayer(Player newPlayer) {
+    void addPlayer(Player newPlayer) {
         waitingPlayers.add(newPlayer);
         threadpool.execute(newPlayer);
     }
@@ -145,7 +145,8 @@ public class Server implements Runnable {
         }
     }
 
-    public DatabaseManager getDb() {
+    DatabaseManager getDb() {
         return db;
     }
+
 }

@@ -26,15 +26,15 @@
         <TextField fx:id="usernameField" layoutX="547.0" layoutY="271.0" prefHeight="25.0" prefWidth="193.0" />
         <PasswordField fx:id="passwordField" layoutX="547.0" layoutY="335.0" prefHeight="25.0" prefWidth="193.0" />
         <PasswordField fx:id="rePasswordField" layoutX="547.0" layoutY="397.0" prefHeight="25.0" prefWidth="193.0" />
-        <Label layoutX="547.0" layoutY="250.0" text="Choose a username:" textFill="WHITE">
+        <Label layoutX="547.0" layoutY="250.0" prefHeight="21.0" prefWidth="239.0" text="Choose a username:" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font></Label>
-        <Label layoutX="548.0" layoutY="314.0" text="Choose a password:" textFill="WHITE">
+        <Label layoutX="548.0" layoutY="314.0" prefHeight="21.0" prefWidth="239.0" text="Choose a password:" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font></Label>
-        <Label layoutX="547.0" layoutY="376.0" text="Re-enter your password:" textFill="WHITE">
+        <Label layoutX="547.0" layoutY="376.0" prefHeight="21.0" prefWidth="239.0" text="Re-enter your password:" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font></Label>
@@ -48,12 +48,12 @@
                 <Font name="System Bold" size="15.0" />
             </font>
         </Button>
-      <Label layoutX="483.0" layoutY="141.0" text="A Naval Combat Guessing Game" textFill="WHITE">
+      <Label alignment="CENTER" layoutX="437.0" layoutY="128.0" prefHeight="68.0" prefWidth="414.0" text="A Naval Combat Guessing Game" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="21.0" />
          </font>
       </Label>
-      <Label layoutX="391.0" layoutY="43.0" prefHeight="66.0" prefWidth="505.0" text="BATTLESHIPS" textFill="WHITE">
+      <Label alignment="CENTER" layoutX="249.0" layoutY="-20.0" prefHeight="229.0" prefWidth="791.0" text="BATTLESHIPS" textFill="WHITE">
          <font>
             <Font name="System Bold" size="79.0" />
          </font>

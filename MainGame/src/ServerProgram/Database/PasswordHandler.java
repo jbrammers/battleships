@@ -11,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Class used to hash passwords for secure storage
  */
-public class PasswordHandler {
+class PasswordHandler {
 
     /**
      * Method hashes password
@@ -19,7 +19,7 @@ public class PasswordHandler {
      * @param salt randomly generated salt stored with the password
      * @return String containing the hashed password with salt
      */
-    public static String hashPassword(String password, byte[] salt) {
+    static String hashPassword(String password, byte[] salt) {
         try {
             char[] passChars = password.toCharArray();
 
@@ -49,7 +49,7 @@ public class PasswordHandler {
      * @return String[] where 0 = hashed password to be stored
      * and 1 is the salt to be stored
      */
-    public static ArrayList<Object> newPassword(String password) {
+    static ArrayList<Object> newPassword(String password) {
         ArrayList<Object> output = new ArrayList<>();
 
         SecureRandom sr = new SecureRandom();

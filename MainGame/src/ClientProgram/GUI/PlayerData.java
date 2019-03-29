@@ -1,4 +1,4 @@
-package ServerProgram.Database;
+package ClientProgram.GUI;
 
 import java.io.Serializable;
 

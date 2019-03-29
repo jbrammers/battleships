@@ -50,16 +50,14 @@ public class GameTest {
 		locations.add("3");
 		locations.add("4");
 	    locations.add("5");
-	// locations.add("6");
 
         locationAttempt = new ArrayList<>();
         locationAttempt.add("1");
         locationAttempt.add("2");
         locationAttempt.add("3");
         locationAttempt.add("4");
-        //locationAttempt.add("5");
 
-        board = new ArrayList<Ship>();
+        board = new ArrayList<>();
         board.add(0, ship1);
         board.add(1, ship2);
         board.add(2, ship3);
@@ -93,7 +91,7 @@ public class GameTest {
 		gameboard.addShip(ship3);
 		gameboard.addShip(ship4);
 		gameboard.removeShip(ship3);
-		
+
 		assertEquals(3, gameboard.getBoard().size());
 	}
 
@@ -101,10 +99,7 @@ public class GameTest {
 	@Test
 	public void setLocationTest()
 	{
-		Gameboard gameboard = new Gameboard();
-
 		ship1.setLocation(locations);
-
 
 		assertEquals("1", ship1.getLocation().get(0));
 	}
@@ -112,7 +107,6 @@ public class GameTest {
 
 	@Test
 	public void setTypeTest() {
-		Gameboard gameboard = new Gameboard();
 
 		assertEquals("1", ship1.getType());
 		assertEquals("2", ship2.getType());
@@ -124,7 +118,6 @@ public class GameTest {
     @Test
     public void setLengthTest()
     {
-        Gameboard gameboard = new Gameboard();
 
         assertEquals(5, ship1.getLength());
         assertEquals(4, ship2.getLength());
@@ -142,7 +135,7 @@ public class GameTest {
         ship1.setLocation(locations);
 
 
-		assertEquals(true, ship1.locationsFull());
+		assertTrue(ship1.locationsFull());
     }
 
 
@@ -150,8 +143,6 @@ public class GameTest {
     @Test
 	public void locationCountTest()
 	{
-		Gameboard gameboard = new Gameboard();
-
 		assertEquals(5, locations.size());
 	}
 
@@ -159,8 +150,6 @@ public class GameTest {
 	@Test
 	public void setAliveTest()
 	{
-		Gameboard gameboard = new Gameboard();
-
 		assertTrue(ship1.getAlive());
 		assertTrue(ship2.getAlive());
 		assertTrue(ship3.getAlive());
@@ -170,8 +159,6 @@ public class GameTest {
 	@Test
     public void attemptHitTest()
     {
-        Gameboard gameboard = new Gameboard();
-
         ship1.setLocation(locations);
         ship1.attempt("1");
 
@@ -182,8 +169,6 @@ public class GameTest {
     @Test
     public void attemptMissTest()
     {
-        Gameboard gameboard = new Gameboard();
-
         ship1.setLocation(locations);
 
         assertEquals("MISS", ship1.attempt("6"));
@@ -192,15 +177,14 @@ public class GameTest {
     @Test
     public void attemptDestroyedTest()
     {
-        Gameboard gameboard = new Gameboard();
-
         ship1.setLocation(locations);
-        // destroyed
+
         assertEquals("HIT", ship1.attempt("1"));
         assertEquals("HIT", ship1.attempt("2"));
         assertEquals("HIT", ship1.attempt("3"));
         assertEquals("HIT", ship1.attempt("4"));
         assertEquals("DESTROYED", ship1.attempt("5"));
+
 		assertFalse(ship1.getAlive());
     }
 
@@ -219,20 +203,16 @@ public class GameTest {
 	@Test
 	public void endTurnCheckTest()
 	{
-		Gameboard gameboard = new Gameboard();
-		gameboard.setBoard(board);
 		ship1.setLocation(locations);
 
 		assertEquals("HIT", ship1.attempt("1"));
-		assertEquals(true, ship1.getAlive());
-
+		assertTrue(ship1.getAlive());
 	}
 
 
 	@Test
 	public void destroyShip2Test()
 	{
-		Gameboard gameboard = new Gameboard();
 		ship2.setLocation(locationAttempt);
 
 		assertEquals("HIT", ship2.attempt("1"));
@@ -241,22 +221,6 @@ public class GameTest {
 		assertEquals("DESTROYED", ship2.attempt("4"));
 		assertEquals("MISS", ship2.attempt("5"));
 		assertFalse(ship2.getAlive());
-	}
-
-
-    @Test
-
-    public void setPaneTest()
-    {
-
-    }
-
-	 @Test
-	public void handleLoginButtonActionTest()
-	{
-        user = new NewUserController();
-
-	 //   assertEquals("Please enter a username", usernameField.());
 	}
 
 

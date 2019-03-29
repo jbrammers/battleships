@@ -10,7 +10,6 @@ import javafx.application.Platform;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.ArrayList;
 
 public class MessageHandler {
     private Socket client;
@@ -28,7 +27,7 @@ public class MessageHandler {
      * perform the appropriate response.
      * @param in the string to be processed
      */
-    public void handle(String in){
+    void handle(String in){
         String identifier;
         final String message;
         if (in.contains(" ")) {

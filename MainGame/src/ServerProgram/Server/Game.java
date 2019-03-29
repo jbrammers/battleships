@@ -22,7 +22,7 @@ public class Game implements Runnable {
      * Allows a player to be added to a game instance
      * @param player Player to be added
      */
-    public void addPlayer(Player player) {
+    void addPlayer(Player player) {
         playerList.add(player);
         if (player1 == null) {
             player1 = player;
@@ -89,9 +89,9 @@ public class Game implements Runnable {
 
     /**
      * Sends a message to each client that the game is over and disconnects them
-     * @throws IOException
+     * @throws IOException If a player's socket can't be closed IOException is thrown
      */
-    public void endGame() throws IOException {
+    void endGame() throws IOException {
         System.out.println(String.format("ClientProgram.Game ID %d ending!", gameID));
         for (Player p:
                 playerList) {
@@ -113,7 +113,7 @@ public class Game implements Runnable {
         return gameProgressing;
     }
 
-    public boolean isGameFinished() {
+    boolean isGameFinished() {
         return gameFinished;
     }
 

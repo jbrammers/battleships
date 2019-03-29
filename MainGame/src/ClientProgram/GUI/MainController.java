@@ -15,7 +15,11 @@ public class MainController {
     @FXML
     private StackPane paneHolder;
 
-    public void setPane(Node node) {
+    /**
+     * sets pane at top of stack
+     * @param node
+     */
+    void setPane(Node node) {
         paneHolder.getChildren().setAll(node);
     }
 

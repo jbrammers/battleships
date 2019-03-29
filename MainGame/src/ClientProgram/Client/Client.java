@@ -4,19 +4,16 @@ import ClientProgram.GUI.DataStore;
 import ClientProgram.GUI.LoginController;
 import javafx.application.Platform;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
 
 public class Client implements Runnable {
-    private int portNumber = 3000;
     private boolean loggedIn = false;
     private Socket client;
     private BufferedReader input;
     private PrintWriter output;
+    private InputStream is;
 
     public Client() {
     }
@@ -25,16 +22,16 @@ public class Client implements Runnable {
     public void start() {
         try {
             // Open connection on port number, throws exception if not found
-            client = new Socket("localhost", portNumber);
+            client = new Socket("localhost", 3000);
             client.setKeepAlive(true);
 
             // Prints connection established message
+            is = client.getInputStream();
             input = new BufferedReader(
                     new InputStreamReader(client.getInputStream()));
 
             // Output client
-            output = new PrintWriter(
-                    client.getOutputStream(), true);
+            output = new PrintWriter(client.getOutputStream(), true);
 
         } catch (IOException e) {
             System.out.println("Connection failed to server. Please try again.");
@@ -162,13 +159,15 @@ public class Client implements Runnable {
         return client;
     }
 
+    public InputStream getIs() {
+        return is;
+    }
+
     public void endConnection() {
         try {
             client.close();
         } catch (IOException e) {
             System.out.println("Socket already closed.");
+        }
     }
-
-
-}
 }
