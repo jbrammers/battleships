@@ -14,11 +14,13 @@ public class Player implements Runnable{
     private boolean ready;
     private Game game;
     private Server server;
+    private boolean connected;
 
     public Player (String username, Socket socket, Server server) {
         this.username = username;
         this.socket = socket;
         this.server = server;
+        this.connected = true;
         try {
             this.is = new InputStreamReader(socket.getInputStream());
             this.os = socket.getOutputStream();
@@ -57,9 +59,9 @@ public class Player implements Runnable{
 
     /**
      * Sends an echo to the client and expects a reply - used to check the player is still connected
-     * @return true if connected
+     *
      */
-    public boolean isSocketConnected() {
+    public void isSocketConnected() {
 
         int tries = 1;
         while (tries <= 3) {
@@ -73,7 +75,11 @@ public class Player implements Runnable{
             }
         }
 
-        return !(tries >= 3);
+        if (tries > 3) {
+            connected = false;
+        } else {
+            connected = true;
+        }
     }
 
     public InputStreamReader getIs() {

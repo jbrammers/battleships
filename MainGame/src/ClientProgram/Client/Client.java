@@ -9,6 +9,7 @@ import java.net.Socket;
 import java.net.SocketException;
 
 public class Client implements Runnable {
+    private int portNumber = 3000;
     private boolean loggedIn = false;
     private Socket client;
     private BufferedReader input;
@@ -22,7 +23,7 @@ public class Client implements Runnable {
     public void start() {
         try {
             // Open connection on port number, throws exception if not found
-            client = new Socket("localhost", 3000);
+            client = new Socket("cca-ug04-005", 3000);
             client.setKeepAlive(true);
 
             // Prints connection established message

@@ -150,7 +150,7 @@ public class DatabaseManager {
     public ArrayList<PlayerData> calculateLeaderBoard() {
         String query = "SELECT username, wins, losses, ROUND(winratio,2) AS winratio " +
                 "FROM player " +
-        "ORDER BY winratio DESC, wins DESC, losses ASC " +
+        "ORDER BY winratio DESC" +
                 "LIMIT 10";
 
         try {
