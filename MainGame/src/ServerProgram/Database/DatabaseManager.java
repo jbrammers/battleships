@@ -23,7 +23,6 @@ public class DatabaseManager {
         }
     }
 
-
     /**
      * Run database code to determine whether a row exists with that username
      */
