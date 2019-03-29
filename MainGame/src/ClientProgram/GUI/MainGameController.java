@@ -1163,11 +1163,11 @@ public class MainGameController implements javafx.fxml.Initializable {
             @Override
             public void changed(ObservableValue<? extends String> selected, String oldWeapon, String newWeapon) {
                 removeAllTargetedTiles();
-                if (newWeapon.contains("Nuke")) {
+                if (newWeapon!=null && newWeapon.contains("Nuke")) {
                     weaponSelected = "NUKE";
-                } else if (newWeapon.contains("Row Bombardment")) {
+                } else if (newWeapon!=null && newWeapon.contains("Row Bombardment")) {
                     weaponSelected = "ROW BOMBARDMENT";
-                } else if (newWeapon.contains("Column Bombardment")) {
+                } else if (newWeapon!=null && newWeapon.contains("Column Bombardment")) {
                     weaponSelected = "COLUMN BOMBARDMENT";
                 } else weaponSelected = "DEFAULT SHOT";
             }
