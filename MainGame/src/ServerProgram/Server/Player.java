@@ -13,10 +13,12 @@ public class Player implements Runnable{
     private Player opponent;
     private boolean ready;
     private Game game;
+    private Server server;
 
-    public Player (String username, Socket socket) {
+    public Player (String username, Socket socket, Server server) {
         this.username = username;
         this.socket = socket;
+        this.server = server;
         try {
             this.is = new InputStreamReader(socket.getInputStream());
             this.os = socket.getOutputStream();
@@ -34,16 +36,14 @@ public class Player implements Runnable{
                 String nextLine = input.readLine();
                 MessageHandler.inputCheck(nextLine, this);
             }
-        } catch (IOException e) {
-            return;
-        }
+        } catch (IOException e) {}
     }
 
     public String getUsername() {
         return username;
     }
 
-    public Socket getSocket() {
+    Socket getSocket() {
         return socket;
     }
 
@@ -84,18 +84,26 @@ public class Player implements Runnable{
         return out;
     }
 
-    public void setOpponent(Player opponent) {
+    public OutputStream getOs() {
+        return os;
+    }
+
+    void setOpponent(Player opponent) {
         this.opponent = opponent;
     }
 
-    public Player getOpponent() { return opponent; }
+    Player getOpponent() { return opponent; }
 
-    public boolean isReady() {
+    boolean isReady() {
         return ready;
     }
 
-    public void setReady(boolean ready) {
+    void setReady(boolean ready) {
         this.ready = ready;
+    }
+
+    public Server getServer() {
+        return server;
     }
 
     @Override

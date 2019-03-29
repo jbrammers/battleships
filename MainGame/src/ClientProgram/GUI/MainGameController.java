@@ -442,20 +442,19 @@ public class MainGameController implements javafx.fxml.Initializable {
     public ComboBox weaponSelectMenu;
 
     private static MainGameController controller;
-    ArrayList<Button> buttonArray = new ArrayList<>();
-    ArrayList<Rectangle> ownShipsRectangles = new ArrayList<>();
-    public static ArrayList<String> messageLog = new ArrayList<>();
-    public static String message = "";
-    public static int messageCount = 0;
-    public String incomingMessage;
-    public static Gameboard gameboard = ShipPlacementController.gameboard;
-    public boolean turn;
+    private ArrayList<Button> buttonArray = new ArrayList<>();
+    private ArrayList<Rectangle> ownShipsRectangles = new ArrayList<>();
+    private static ArrayList<String> messageLog = new ArrayList<>();
+    private static String message = "";
+    private static int messageCount = 0;
+    private static Gameboard gameboard = ShipPlacementController.gameboard;
+    private boolean turn;
     private boolean targetLocated = false;
     private Button currentlySelectedButton;
     private String currentLocationAttempt;
-    public static int rowBombardmentCounter = 0;
-    public static int nukeCounter = 0;
-    public static int columnBombardmentCounter = 0;
+    static int rowBombardmentCounter = 0;
+    static int nukeCounter = 0;
+    static int columnBombardmentCounter = 0;
     private static int score = 0;
     private String weaponSelected = "DEFAULT SHOT";
     private ArrayList<String> locationsSelected = new ArrayList<>();
@@ -701,14 +700,14 @@ public class MainGameController implements javafx.fxml.Initializable {
         ownShipsRectangles.add(ownShipsJ10);
     }
 
-    public void initialiseButtonLayout() {
+    private void initialiseButtonLayout() {
         for (Button button : buttonArray) {
             button.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
             button.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
         }
     }
 
-    public void initialiseOwnShips(Gameboard gameboard) {
+    private void initialiseOwnShips(Gameboard gameboard) {
 
         for (Ship ship : gameboard.getBoard()) {
             ArrayList<String> rows = new ArrayList<>();
@@ -882,8 +881,7 @@ public class MainGameController implements javafx.fxml.Initializable {
         message = messageField.getText();
         messageLog.add(message);
         message = "";
-        String previousMessages = messagesDisplay.getText();
-        // messagesDisplay.setText(previousMessages + messageLog.get(messageCount) + "\n");
+
         messageField.setText("");
 
 
@@ -895,7 +893,6 @@ public class MainGameController implements javafx.fxml.Initializable {
     }
 
     public void printReceivedMessage(String incomingMessage) {
-        this.incomingMessage = "\n" + incomingMessage;
 
         messageLog.add(incomingMessage);
         message = "";
@@ -930,7 +927,7 @@ public class MainGameController implements javafx.fxml.Initializable {
         inputStage.showAndWait();
     }
 
-    public void targetLocationAction(String location, Button button) {
+    private void targetLocationAction(String location, Button button) {
         locationsSelected = new ArrayList<>();
         if (weaponSelected.equals("DEFAULT SHOT")) {
             currentLocationAttempt = location;
@@ -1074,11 +1071,11 @@ public class MainGameController implements javafx.fxml.Initializable {
 
     private final String[] rows = {"END", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "END"};
 
-    public static int getScore() {
+    static int getScore() {
         return score;
     }
 
-    public static void setScore(int score) {
+    static void setScore(int score) {
         MainGameController.score = score;
     }
 
@@ -1107,7 +1104,7 @@ public class MainGameController implements javafx.fxml.Initializable {
         }
     }
 
-    public void updateShopOptions() {
+    void updateShopOptions() {
         weaponSelectMenu.getItems().setAll("Default Cannon", nukeCounter + "x Nuke", rowBombardmentCounter + "x Row Bombardment", columnBombardmentCounter + "x Column Bombardment");
     }
 

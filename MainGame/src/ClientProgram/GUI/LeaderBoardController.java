@@ -1,18 +1,17 @@
 package ClientProgram.GUI;
 
-import ServerProgram.Database.DatabaseManager;
-import ServerProgram.Database.PlayerData;
+import ClientProgram.Client.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 
+import java.io.ObjectInputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class LeaderBoardController implements javafx.fxml.Initializable {
-    private DatabaseManager db;
     private ArrayList<PlayerData> leaderboard;
     private ArrayList<Label> labelArrayList = new ArrayList<>();
 
@@ -158,9 +157,24 @@ public class LeaderBoardController implements javafx.fxml.Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        db = new DatabaseManager();
-        leaderboard = db.calculateLeaderBoard();
-        db = null;
+        leaderboard = new ArrayList<>();
+        Client client = (Client) DataStore.getData().getObject("client");
+        client.send("SYSTEM leaderboard");
+
+        try {
+            ObjectInputStream ois = new ObjectInputStream(client.getIs());
+            List<String> data = (ArrayList<String>) ois.readObject();
+            for (String s : data) {
+                String[] strings = s.split("!");
+                leaderboard.add(new PlayerData(strings[0],
+                        Integer.parseInt(strings[1]),
+                        Integer.parseInt(strings[2]),
+                        Float.parseFloat(strings[3])));
+            }
+        } catch (Exception e) {
+            System.out.println("Leaderboard information couldn't be collected");
+            e.printStackTrace();
+        }
         initiliseLabelArray();
         occupyLeaderboard();
     }

@@ -274,7 +274,7 @@ public class ShipPlacementController implements Initializable {
     @FXML
     private Button J10;
 
-    public static Gameboard gameboard;
+    static Gameboard gameboard;
 
     private ArrayList<Ship> zeusShips = new ArrayList<>(Arrays.asList(new Ship("Zeus", 2), new Ship("Zeus", 2), new Ship("Zeus", 2), new Ship("Zeus", 2)));
     private ArrayList<Ship> sledgehammerShips = new ArrayList<>(Arrays.asList(new Ship("Sledgehammer", 3), new Ship("Sledgehammer", 3), new Ship("Sledgehammer", 3)));

@@ -1,18 +1,21 @@
 package ServerProgram.Server;
 
 import ServerProgram.Database.DatabaseManager;
+import ServerProgram.Database.PlayerData;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MessageHandler {
+class MessageHandler {
     /**
      * Checks the message being handled
      * @param in String to be checked
      * @param player Reference to the player for whom the input is being checked
      */
-    public static void inputCheck(String in, Player player) {
-        if (in == null) {
-        } else {
+    static void inputCheck(String in, Player player) {
+        if(in != null){
 
             String identifier;
             String message = null;
@@ -68,7 +71,6 @@ public class MessageHandler {
                             DatabaseManager db = new DatabaseManager();
                             db.updateGameHistory(false, player.getUsername());
                             db.updateGameHistory(true, player.getOpponent().getUsername());
-                            db = null;
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -76,6 +78,20 @@ public class MessageHandler {
                         player.getOut().println("SYSTEM theirturn");
                         player.getOpponent().getOut().println("SYSTEM yourturn");
                         player.getOpponent().getOut().println(in);
+                    }
+                    if (message.equals("leaderboard")) {
+                        try {
+                            ObjectOutputStream oos = new ObjectOutputStream(player.getOs());
+                            ArrayList<PlayerData> data = player.getServer().getDb().calculateLeaderBoard();
+                            List<String> output = new ArrayList<>();
+                            for (PlayerData p : data) {
+                                output.add(p.toString());
+                            }
+                            oos.writeObject(output);
+                        } catch (Exception e) {
+                            System.out.println("Leaderboard information couldn't be sent");
+                            e.printStackTrace();
+                        }
                     }
                     break;
 
