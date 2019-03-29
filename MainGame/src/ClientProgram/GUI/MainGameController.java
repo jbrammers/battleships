@@ -1012,10 +1012,11 @@ public class MainGameController implements javafx.fxml.Initializable {
             }
         } else if (weaponSelected.equals("ROW BOMBARDMENT")) {
             int indexOfButton = buttonArray.indexOf(button);
-            if (buttonArray.get(indexOfButton + 1).isDisabled() || buttonArray.get(indexOfButton + 2).isDisabled() || buttonArray.get(indexOfButton + 3).isDisabled()) {
+
+            if (location.contains("8") || location.contains("9") || location.contains("10")) {
             }
-            else if (location.contains("8") || location.contains("9") || location.contains("10")) {
-            } else {
+            else if (buttonArray.get(indexOfButton + 1).isDisabled() || buttonArray.get(indexOfButton + 2).isDisabled() || buttonArray.get(indexOfButton + 3).isDisabled()) {
+            }else {
                 String row = location.substring(0, 1);
                 String column = location.substring(1, 2);
                 String oneRightOfLocation = row + (Integer.valueOf(column) + 1);
@@ -1053,10 +1054,11 @@ public class MainGameController implements javafx.fxml.Initializable {
             }
         } else if (weaponSelected.equals("COLUMN BOMBARDMENT")) {
             int indexOfButton = buttonArray.indexOf(button);
-            if (buttonArray.get(indexOfButton + 10).isDisabled() || buttonArray.get(indexOfButton + 20).isDisabled() || buttonArray.get(indexOfButton + 30).isDisabled()) {
+
+            if (location.contains("H") || location.contains("I") || location.contains("J")) {
             }
-            else if (location.contains("H") || location.contains("I") || location.contains("J")) {
-            } else {
+            else if (buttonArray.get(indexOfButton + 10).isDisabled() || buttonArray.get(indexOfButton + 20).isDisabled() || buttonArray.get(indexOfButton + 30).isDisabled()) {
+            }else {
                 String row = location.substring(0, 1);
                 String column = location.substring(1);
                 String oneBelowOfLocation = rows[Arrays.asList(rows).indexOf(row) + 1] + column;
@@ -1094,8 +1096,9 @@ public class MainGameController implements javafx.fxml.Initializable {
             }
         } else if (weaponSelected.equals("NUKE")) {
             int indexOfButton = buttonArray.indexOf(button);
-            if (buttonArray.get(indexOfButton + 1).isDisabled() || buttonArray.get(indexOfButton + 10).isDisabled() || buttonArray.get(indexOfButton + 11).isDisabled()) {
-            } else if (location.contains("J") || location.contains("10")) {
+            if (location.contains("J") || location.contains("10")) {
+            }
+            else if (buttonArray.get(indexOfButton + 1).isDisabled() || buttonArray.get(indexOfButton + 10).isDisabled() || buttonArray.get(indexOfButton + 11).isDisabled()) {
             } else {
                 String row = location.substring(0, 1);
                 String column = location.substring(1, 2);
