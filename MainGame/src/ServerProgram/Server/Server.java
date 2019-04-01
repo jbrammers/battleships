@@ -5,6 +5,7 @@ import ServerProgram.Database.DatabaseManager;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -112,7 +113,13 @@ public class Server implements Runnable {
             // Setup database manager
             db = new DatabaseManager();
         } catch (IOException e) {
-            System.out.println("Problem starting server on port: " + this.port);
+            System.err.println("Problem starting server on port: " + this.port);
+
+            System.exit(1);
+        } catch (SQLException e) {
+            System.err.print("Problem connecting to database.");
+
+            System.exit(1);
         }
     }
 

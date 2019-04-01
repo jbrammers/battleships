@@ -1,12 +1,15 @@
 package ServerProgram.Database;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class DatabaseRunner {
     public static void main(String[] args) {
-        DatabaseManager db = new DatabaseManager();
-
+        DatabaseManager db = null;
+        try {
+            db = new DatabaseManager();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         // RETRIEVE AND DISPLAY DATABASE
         ArrayList<PlayerData> results = db.calculateLeaderBoard();
         for (PlayerData player : results) {

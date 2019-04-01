@@ -10,17 +10,12 @@ public class DatabaseManager {
 
     private Connection connection;
 
-    public DatabaseManager() {
+    public DatabaseManager() throws SQLException {
         String url = "jdbc:postgresql://mod-msc-sw1.cs.bham.ac.uk/group40";
         String username = "group40";
         String password = "52bsgkbp1x";
 
-        try {
-            this.connection = DriverManager.getConnection(url, username, password);
-        } catch (SQLException e) {
-            System.out.println("Something went wrong connecting to the database");
-            e.printStackTrace();
-        }
+        this.connection = DriverManager.getConnection(url, username, password);
     }
 
     /**

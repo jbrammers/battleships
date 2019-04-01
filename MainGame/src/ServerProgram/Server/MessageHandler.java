@@ -68,7 +68,7 @@ class MessageHandler {
                     } else if (message.equals("gameEnd")) {
                         try {
                             player.getGame().endGame();
-                            DatabaseManager db = new DatabaseManager();
+                            DatabaseManager db = player.getServer().getDb();
                             db.updateGameHistory(false, player.getUsername());
                             db.updateGameHistory(true, player.getOpponent().getUsername());
                         } catch (IOException e) {
