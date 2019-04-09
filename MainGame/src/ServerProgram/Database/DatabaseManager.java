@@ -11,6 +11,14 @@ public class DatabaseManager {
     private Connection connection;
 
     public DatabaseManager() throws SQLException {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            System.err.println("Database driver was not loaded properly. Please try again.");
+            e.printStackTrace();
+            System.exit(1);
+        }
+
         String url = "jdbc:postgresql://mod-msc-sw1.cs.bham.ac.uk/group40";
         String username = "group40";
         String password = "52bsgkbp1x";

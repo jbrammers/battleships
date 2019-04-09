@@ -61,7 +61,7 @@ public class Player implements Runnable{
      * Sends an echo to the client and expects a reply - used to check the player is still connected
      *
      */
-    public void isSocketConnected() {
+    private void isSocketConnected() {
 
         int tries = 1;
         while (tries <= 3) {
@@ -110,6 +110,11 @@ public class Player implements Runnable{
 
     public Server getServer() {
         return server;
+    }
+
+    public boolean isConnected() {
+        isSocketConnected();
+        return connected;
     }
 
     @Override

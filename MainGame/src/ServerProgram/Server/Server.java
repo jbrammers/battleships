@@ -51,10 +51,20 @@ public class Server implements Runnable {
             while (waitingPlayers.size() > 1) {
 
                     Player player1 = waitingPlayers.get(0);
-                    waitingPlayers.remove(player1);
-                    Player player2 = waitingPlayers.get(0);
-                    waitingPlayers.remove(player2);
-                    newGame(player1,player2);
+                    Player player2 = waitingPlayers.get(1);
+                    boolean p1 = player1.isConnected();
+                    boolean p2 = player2.isConnected();
+                    if (p1 && p2) {
+                        waitingPlayers.remove(player1);
+                        waitingPlayers.remove(player2);
+                        newGame(player1, player2);
+                    }
+                    else if (!p1) {
+                        waitingPlayers.remove(player1);
+                    }
+                    else if (!p2) {
+                        waitingPlayers.remove(player2);
+                    }
             }
 
             // Iterates over the game list and checks if they have finished
@@ -118,7 +128,6 @@ public class Server implements Runnable {
             System.exit(1);
         } catch (SQLException e) {
             System.err.print("Problem connecting to database.");
-
             System.exit(1);
         }
     }
