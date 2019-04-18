@@ -4,6 +4,7 @@ import ClientProgram.GUI.DataStore;
 import ClientProgram.GUI.LoginController;
 import javafx.application.Platform;
 
+import javax.net.SocketFactory;
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
@@ -23,7 +24,8 @@ public class Client implements Runnable {
     public void start() {
         try {
             // Open connection on port number, throws exception if not found
-            client = new Socket("localhost", 3000);
+            SocketFactory sf = SocketFactory.getDefault();
+            client = sf.createSocket("localhost", 3000);
             client.setKeepAlive(true);
 
             // Prints connection established message
