@@ -2,9 +2,15 @@ package ServerProgram.Server;
 
 import ServerProgram.Database.DatabaseManager;
 
+import javax.net.ServerSocketFactory;
+import javax.net.ssl.SSLServerSocketFactory;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
@@ -65,6 +71,9 @@ public class Server implements Runnable {
                     else if (!p2) {
                         waitingPlayers.remove(player2);
                     }
+                    else {
+                        break;
+                    }
             }
 
             // Iterates over the game list and checks if they have finished
@@ -115,16 +124,33 @@ public class Server implements Runnable {
     private void startServer() {
         try {
             // Creates a secure server socket for password transmission
-            this.serverSocket = new ServerSocket(this.port);
+            ServerSocketFactory ssf =  ServerSocketFactory.getDefault();
+            this.serverSocket = ssf.createServerSocket(port);
             serverSocket.setSoTimeout(1000);
             running = true;
             System.out.printf("Server started on port %d \n", port);
+            System.out.println("Local IP Address is: " + InetAddress.getLocalHost());
+
+            String systemip;
+
+            try {
+                URL url = new URL("http://bot.whatismyipaddress.com");
+
+                BufferedReader br = new BufferedReader(
+                        new InputStreamReader(url.openStream())
+                );
+
+                systemip = br.readLine().trim();
+
+            } catch (Exception e) {
+                systemip = "Could not read IP";
+            }
+            System.out.println("Public IP Address is " + systemip);
 
             // Setup database manager
             db = new DatabaseManager();
         } catch (IOException e) {
             System.err.println("Problem starting server on port: " + this.port);
-
             System.exit(1);
         } catch (SQLException e) {
             System.err.print("Problem connecting to database.");
